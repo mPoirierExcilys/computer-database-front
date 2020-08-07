@@ -15,6 +15,6 @@ export class ComputerDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private computerService: ComputerService) { }
 
   ngOnInit(): void {
-    
+
   }
 }
