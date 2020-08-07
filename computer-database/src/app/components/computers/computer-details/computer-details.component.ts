@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Computer} from '../../../Models/computer.model';
+import {ActivatedRoute} from '@angular/router';
+import {ComputerService} from '../../../service/computer.service';
 
 @Component({
   selector: 'app-computer-details',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComputerDetailsComponent implements OnInit {
 
-  constructor() { }
+  computer: Computer;
+
+  constructor(private route: ActivatedRoute, private computerService: ComputerService) { }
 
   ngOnInit(): void {
+    
   }
-
 }
