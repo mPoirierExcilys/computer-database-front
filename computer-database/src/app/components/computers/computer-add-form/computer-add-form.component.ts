@@ -1,3 +1,4 @@
+import { Computer } from './../../../Models/computer.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComputerAddFormComponent implements OnInit {
 
+
+
+
   constructor() { }
+
+
 
   ngOnInit(): void {
   }
