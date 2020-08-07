@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AppRoutingComponent } from './app-routing/app-routing.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ComputerListComponent } from './components/computers/computer-list/computer-list.component';
@@ -16,7 +16,6 @@ import { UserLoginComponent } from './components/users/user-login/user-login.com
 @NgModule({
   declarations: [
     AppComponent,
-    AppRoutingComponent,
     HeaderComponent,
     FooterComponent,
     ComputerListComponent,
@@ -28,7 +27,8 @@ import { UserLoginComponent } from './components/users/user-login/user-login.com
     UserLoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
