@@ -1,29 +1,17 @@
-<p>computer-add-form works!</p>
-
-<form>
-    <div>
+<form [Computer]="computer">
+ 
         <label></label>
-        <input [(ngModel)]="Computer.name"> </input>
-    </div>
+        <input name="name" [(ngModel)]="computer.name"> 
 
-    <div>
+        <label></label>
+        <input name="introduced" [(ngModel)]="computer.introduced"> 
+
         <label> </label>
-        <input [(ngModel)]="Computer.introduced"> </input>
-    </div>
+        <input name="discontinued" [(ngModel)]="computer.discontinued"> 
 
-    <div>
-        <label> </label>
-        <input [(ngModel)]="Computer.discontinued"> </input>
-    </div>
+        <label></label>
+        <input name="company" [(ngModel)]="computer.company">
 
-    <div>
-        <label> </label>
-        <input [(ngModel)]="Computer.company"> </input>
-    </div>
-
-    <div>
-        <button></button>
-        <button></button>
-    </div>
-
+        <button onclick="" ></button>
+        <button onclick="" ></button>
 </form>

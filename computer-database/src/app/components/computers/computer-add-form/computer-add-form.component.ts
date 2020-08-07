@@ -1,3 +1,4 @@
+import { ComputerService } from './../../../service/computer.service';
 import { Computer } from './../../../Models/computer.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,10 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class ComputerAddFormComponent implements OnInit {
 
 
+  computer: Computer = new Computer();
 
-
-  constructor() { }
-
+  constructor(private computerservice: ComputerService) { }
 
 
   ngOnInit(): void {
