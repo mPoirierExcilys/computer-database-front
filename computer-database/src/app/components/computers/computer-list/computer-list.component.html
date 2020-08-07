@@ -1,1 +1,8 @@
 <p>computer-list works!</p>
+
+<app-recipe *ngFor="let computer of computersList"
+            [computer]="computer" (removeToParent)="remove($event)">
+        </app-recipe>
+
+{{computersList}}
+
