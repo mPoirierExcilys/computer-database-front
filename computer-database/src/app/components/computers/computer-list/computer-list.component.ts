@@ -38,16 +38,13 @@ export class ComputerListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("Dans init.");
     this.getList();
   }
 
-  getList(){
+  getList() : void {
     this.setPage("ASC", 1, 25, "id");
-    console.log("Dans list.");
-    this.computerService.getComputers(this.page, "").subscribe(
+    this.computerService.getComputers(this.page).subscribe(
       (result: Computer[]) => {
-        console.log("Dans bien.");
         this.computersList = result;
       },
       (error: any) => {
@@ -60,7 +57,7 @@ export class ComputerListComponent implements OnInit {
     this.computerService.deleteComputer(id).subscribe();
   }
 
-  setPage(ascending: string, currentPage: number, itemsByPage: number, order: string){
+  setPage(ascending: string, currentPage: number, itemsByPage: number, order: string) : void {
     this.page = new Page();
     this.page.ascending = ascending;
     this.page.currentPage = currentPage;
@@ -68,7 +65,7 @@ export class ComputerListComponent implements OnInit {
     this.page.order = order;
   }
 
-  modifOrder(order : Order){
+  modifOrder(order : Order) : void {
     this.page.order = order.name;
   }
 }
