@@ -14,11 +14,8 @@ import { UserAddFormComponent } from './components/users/user-add-form/user-add-
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
-<<<<<<< HEAD
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-=======
 import { ComputerComponent } from './components/computers/computer/computer.component';
->>>>>>> dev
+
 
 @NgModule({
   declarations: [
@@ -38,8 +35,7 @@ import { ComputerComponent } from './components/computers/computer/computer.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CustomMaterialModule,
-    NoopAnimationsModule
+    CustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

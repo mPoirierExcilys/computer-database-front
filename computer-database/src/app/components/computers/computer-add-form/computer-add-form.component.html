@@ -1,5 +1,5 @@
 
-        <form >
+        <form>
                 <label>Computer name</label>
                 <input type="text" name="name" [(ngModel)]="computer.name"> 
                 <br/>
@@ -11,10 +11,9 @@
                 <br/>
                 <label>Company</label>
                 <select>
-                        <option *ngFor="let company of companies" [value]="company">{{company.name}}</option>
+                        <option *ngFor="let company of companies" value="company">{{company.name}}</option>
                 </select>
                 <br/>
                 <button (click)="onSubmit()" mat-button> Add computer </button>
                 <button onclick="" mat-button> Cancel </button>
         </form>
-
