@@ -1,4 +1,4 @@
 export class Company{
-  id?: number;
+  idCompany?: number;
   name: number;
 }

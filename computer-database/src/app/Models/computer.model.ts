@@ -1,9 +1,9 @@
 import {Company} from './company.model';
 
 export class Computer{
-  id?: number;
+  idComputer?: number;
   name: string;
   introduced: string;
   discontinued: string;
-  company: Company;
+  companyDto: Company;
 }
