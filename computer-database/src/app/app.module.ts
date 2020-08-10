@@ -12,6 +12,8 @@ import { ComputerModifyFormComponent } from './components/computers/computer-mod
 import { ComputerRemoveComponent } from './components/computers/computer-remove/computer-remove.component';
 import { UserAddFormComponent } from './components/users/user-add-form/user-add-form.component';
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
+import {HttpClientModule} from '@angular/common/http';
+import {CustomMaterialModule} from './custom-material/custom-material.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { UserLoginComponent } from './components/users/user-login/user-login.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    CustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
