@@ -11,12 +11,12 @@ export class ComputerService {
   baseUrl= 'http://10.0.1.106:8080/webapprest/computers';
   constructor(private http: HttpClient) { }
   getComputers(page: Page, search?: string): Observable<Computer[]>{
-    const parameters = new HttpParams();
-    parameters.append('ascending', page.ascending);
-    parameters.append('currentPage', String(page.currentPage));
-    parameters.append('itemsByPage', String(page.itemsByPage));
-    parameters.append('order', page.order);
-    parameters.append('search', search);
+    let parameters = new HttpParams();
+    parameters = parameters.append('ascending', page.ascending);
+    parameters = parameters.append('currentPage', String(page.currentPage));
+    parameters = parameters.append('itemsByPage', String(page.itemsByPage));
+    parameters = parameters.append('order', page.order);
+    // parameters = parameters.append('search', ;
     return this.http.get<Computer[]>(this.baseUrl, {params: parameters});
   }
   getComputer(id: number): Observable<Computer>{
