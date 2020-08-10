@@ -1,17 +1,19 @@
 <form [Computer]="computer">
  
-        <label></label>
+        <label>Computer name</label>
         <input name="name" [(ngModel)]="computer.name"> 
-
-        <label></label>
+        <br/>
+        <label>Introduction date</label>
         <input name="introduced" [(ngModel)]="computer.introduced"> 
-
-        <label> </label>
+        <br/>
+        <label>Discontinuition date</label>
         <input name="discontinued" [(ngModel)]="computer.discontinued"> 
-
-        <label></label>
-        <input name="company" [(ngModel)]="computer.company">
-
-        <button onclick="" ></button>
-        <button onclick="" ></button>
+        <br/>
+        <label>Company</label>
+        <select [(ngModel)]="companies" >
+                <option *ngFor="let company of companies" [value]="company">{{company.name}}</option>
+        </select>
+        <br/>
+        <button onclick="onSubmit()" mat-button> Add computer </button>
+        <button onclick="" mat-button> Cancel </button>
 </form>
