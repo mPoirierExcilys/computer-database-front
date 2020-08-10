@@ -1,6 +1,5 @@
 
-        <form [Computer]="computer">
- 
+        <form >
                 <label>Computer name</label>
                 <input type="text" name="name" [(ngModel)]="computer.name"> 
                 <br/>
@@ -11,7 +10,7 @@
                 <input type="date" name="discontinued" [(ngModel)]="computer.discontinued"> 
                 <br/>
                 <label>Company</label>
-                <select [(ngModel)]="companies" >
+                <select>
                         <option *ngFor="let company of companies" [value]="company">{{company.name}}</option>
                 </select>
                 <br/>
