@@ -20,7 +20,7 @@ export class ComputerDetailsComponent implements OnInit {
   }
 
   getComputer(){
-    this.computerService.getComputer(this.routeParam.snapshot.paramMap.get('id')).suscribe(
+    this.computerService.getComputer(Number(this.routeParam.snapshot.paramMap.get('id'))).subscribe(
       (result: Computer) => {
           this.computer = result;
       },
