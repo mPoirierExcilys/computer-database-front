@@ -16,16 +16,19 @@ export class ComputerDetailsComponent implements OnInit {
   constructor(private routeParam: ActivatedRoute, private computerService: ComputerService) {}
 
   ngOnInit(): void {
-    this.getComputer;
+    console.log("init");
+    this.getComputer();
   }
 
   getComputer(){
+    console.log("get computer");
     this.computerService.getComputer(Number(this.routeParam.snapshot.paramMap.get('id'))).subscribe(
       (result: Computer) => {
           this.computer = result;
       },
       (error : any) => {
         console.log("Erreur avec l'observable lors du getComputer.");
+        console.log(error);
       }
     )
   }
