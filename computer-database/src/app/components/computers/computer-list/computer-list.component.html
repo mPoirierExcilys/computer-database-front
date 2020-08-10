@@ -1,14 +1,19 @@
 <p>computer-list works!</p>
 
+<div>
 <h4>mat select</h4>
 <mat-form-field appearance="fill">
   <mat-select (selectionChange)="modifOrder($event)" required>
-    <mat-option *ngFor="let order of orders" [value]="order" >
+    <mat-option *ngFor="let order of orders" value = "{{order.name}}" >
       {{order.label}}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
+<button (click)="nextPage()"> Next Page </button>
+
+<button (click)="previousPage()"> Previous Page </button>
+</div>
 <!-- <ng-container *ngIf="computersList"> -->
 
 <app-computer *ngFor="let computer of computersList"
@@ -19,4 +24,3 @@
 
 
 {{computersList}}
-

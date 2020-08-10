@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ComputerService } from 'src/app/service/computer.service';
 import { HttpResponse } from '@angular/common/http';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { FormControl } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 
 
 interface Order {
@@ -36,19 +38,18 @@ export class ComputerListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.setPage("ASC", 1, 5, "computer.id");
     this.getList();
   }
 
   getList() : void {
-    console.log(this.computersList);
-    this.setPage("ASC", 1, 25, "id");
     this.computerService.getComputers(this.page).subscribe(
       (result: Computer[]) => {
+        this.computersList = [];
         result.forEach(computer => {
           this.computersList.push(computer);
         });
-        console.log(this.computersList
-          );
+        console.log(this.computersList);
       },
       (error: any) => {
         console.log("Erreur avec l'observable lors du getComputersList.");
@@ -68,8 +69,27 @@ export class ComputerListComponent implements OnInit {
     this.page.order = order;
   }
 
-  modifOrder(order : Order) : void {
-    console.log(order);
-    this.page.order = order.name;
+  modifOrder(orderSelectEvent :  MatSelectChange) : void {
+    this.page.order = orderSelectEvent.value;
+    this.getList();
+  }
+
+  modifNombreComputers(orderEvent :  MatSelectChange) : void {
+    this.page.order = orderEvent.value;
+    this.getList();
+  }
+
+  nextPage() : void {
+    if(this.page.currentPage < this.page.nbPage){
+      this.page.currentPage = this.page.currentPage + 1;
+      this.getList();
+    }
+  }
+
+  previousPage() : void {
+    if(this.page.currentPage > 0){
+      this.page.currentPage = this.page.currentPage - 1;
+      this.getList();
+    }
   }
 }
