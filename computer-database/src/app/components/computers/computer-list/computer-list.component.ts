@@ -19,7 +19,7 @@ interface Order {
 })
 export class ComputerListComponent implements OnInit {
   private route : ActivatedRoute;
-  computersList : Computer[];
+  computersList : Computer[] = [];
   computerService : ComputerService;
   page : Page;
   orders: Order[] = [
@@ -28,9 +28,7 @@ export class ComputerListComponent implements OnInit {
     {label: "introduced", name: "computer.introduced"},
     {label: "discontinued", name: "computer.discontinued"},
     {label: "company name", name: "cp.name"}
-
   ]
-
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
     this.route = routeParam;
@@ -42,10 +40,15 @@ export class ComputerListComponent implements OnInit {
   }
 
   getList() : void {
+    console.log(this.computersList);
     this.setPage("ASC", 1, 25, "id");
     this.computerService.getComputers(this.page).subscribe(
       (result: Computer[]) => {
-        this.computersList = result;
+        result.forEach(computer => {
+          this.computersList.push(computer);
+        });
+        console.log(this.computersList
+          );
       },
       (error: any) => {
         console.log("Erreur avec l'observable lors du getComputersList.");
@@ -66,6 +69,7 @@ export class ComputerListComponent implements OnInit {
   }
 
   modifOrder(order : Order) : void {
+    console.log(order);
     this.page.order = order.name;
   }
 }

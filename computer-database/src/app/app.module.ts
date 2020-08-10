@@ -14,7 +14,11 @@ import { UserAddFormComponent } from './components/users/user-add-form/user-add-
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
+<<<<<<< HEAD
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+=======
+import { ComputerComponent } from './components/computers/computer/computer.component';
+>>>>>>> dev
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ComputerModifyFormComponent,
     ComputerRemoveComponent,
     UserAddFormComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    ComputerComponent
   ],
   imports: [
     BrowserModule,
