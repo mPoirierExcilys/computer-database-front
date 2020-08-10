@@ -11,7 +11,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class ComputerDetailsComponent implements OnInit {
 
-  private computer: Computer;
+  computer: Computer;
 
   constructor(private routeParam: ActivatedRoute, private computerService: ComputerService) {}
 

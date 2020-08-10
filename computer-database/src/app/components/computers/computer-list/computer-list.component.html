@@ -2,7 +2,6 @@
 
 <h4>mat select</h4>
 <mat-form-field appearance="fill">
-  <mat-label> Order wanted</mat-label>
   <mat-select (selectionChange)="modifOrder($event)" required>
     <mat-option *ngFor="let order of orders" [value]="order" >
       {{order.label}}
@@ -10,9 +9,14 @@
   </mat-select>
 </mat-form-field>
 
-<app-recipe *ngFor="let computer of computersList"
+<!-- <ng-container *ngIf="computersList"> -->
+
+<app-computer *ngFor="let computer of computersList"
             [computer]="computer" (removeToParent)="remove($event)">
-        </app-recipe>
+        </app-computer>
+
+<!-- </ng-container> -->
+
 
 {{computersList}}
 
