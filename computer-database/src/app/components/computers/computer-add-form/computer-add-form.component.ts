@@ -1,3 +1,4 @@
+import { CompanyService } from './../../../service/company.service';
 import { CustomMaterialModule } from './../../../custom-material/custom-material.module';
 import { Company } from './../../../Models/company.model';
 import { ComputerService } from './../../../service/computer.service';

@@ -14,6 +14,7 @@ import { UserAddFormComponent } from './components/users/user-add-form/user-add-
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {CustomMaterialModule} from './custom-material/custom-material.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
