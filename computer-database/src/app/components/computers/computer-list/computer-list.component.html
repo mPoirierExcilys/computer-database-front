@@ -3,7 +3,7 @@
 <h4>mat select</h4>
 <mat-form-field appearance="fill">
   <mat-label> Order wanted</mat-label>
-  <mat-select (selectionChange)="onBookChange($event)" required>
+  <mat-select (selectionChange)="modifOrder($event)" required>
     <mat-option *ngFor="let order of orders" [value]="order" >
       {{order.label}}
     </mat-option>

@@ -67,4 +67,8 @@ export class ComputerListComponent implements OnInit {
     this.page.itemsByPage = itemsByPage;
     this.page.order = order;
   }
+
+  modifOrder(order : Order){
+    this.page.order = order.name;
+  }
 }
