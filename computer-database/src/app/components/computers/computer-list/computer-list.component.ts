@@ -11,7 +11,12 @@ import { MatSelectChange } from '@angular/material/select';
 
 interface Order {
   label : string;
-  name : string;
+  value : string;
+}
+
+interface Ascending {
+  label : string;
+  value : string;
 }
 
 @Component({
@@ -23,13 +28,20 @@ export class ComputerListComponent implements OnInit {
   private route : ActivatedRoute;
   computersList : Computer[] = [];
   computerService : ComputerService;
+  nbComputers : number;
   page : Page;
-  orders: Order[] = [
-    {label: "id", name: "computer.id"},
-    {label: "name", name: "computer.name"},
-    {label: "introduced", name: "computer.introduced"},
-    {label: "discontinued", name: "computer.discontinued"},
-    {label: "company name", name: "cp.name"}
+  motSearch : string = "";
+  orders : Order[] = [
+    {label: "id", value: "computer.id"},
+    {label: "name", value: "computer.name"},
+    {label: "introduced", value: "computer.introduced"},
+    {label: "discontinued", value: "computer.discontinued"},
+    {label: "company name", value: "cp.name"}
+  ]
+
+  ascendings : Ascending[] = [
+    {label: "ASC", value: "ASC"},
+    {label: "DESC", value: "DESC"}
   ]
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
@@ -38,18 +50,52 @@ export class ComputerListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.setPage("ASC", 1, 5, "computer.id");
+    this.setPage();
     this.getList();
   }
 
+  setPage(){
+    this.page = new Page();
+    this.page.setItemsByPage(25);
+    this.page.setAscending("ASC");
+    this.page.setOrder("computer.id");
+    this.page.setCurrentPage(1);
+    this.getNombreComputers();
+    this.getNombrePages();
+  }
+
+  getNombreComputers(){
+    this.computerService.getNbComputer(this.motSearch).subscribe(
+      (result: number) => {
+        this.nbComputers = result;
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du getComputersList.");
+      }
+    )
+  }
+
+  getNombrePages() {
+    if(!this.page.itemsByPage){
+      this.page.setItemsByPage(25);
+    }
+    this.computerService.getNbPages(this.page, this.motSearch).subscribe(
+      (result: number) => {
+        this.page.setNbPage(result);
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du getnombrePages.");
+      }
+    )
+  }
+
   getList() : void {
-    this.computerService.getComputers(this.page).subscribe(
+    this.computerService.getComputers(this.page, this.motSearch).subscribe(
       (result: Computer[]) => {
         this.computersList = [];
         result.forEach(computer => {
           this.computersList.push(computer);
         });
-        console.log(this.computersList);
       },
       (error: any) => {
         console.log("Erreur avec l'observable lors du getComputersList.");
@@ -59,23 +105,29 @@ export class ComputerListComponent implements OnInit {
 
   remove(id : number): void{
     this.computerService.deleteComputer(id).subscribe();
-  }
-
-  setPage(ascending: string, currentPage: number, itemsByPage: number, order: string) : void {
-    this.page = new Page();
-    this.page.ascending = ascending;
-    this.page.currentPage = currentPage;
-    this.page.itemsByPage = itemsByPage;
-    this.page.order = order;
-  }
-
-  modifOrder(orderSelectEvent :  MatSelectChange) : void {
-    this.page.order = orderSelectEvent.value;
     this.getList();
   }
 
-  modifNombreComputers(orderEvent :  MatSelectChange) : void {
-    this.page.order = orderEvent.value;
+  modifOrder(orderSelectEvent :  MatSelectChange) : void {
+    this.page.setOrder(orderSelectEvent.value);
+    this.getList();
+  }
+
+  modifAscending(ascendingSelectEvent :  MatSelectChange) : void {
+    this.page.setAscending(ascendingSelectEvent.value);
+    this.getList();
+  }
+
+  modifItemsByPage(nombreItems : number) : void {
+    this.page.setItemsByPage(nombreItems);
+    this.getNombrePages();
+    this.getList();
+  }
+
+  modifSearch(motSearch: string): void{
+    this.motSearch = motSearch;
+    this.getNombreComputers();
+    this.getNombrePages();
     this.getList();
   }
 
@@ -87,7 +139,7 @@ export class ComputerListComponent implements OnInit {
   }
 
   previousPage() : void {
-    if(this.page.currentPage > 0){
+    if(this.page.currentPage > 1){
       this.page.currentPage = this.page.currentPage - 1;
       this.getList();
     }
