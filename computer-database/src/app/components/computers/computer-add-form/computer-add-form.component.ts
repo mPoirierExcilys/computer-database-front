@@ -4,6 +4,9 @@ import { Company } from './../../../Models/company.model';
 import { ComputerService } from './../../../service/computer.service';
 import { Computer } from './../../../Models/computer.model';
 import { Component, OnInit} from '@angular/core';
+import { Location } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-computer-add-form',
@@ -19,13 +22,16 @@ export class ComputerAddFormComponent implements OnInit {
   computer: Computer = new Computer();
   companies: Company[];
 
-  constructor(private computerService: ComputerService, private companyService: CompanyService) { }
+  constructor(private computerService: ComputerService, private companyService: CompanyService, private location: Location) { }
 
   onSubmit(){
     this.computerService.createComputer(this.computer).subscribe();
     console.log(this.computer.name);
   }
 
+  onCancel(){
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.companyService.getCompanies().subscribe(
