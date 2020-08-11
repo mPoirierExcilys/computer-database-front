@@ -15,8 +15,8 @@ export class ComputerService {
     parameters = parameters.append('ascending', page.ascending);
     parameters = parameters.append('currentPage', String(page.currentPage));
     parameters = parameters.append('itemsByPage', String(page.itemsByPage));
-    parameters = parameters.append('order', page.order);
-    // parameters = parameters.append('search', ;
+    parameters = parameters.append('order', String(page.order));
+    parameters = parameters.append('search', search);
     return this.http.get<Computer[]>(this.baseUrl, {params: parameters});
   }
   getComputer(id: number): Observable<Computer>{
@@ -31,15 +31,15 @@ export class ComputerService {
   updateComputer(computer: Computer): Observable<string>{
     return this.http.put<string>(`${this.baseUrl}/${computer.idComputer}`, computer);
   }
-  getNbPages(page: Page, search: string): Observable<number>{
-    const parameters = new HttpParams();
-    parameters.append('itemsByPage', String(page.itemsByPage));
-    parameters.append('search', search);
+  getNbPages(page: Page, search?: string): Observable<number>{
+    let parameters = new HttpParams();
+    parameters = parameters.append('itemsByPage', String(page.itemsByPage));
+    parameters = parameters.append('search', search);
     return this.http.get<number>(`${this.baseUrl}/nbPages`, {params: parameters});
   }
   getNbComputer(search?: string): Observable<number>{
-    const parameters = new HttpParams();
-    parameters.append('search', search);
+    let parameters = new HttpParams();
+    parameters = parameters.append('search', search);
     return this.http.get<number>(`${this.baseUrl}/numbers`, {params: parameters});
   }
 }
