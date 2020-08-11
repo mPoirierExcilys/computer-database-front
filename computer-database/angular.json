@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "computer-database"
+    }
+  },
+  "defaultProject": "computer-database",
+  "cli": {
+    "analytics": false
+  }
 }
