@@ -30,6 +30,7 @@ export class ComputerAddFormComponent implements OnInit {
   
   onSubmit(){
     this.computerService.createComputer(this.computer).subscribe();
+    console.log(this.computer.name + " " + this.computer.companyDto.name)
     this.returnHome();
   }
 
