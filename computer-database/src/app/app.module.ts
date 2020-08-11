@@ -15,6 +15,8 @@ import { UserLoginComponent } from './components/users/user-login/user-login.com
 import {HttpClientModule} from '@angular/common/http';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
 import { ComputerComponent } from './components/computers/computer/computer.component';
+import { CompanyListComponent } from './components/companies/company-list/company-list.component';
+import { CompanyComponent } from './components/companies/company/company.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ComputerComponent } from './components/computers/computer/computer.comp
     ComputerRemoveComponent,
     UserAddFormComponent,
     UserLoginComponent,
-    ComputerComponent
+    ComputerComponent,
+    CompanyListComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,

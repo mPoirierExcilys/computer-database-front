@@ -4,9 +4,15 @@ import { ComputerDetailsComponent } from '../components/computers/computer-detai
 import { ComputerListComponent } from '../components/computers/computer-list/computer-list.component';
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
 import { ComputerModifyFormComponent } from '../components/computers/computer-modify-form/computer-modify-form.component';
+import { CompanyListComponent } from '../components/companies/company-list/company-list.component';
 
 
 const routes: Routes = [
+  {
+    path: 'companies',
+    component: CompanyListComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'computers',
     component: ComputerListComponent,
