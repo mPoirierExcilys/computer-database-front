@@ -31,6 +31,8 @@ export class ComputerListComponent implements OnInit {
   nbComputers : number;
   page : Page;
   motSearch : string = "";
+  orderSelect = 'computer.id';
+  ascendingSelect = 'ASC';
   orders : Order[] = [
     {label: "id", value: "computer.id"},
     {label: "name", value: "computer.name"},
