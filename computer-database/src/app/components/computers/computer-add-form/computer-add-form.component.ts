@@ -5,8 +5,7 @@ import { ComputerService } from './../../../service/computer.service';
 import { Computer } from './../../../Models/computer.model';
 import { Component, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
-
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-computer-add-form',
@@ -14,34 +13,39 @@ import { Location } from '@angular/common';
   styleUrls: ['./computer-add-form.component.scss']
 })
 
-
-
 export class ComputerAddFormComponent implements OnInit {
-
 
   computer: Computer = new Computer();
   companies: Company[];
+  pathOrigin: String = "#";
 
-  constructor(private computerService: ComputerService, private companyService: CompanyService, private location: Location) { }
+  constructor(private computerService: ComputerService,
+              private companyService: CompanyService,
+              private location: Location){}
+
+  ngOnInit(): void {
+    this.getCompanies();
+  }
 
   onSubmit(){
     this.computerService.createComputer(this.computer).subscribe();
-    console.log(this.computer.name);
+    this.location.go("computers"); //ajoute un element dans l'historique, modifier pour aller sur l'élément créer
+    this.location.forward(); //va a l'élément suivant dans l'historique
+    window.location.reload(); // recharge la page
   }
 
   onCancel(){
     this.location.back();
   }
 
-  ngOnInit(): void {
+  getCompanies(){
     this.companyService.getCompanies().subscribe(
       (result: Company[]) => {
-          this.companies = result; 
+        this.companies = result;
       },
       (error) => {
-          console.log("can't retrive company list")
+        console.log("can't retrive company list")
       }
-  );
+    );
   }
-
 }
