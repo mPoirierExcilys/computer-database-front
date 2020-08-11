@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
 import { ComputerComponent } from './components/computers/computer/computer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

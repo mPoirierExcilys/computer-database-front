@@ -16,12 +16,10 @@ export class ComputerDetailsComponent implements OnInit {
   constructor(private routeParam: ActivatedRoute, private computerService: ComputerService) {}
 
   ngOnInit(): void {
-    console.log("init");
     this.getComputer();
   }
 
   getComputer(){
-    console.log("get computer");
     this.computerService.getComputer(Number(this.routeParam.snapshot.paramMap.get('id'))).subscribe(
       (result: Computer) => {
           this.computer = result;

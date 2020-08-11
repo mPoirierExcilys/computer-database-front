@@ -1,1 +1,18 @@
-<p>computer-add-form works!</p>
+<form>
+        <label>Computer name</label>
+        <input type="text" name="name" [(ngModel)]="computer.name">
+        <br/>
+        <label>Introduction date</label>
+        <input type="date"  name="introduced" [(ngModel)]="computer.introduced">
+        <br/>
+        <label>Discontinuition date</label>
+        <input type="date" name="discontinued" [(ngModel)]="computer.discontinued">
+        <br/>
+        <label>Company</label>
+        <select>
+                <option *ngFor="let company of companies" value="company">{{company.name}}</option>
+        </select>
+        <br/>
+        <button (click)="onSubmit()" mat-button> Add computer </button>
+        <button (click)="onCancel()" mat-button> Cancel </button>
+</form>
