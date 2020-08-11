@@ -4,16 +4,16 @@
 <div>
 <h4>mat select</h4>
 <mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifOrder($event)" required>
-    <mat-option *ngFor="let order of orders" value = "{{order.value}}" >
+  <mat-select (selectionChange)="modifOrder($event)" [(value)]="orderSelect" required>
+    <mat-option *ngFor="let order of orders" value="{{order.value}}" >
       {{order.label}}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
 <mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifAscending($event)" required>
-    <mat-option *ngFor="let ascending of ascendings" value = "{{ascending.value}}" >
+  <mat-select (selectionChange)="modifAscending($event)" [(value)]="ascendingSelect" required>
+    <mat-option  *ngFor="let ascending of ascendings"  value="{{ascending.value}}" >
       {{ascending.label}}
     </mat-option>
   </mat-select>
@@ -28,7 +28,6 @@
 
 <input type="text" value="{{this.motSearch}}" id="search" 
     name="search" (change)="modifSearch($event.target.value)" />
-
 </div>
 <!-- <ng-container *ngIf="computersList"> -->
 
