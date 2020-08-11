@@ -5,7 +5,7 @@ import { ComputerService } from './../../../service/computer.service';
 import { Computer } from './../../../Models/computer.model';
 import { Component, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-computer-add-form',
@@ -21,17 +21,21 @@ export class ComputerAddFormComponent implements OnInit {
 
   constructor(private computerService: ComputerService,
               private companyService: CompanyService,
-              private location: Location){}
+              private location: Location,
+              private router: Router){}
 
   ngOnInit(): void {
     this.getCompanies();
   }
-
+  
   onSubmit(){
     this.computerService.createComputer(this.computer).subscribe();
-    this.location.go("computers"); //ajoute un element dans l'historique, modifier pour aller sur l'élément créer
-    this.location.forward(); //va a l'élément suivant dans l'historique
-    window.location.reload(); // recharge la page
+    this.returnHome();
+  }
+
+  returnHome(){
+    this.router.navigate(['computers']);
+    console.log("going home");
   }
 
   onCancel(){
