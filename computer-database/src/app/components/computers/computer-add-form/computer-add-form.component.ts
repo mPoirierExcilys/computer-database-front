@@ -27,7 +27,7 @@ export class ComputerAddFormComponent implements OnInit {
   ngOnInit(): void {
     this.getCompanies();
   }
-  
+
   onSubmit(){
     this.computerService.createComputer(this.computer).subscribe();
     this.returnHome();
