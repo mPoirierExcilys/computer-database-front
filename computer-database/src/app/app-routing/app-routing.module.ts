@@ -19,17 +19,17 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'computer/new',
+    path: 'computers/new',
     component: ComputerAddFormComponent,
     pathMatch: 'full'
   },
   {
-    path: 'computer/edit/:id',
+    path: 'computers/edit/:id',
     component: ComputerModifyFormComponent,
     pathMatch: 'full'
   },
   {
-    path: 'computer/:id',
+    path: 'computers/:id',
     component: ComputerDetailsComponent,
     pathMatch: 'full'
   },
