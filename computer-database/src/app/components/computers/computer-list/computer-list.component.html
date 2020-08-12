@@ -1,38 +1,60 @@
-<p>computer-list works! On est sur la page {{page.currentPage}} sur {{page.nbPage}}</p>
-<p>il y a {{nbComputers}} computers en tout.</p>
+<p>On est sur la page {{page.currentPage}} sur {{page.nbPage}}</p>
+
+<div id="fh5co-pricing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+        <h1 id="homeTitle">{{nbComputers}} Computers found</h1>
+      </div>
+    </div>
+
+    <section id="main">
+      <div class="container">
+        <div id="actions" class="form-horizontal">
+          <div class="pull-left">
+            <form id="searchForm" action="#" method="GET" class="form-inline">
+
+            </form>
+            <input value="{{this.motSearch}}"
+                   (change)="modifSearch($event.target.value)"
+                   type="search" id="searchbox" name="search" class="form-control" placeholder="Search name"/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
 <div>
-<h4>mat select</h4>
-<mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifOrder($event)" [(value)]="orderSelect" required>
-    <mat-option *ngFor="let order of orders" value="{{order.value}}" >
-      {{order.label}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-select (selectionChange)="modifOrder($event)" [(value)]="orderSelect" required>
+      <mat-option *ngFor="let order of orders" value="{{order.value}}" >
+        {{order.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifAscending($event)" [(value)]="ascendingSelect" required>
-    <mat-option  *ngFor="let ascending of ascendings"  value="{{ascending.value}}" >
-      {{ascending.label}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-select (selectionChange)="modifAscending($event)" [(value)]="ascendingSelect" required>
+      <mat-option  *ngFor="let ascending of ascendings"  value="{{ascending.value}}" >
+        {{ascending.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<button (click)="nextPage()"> Next Page </button>
+  <button (click)="nextPage()"> Next Page </button>
 
-<button (click)="previousPage()"> Previous Page </button>
+  <button (click)="previousPage()"> Previous Page </button>
 
-<input type="number" min="1" value="{{this.page.itemsByPage}}" id="ItemsByPage" 
-    name="ItemsByPage" (change)="modifItemsByPage($event.target.value)" />
+  <input type="number" min="1" value="{{this.page.itemsByPage}}" id="ItemsByPage"
+      name="ItemsByPage" (change)="modifItemsByPage($event.target.value)" />
 
-<input type="text" value="{{this.motSearch}}" id="search" 
-    name="search" (change)="modifSearch($event.target.value)" />
+
 </div>
 <!-- <ng-container *ngIf="computersList"> -->
 
 <app-computer *ngFor="let computer of computersList"
             [computer]="computer" (removeToParent)="remove($event)">
-        </app-computer>
+</app-computer>
 
 <!-- </ng-container> -->
