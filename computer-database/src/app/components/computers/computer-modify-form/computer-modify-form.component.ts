@@ -18,15 +18,15 @@ export class ComputerModifyFormComponent implements OnInit {
   companies: Company[];
   private routeSub: Subscription;
 
-  constructor(private computerService: ComputerService, 
-              private companyService: CompanyService, 
-              private location: Location, 
+  constructor(private computerService: ComputerService,
+              private companyService: CompanyService,
+              private location: Location,
               private route: ActivatedRoute,
               private router: Router) { }
 
   byCompany(company1: Company, company2: Company) {
     return company1?.idCompany === company2?.idCompany;
-  } 
+  }
 
 
   getId(){
@@ -40,8 +40,7 @@ export class ComputerModifyFormComponent implements OnInit {
   onSubmit(){
     this.computerService.updateComputer(this.computer).subscribe();
     this.location.go("computer/"+this.getId());
-    this.location.forward(); 
-    window.location.reload(); 
+    this.location.forward();
     this.goComputerDetails();
   }
 
@@ -49,11 +48,10 @@ export class ComputerModifyFormComponent implements OnInit {
     this.location.back();
   }
 
-
   retriveCompanyList(){
     this.companyService.getCompanies().subscribe(
       (result: Company[]) => {
-          this.companies = result; 
+          this.companies = result;
       },
       (error) => {
           console.log("can't retrive company list")
@@ -67,13 +65,9 @@ export class ComputerModifyFormComponent implements OnInit {
     );
   }
 
-
-
   ngOnInit(): void {
     const id = parseInt(this.getId());
     this.retriveCompanyList();
     this.retriveComputer(id);
   }
-
-
 }
