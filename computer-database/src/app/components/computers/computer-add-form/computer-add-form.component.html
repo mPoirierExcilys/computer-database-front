@@ -20,8 +20,8 @@
 
         <div class="form-group">
         <label class="white_label">Company :</label>
-        <select>
-                <option *ngFor="let company of companies" value="company">{{company.name}}</option>
+        <select name="companyDto" [(ngModel)]="computer.companyDto">
+                <option *ngFor="let company of companies" [ngValue]="company">{{company.name}}</option>
         </select>
         <br/>
         </div>
