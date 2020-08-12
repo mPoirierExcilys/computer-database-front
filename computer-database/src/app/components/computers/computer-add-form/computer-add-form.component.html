@@ -1,18 +1,33 @@
-<form>
-        <label>Computer name</label>
-        <input type="text" name="name" [(ngModel)]="computer.name">
+<div>
+<form class="addForm">
+        <div class="form-group">
+        <label class="white_label">Name : *</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="computer.name" required>
+        </div>
         <br/>
-        <label>Introduction date</label>
-        <input type="date"  name="introduced" [(ngModel)]="computer.introduced">
+
+        <div class="form-group">
+        <label class="white_label">Introduced :</label>
+        <input type="date"  class="form-control" name="introduced" [(ngModel)]="computer.introduced">
         <br/>
-        <label>Discontinuition date</label>
-        <input type="date" name="discontinued" [(ngModel)]="computer.discontinued">
+        </div>
+
+        <div class="form-group">
+        <label class="white_label">Discontinued :</label>
+        <input type="date" class="form-control" name="discontinued" [(ngModel)]="computer.discontinued">
         <br/>
-        <label>Company</label>
+        </div>
+
+        <div class="form-group">
+        <label class="white_label">Company :</label>
         <select>
                 <option *ngFor="let company of companies" value="company">{{company.name}}</option>
         </select>
         <br/>
-        <button (click)="onSubmit()" mat-button> Add computer </button>
-        <button (click)="onCancel()" mat-button> Cancel </button>
+        </div>
+        <div>
+        <button (click)="onSubmit()" class="button" mat-button> Submit </button>
+        <button (click)="onCancel()" class="button" mat-button> Cancel </button>
+        </div>
 </form>
+</div>
