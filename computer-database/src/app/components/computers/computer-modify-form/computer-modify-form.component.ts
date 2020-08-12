@@ -39,6 +39,9 @@ export class ComputerModifyFormComponent implements OnInit {
 
   onSubmit(){
     this.computerService.updateComputer(this.computer).subscribe();
+    this.location.go("computer/"+this.getId());
+    this.location.forward(); 
+    window.location.reload(); 
     this.goComputerDetails();
   }
 
@@ -71,4 +74,6 @@ export class ComputerModifyFormComponent implements OnInit {
     this.retriveCompanyList();
     this.retriveComputer(id);
   }
+
+
 }
