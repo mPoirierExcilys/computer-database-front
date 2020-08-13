@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../../../Models/company.model';
-import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
 import { CompanyService } from 'src/app/service/company.service';
-import { HttpResponse } from '@angular/common/http';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { FormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 

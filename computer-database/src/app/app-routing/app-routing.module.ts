@@ -5,37 +5,49 @@ import { ComputerListComponent } from '../components/computers/computer-list/com
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
 import { ComputerModifyFormComponent } from '../components/computers/computer-modify-form/computer-modify-form.component';
 import { CompanyListComponent } from '../components/companies/company-list/company-list.component';
-
+import { UserLoginComponent } from '../components/users/user-login/user-login.component';
+import { AuthGuard } from '../helpers/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: UserLoginComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'companies',
     component: CompanyListComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'computers',
     component: ComputerListComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'computer/new',
     component: ComputerAddFormComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'computer/edit/:id',
     component: ComputerModifyFormComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'computer/:id',
     component: ComputerDetailsComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: '**',
     redirectTo: 'computers',
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   }
 ];
