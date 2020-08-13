@@ -8,9 +8,10 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ComputerService {
-  baseUrl= 'http://10.0.1.205:8080/webapprest/computers';
-  // baseUrl= 'http://localhost:8080/webapprest/computers';
-  constructor(private http: HttpClient) { }
+
+  baseUrl= 'http://10.0.1.108:8080/webapprest/computers';
+
+constructor(private http: HttpClient) { }
   getComputers(page: Page, search?: string): Observable<Computer[]>{
     let parameters = new HttpParams();
     parameters = parameters.append('ascending', page.ascending);

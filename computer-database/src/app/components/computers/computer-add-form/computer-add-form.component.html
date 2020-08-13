@@ -9,8 +9,8 @@
         <input type="date" name="discontinued" [(ngModel)]="computer.discontinued">
         <br/>
         <label>Company</label>
-        <select>
-                <option *ngFor="let company of companies" value="company">{{company.name}}</option>
+        <select name="companyDto" [(ngModel)]="computer.companyDto">
+                <option *ngFor="let company of companies" [ngValue]="company">{{company.name}}</option>
         </select>
         <br/>
         <button (click)="onSubmit()" mat-button> Add computer </button>
