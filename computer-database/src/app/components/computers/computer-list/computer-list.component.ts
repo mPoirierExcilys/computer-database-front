@@ -3,9 +3,6 @@ import { Computer } from '../../../Models/computer.model';
 import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
 import { ComputerService } from 'src/app/service/computer.service';
-import { HttpResponse } from '@angular/common/http';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
-import { FormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 
 
@@ -17,7 +14,7 @@ interface Order {
 interface Ascending {
   label : string;
   value : string;
-}
+} 
 
 @Component({
   selector: 'app-computer-list',
@@ -106,8 +103,14 @@ export class ComputerListComponent implements OnInit {
   }
 
   remove(id : number): void{
-    this.computerService.deleteComputer(id).subscribe();
-    this.getList();
+    this.computerService.deleteComputer(id).subscribe(
+      () => {
+        this.getList();
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du removeComputer.");
+      }
+    );
   }
 
   modifOrder(orderSelectEvent :  MatSelectChange) : void {

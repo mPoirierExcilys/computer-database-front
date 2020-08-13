@@ -8,6 +8,7 @@ import {Company} from '../Models/company.model';
 })
 export class CompanyService {
   baseUrl= 'http://10.0.1.205:8080/webapprest/companies';
+  // baseUrl= 'http://localhost:8080/webapprest/companies';
   constructor(private http: HttpClient) { }
   getCompanies(): Observable<Company[]>{
     return this.http.get<Company[]>(this.baseUrl);

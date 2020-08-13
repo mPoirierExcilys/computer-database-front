@@ -1,5 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,6 +11,7 @@ describe('AppComponent', () => {
       ],
     }).compileComponents();
   }));
+
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -22,10 +25,11 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('computer-database');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('computer-database app is running!');
-  });
+  // it('should render title', () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   fixture.detectChanges();
+  //   const compiled = fixture.nativeElement;
+  //   expect(compiled.querySelector('.content span').textContent).toContain('computer-database app is running!');
+  // });
+
 });
