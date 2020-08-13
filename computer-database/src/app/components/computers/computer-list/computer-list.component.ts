@@ -7,6 +7,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { FormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 
 interface Order {
@@ -24,6 +25,7 @@ interface Ascending {
   templateUrl: './computer-list.component.html',
   styleUrls: ['./computer-list.component.scss']
 })
+
 export class ComputerListComponent implements OnInit {
   private route : ActivatedRoute;
   computersList : Computer[] = [];
@@ -45,6 +47,9 @@ export class ComputerListComponent implements OnInit {
     {label: "ASC", value: "ASC"},
     {label: "DESC", value: "DESC"}
   ]
+
+  displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
+
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
     this.route = routeParam;
@@ -107,6 +112,11 @@ export class ComputerListComponent implements OnInit {
 
   remove(id : number): void{
     this.computerService.deleteComputer(id).subscribe();
+    this.getList();
+  }
+
+  modifOrder2(orderSelectEvent : string) : void {
+    this.page.setOrder(orderSelectEvent);
     this.getList();
   }
 
