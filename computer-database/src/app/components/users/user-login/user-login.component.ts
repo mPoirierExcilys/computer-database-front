@@ -1,3 +1,4 @@
+import { User } from './../../../Models/user.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
+  
+  user: User
 
   constructor() { }
 

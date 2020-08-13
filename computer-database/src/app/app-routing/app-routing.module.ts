@@ -5,9 +5,14 @@ import { ComputerListComponent } from '../components/computers/computer-list/com
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
 import { ComputerModifyFormComponent } from '../components/computers/computer-modify-form/computer-modify-form.component';
 import { CompanyListComponent } from '../components/companies/company-list/company-list.component';
-
+import { UserLoginComponent } from './../components/users/user-login/user-login.component';
 
 const routes: Routes = [
+  {
+    path: 'authentification',
+    component: UserLoginComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'companies',
     component: CompanyListComponent,

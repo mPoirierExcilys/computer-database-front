@@ -1,0 +1,76 @@
+form.SignInForm{
+    position: relative;
+    font-size: 18px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    font-style: normal;
+    font: Georgia, sans-serif;
+    top:500%;
+    width:700px; 
+    height:400px; 
+    margin: auto;
+    background-color: rgba(64,75,78,0.7);
+}
+
+.form-control {
+  box-shadow: none;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  height: 54px;
+  font-size: 18px;
+  font-weight: 300;
+}
+.form-control:active, .form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #27E1CE;
+}
+
+.btn {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-family: "Raleway", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btn-primary {
+  background: #27E1CE;
+  color: #fff;
+  border: 2px solid #27E1CE;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background: #3de4d3 ;
+  border-color: #3de4d3 ;
+}
+.btn-primary.btn-outline {
+  background: transparent;
+  color: #27E1CE;
+  border: 2px solid #27E1CE;
+}
+
+.white_label{
+  color: white;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.home_input{
+  border: 2px solid #2BBDB5;
+  border-radius: 4px;
+  background-color: rgba(255,255,255, 0.8);
+}
