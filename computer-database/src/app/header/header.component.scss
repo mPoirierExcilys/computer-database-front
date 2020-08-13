@@ -113,20 +113,22 @@
   #fh5co-header nav ul li.cta {
     margin-left: 20px;
   }
-  #fh5co-header nav ul li.cta a {
+  #fh5co-header nav ul li.cta button {
     padding-left: 16px !important;
     padding-right: 16px !important;
     padding-top: 7px !important;
     padding-bottom: 7px !important;
     border: 2px solid #27e1ce;
     color: #27E1CE;
+    background: #404B4E;
+
     border-radius: 30px;
   }
-  #fh5co-header nav ul li.cta a:hover {
+  #fh5co-header nav ul li.cta button:hover {
     color: #fff;
     background: #27E1CE;
   }
-  #fh5co-header nav ul li.cta a:hover:after {
+  #fh5co-header nav ul li.cta button:hover:after {
     display: none;
   }
   #fh5co-header nav ul li.active a {

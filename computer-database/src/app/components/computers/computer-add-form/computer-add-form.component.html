@@ -1,4 +1,5 @@
 <div>
+<mat-dialog-content class="mat-dialog">
 <form class="addForm">
         <div class="form-group">
         <label class="white_label">Name : *</label>
@@ -20,7 +21,7 @@
 
         <div class="form-group">
         <label class="white_label">Company :</label>
-        <select>
+        <select class="companies">
                 <option *ngFor="let company of companies" value="company">{{company.name}}</option>
         </select>
         <br/>
@@ -30,4 +31,5 @@
         <button (click)="onCancel()" class="button" mat-button> Cancel </button>
         </div>
 </form>
+</mat-dialog-content>
 </div>
