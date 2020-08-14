@@ -167,9 +167,7 @@ export class ComputerListComponent implements OnInit {
   deleteSelected(): void {
     console.log("selected");
     var checkBox = document.getElementById("selectall");
-    if(checkBox){
 
-    }
   }
 
 // (function ( $ ) {
