@@ -11,9 +11,9 @@ import { map } from 'rxjs/operators';
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  baseUrl= 'http://10.0.1.205:8080/webapprest/authenticate';
+  baseUrl= 'http://10.0.1.106:8080/webapprest/authenticate';
   // baseUrl= 'http://localhost:8080/webapprest/authenticate';
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -24,7 +24,7 @@ export class UserService {
 
   authenticate(user: User): Observable<Token>{
     return this.http.post<Token>(this.baseUrl, user).pipe(map(
-      (result : Token) => { 
+      (result : Token) => {
         if(result){
           user.token = result.token;
           localStorage.setItem('currentUser', JSON.stringify(user));
