@@ -6,6 +6,29 @@ export class Computer{
   introduced: string;
   discontinued: string;
   companyDto: Company;
+ 
+  constructor(
+    idComputer?: number,
+    name?: string,
+    introduced?: string,
+    discontinued?: string,
+    company?: Company) {
+      if(idComputer){
+        this.idComputer = idComputer;
+      }
+      if(name){
+        this.name = name;
+      }
+      if(introduced){
+        this.introduced = introduced;
+      }
+      if(discontinued){
+        this.discontinued = discontinued;
+      }
+      if(company){
+        this.companyDto = company;
+      }
+    }
 
   getName(): string{
     return this.name;
@@ -23,7 +46,7 @@ export class Computer{
     return this.discontinued;
   }
 
-  getCompany(): Company{
+  getCompanyDto(): Company{
     return this.companyDto;
   }
 }

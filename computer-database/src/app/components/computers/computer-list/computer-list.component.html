@@ -136,16 +136,12 @@
 </div>
 
 <div>
-
-
   <button (click)="nextPage()"> Next Page </button>
 
   <button (click)="previousPage()"> Previous Page </button>
 
   <input type="number" min="1" value="{{this.page.itemsByPage}}" id="ItemsByPage"
       name="ItemsByPage" (change)="modifItemsByPage($event.target.value)" />
-
-
 </div>
 
 

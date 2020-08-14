@@ -5,6 +5,29 @@ export class Page{
   order: string;
   ascending: string;
 
+  constructor(
+    currentPage?: number,
+    nbPage?: number,
+    itemsByPage?: number,
+    order?: string,
+    ascending?: string) {
+      if(currentPage){
+        this.currentPage = currentPage;
+      }
+      if(nbPage){
+        this.nbPage = nbPage;
+      }
+      if(itemsByPage){
+        this.itemsByPage = itemsByPage;
+      }
+      if(order){
+        this.order = order;
+      }
+      if(ascending){
+        this.ascending = ascending;
+      }
+    }
+
   setNbPage(nbPage: number){
     if(nbPage > 0){
       this.nbPage = nbPage;
