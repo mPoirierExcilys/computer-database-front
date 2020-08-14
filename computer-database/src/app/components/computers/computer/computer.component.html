@@ -1,36 +1,9 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>{{computer.name}} : {{computer.idComputer}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <ul>
-            <li >
-                Date Introduced
-                <ul>
-                    <li>{{computer.introduced}}</li>
-                </ul>
-            </li>
-        </ul>
-        <ul>
-            <li >
-                Date Discontinued
-                <ul>
-                    <li>{{computer.discontinued}}</li>
-                </ul>
-            </li>
-        </ul>
-
-        <ul>
-            <li >
-                Company
-                <ul>
-                    <li>{{computer.companyDto.name}}</li>
-                </ul>
-            </li>
-        </ul>
-        <a routerLink="/computer/{{computer.idComputer}}">Details</a>
-        <button (click)="remove()">
-            Remove To The End
-        </button>
-    </mat-card-content>
-</mat-card>
+<td class="editMode">
+    <input type="checkbox" name="cb" class="cb" value="0">
+</td>
+<td>
+  <a href="editComputer.html" onclick="">{{computer.name}}</a>
+</td>
+<td>{{computer.introduced}}</td>
+<td>{{computer.discontinued}}</td>
+<td>{{computer.companyDto.name}}</td>

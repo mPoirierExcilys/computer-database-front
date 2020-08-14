@@ -4,6 +4,7 @@ import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
 import { ComputerService } from 'src/app/service/computer.service';
 import { MatSelectChange } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 
 interface Order {
@@ -21,6 +22,7 @@ interface Ascending {
   templateUrl: './computer-list.component.html',
   styleUrls: ['./computer-list.component.scss']
 })
+
 export class ComputerListComponent implements OnInit {
   private route : ActivatedRoute;
   computersList : Computer[] = [];
@@ -42,6 +44,9 @@ export class ComputerListComponent implements OnInit {
     {label: "ASC", value: "ASC"},
     {label: "DESC", value: "DESC"}
   ]
+
+  displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
+
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
     this.route = routeParam;
@@ -111,6 +116,11 @@ export class ComputerListComponent implements OnInit {
         console.log("Erreur avec l'observable lors du removeComputer.");
       }
     );
+  }
+
+  modifOrder2(orderSelectEvent : string) : void {
+    this.page.setOrder(orderSelectEvent);
+    this.getList();
   }
 
   modifOrder(orderSelectEvent :  MatSelectChange) : void {

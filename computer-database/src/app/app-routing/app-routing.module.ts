@@ -27,19 +27,19 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'computer/new',
+    path: 'computers/new',
     component: ComputerAddFormComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'computer/edit/:id',
+    path: 'computers/edit/:id',
     component: ComputerModifyFormComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'computer/:id',
+    path: 'computers/:id',
     component: ComputerDetailsComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
