@@ -2,15 +2,18 @@
     <form class="SignInForm" method="post">
         <div class="form-group">
             <label class="white_label" for="email">Username : </label>
-            <input class="form-control mr-sm-2 home_input" id="username" name="username"   required="required" placeholder="Username" />
+            <input [(ngModel)]="user.username" class="form-control mr-sm-2 home_input" id="username" name="username"   required="required" placeholder="Username" />
         </div>
         <div class="form-group">
             <label class="white_label" for="password">Password : </label>
-            <input class="form-control mr-sm-2 home_input"  id="password" name="password"  required="required" type="password" placeholder="password"/>
+            <input [(ngModel)]="user.password" class="form-control mr-sm-2 home_input"  id="password" name="password"  required="required" type="password" placeholder="password"/>
         </div>
             <br>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary button-center"  value="Sign in"/>
+            <span class="inline"> 
+                <input (click)="onSubmit()" type="submit" class="btn btn-primary button-center"  value="Sign in"/>
+                <input (click)="onCancel()" type="submit" class="btn btn-primary button-center"  value="Cancel"/>
+            </span>
         </div>
     </form>
 </div>
