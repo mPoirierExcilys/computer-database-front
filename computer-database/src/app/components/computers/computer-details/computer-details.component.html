@@ -1,36 +1,33 @@
-<p>computer-details works!</p>
+<div id="details">
+  <div class="detailsTitle">
+    <h2>Computer Details</h2>
+  </div>
 
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{computer.name}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <ul>
-      <li >
-        Date Introduced
-          <ul>
-            <li>{{computer.introduced}}</li>
-          </ul>
-      </li>
-    </ul>
-    <ul>
-      <li >
-        Date Discontinued
+  <mat-card class="computerdetails">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{computer.name}}</mat-card-title>
+      <mat-card-subtitle>{{computer.companyDto.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="assets/images/comp.jpg" width="10" height="300">
+    <mat-card-content>
+    
         <ul>
-          <li>{{computer.discontinued}}</li>
+          <li>
+            Date Introduced : <br/>
+            {{computer.introduced}}
+          </li>
         </ul>
-      </li>
-    </ul>
-
-    <ul>
-      <li >
-        Company
         <ul>
-          <li>{{computer.companyDto.name}}</li>
+          <li>
+            Date Discontinued : <br/>
+           {{computer.discontinued}}
+          </li>
         </ul>
-      </li>
-    </ul>
-
-  </mat-card-content>
-
-</mat-card>
+        <mat-card-actions>
+          <button mat-button>Edit</button>
+          <button mat-button>Back Home</button>
+        </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
