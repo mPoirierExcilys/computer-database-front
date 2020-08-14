@@ -17,7 +17,7 @@
                      type="search" id="searchbox" name="search" class="form-control" placeholder="Search name"/>
           </div>
           <div class="pull-right">
-            <a class="btn btn-default" id="editComputer" routerLink="/" onclick="$.fn.toggleEditMode();">Edit</a>
+            <a class="btn btn-default" id="editComputer" routerLink="/" (click)="toggleEditMode()">Edit</a>
           </div>
         </div>
       </div>
@@ -40,9 +40,28 @@
 
       <div class="container">
         <table mat-table [dataSource]="computersList">
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>
+
+              <span>
+                <a id="deleteSelected" routerLink="" (click)="deleteSelected()">
+                   <input id="selectall" type="checkbox">
+                </a>
+                Select All
+              </span>
+            </th>
+
+            <td mat-cell *matCellDef="let computer; let i = index">
+              <input class="cb" type="checkbox" name="cb" value="{{i}}">
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let computer"> {{computer.name}}</td>
+            <td mat-cell *matCellDef="let computer">
+              <a routerLink="/computers/{{computer.idComputer}}">{{computer.name}}</a>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="introduced">
@@ -128,8 +147,6 @@
 
 
 </div>
-<!-- <ng-container *ngIf="computersList"> -->
-
 
 
 <!-- </ng-container> -->

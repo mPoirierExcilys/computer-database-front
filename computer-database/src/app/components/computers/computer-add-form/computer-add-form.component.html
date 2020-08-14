@@ -1,33 +1,36 @@
 <div>
-<form class="addForm">
-        <div class="form-group">
-        <label class="white_label">Name : *</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="computer.name" required>
-        </div>
-        <br/>
+        <mat-dialog-content class="mat-dialog">
+                <form class="addForm">
 
-        <div class="form-group">
-        <label class="white_label">Introduced :</label>
-        <input type="date"  class="form-control" name="introduced" [(ngModel)]="computer.introduced">
-        <br/>
-        </div>
+                        <div class="form-group">
+                                <mat-label>Name :  *    </mat-label> <input matInput class="form-control" name="name"
+                                        [(ngModel)]="computer.name" required>
+                        </div>
+                        <br />
 
-        <div class="form-group">
-        <label class="white_label">Discontinued :</label>
-        <input type="date" class="form-control" name="discontinued" [(ngModel)]="computer.discontinued">
-        <br/>
-        </div>
+                        <div class="form-group">
+                                <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
+                                        name="introduced" [(ngModel)]="computer.introduced">
+                                <br />
+                        </div>
 
-        <div class="form-group">
-        <label class="white_label">Company :</label>
-        <select name="companyDto" [(ngModel)]="computer.companyDto">
-                <option *ngFor="let company of companies" [ngValue]="company">{{company.name}}</option>
-        </select>
-        <br/>
-        </div>
-        <div>
-        <button (click)="onSubmit()" class="button" mat-button> Submit </button>
-        <button (click)="onCancel()" class="button" mat-button> Cancel </button>
-        </div>
-</form>
+                  <div class="form-group">
+                                <mat-label>Discontinued :</mat-label>
+                                <input matInput type="date" class="form-control" name="discontinued"
+                                        [(ngModel)]="computer.discontinued">
+                                <br />
+                        </div>
+
+                        <mat-label>Company : </mat-label>
+                        <mat-select>
+                                <mat-option *ngFor="let company of companies" value="company">{{company.name}}
+                                </mat-option>
+                        </mat-select>
+
+                        <div>
+                                <button (click)="onSubmit()" class="button" mat-button> Submit </button>
+                                <button (click)="onCancel()" class="button" mat-button> Cancel </button>
+                        </div>
+                </form>
+        </mat-dialog-content>
 </div>
