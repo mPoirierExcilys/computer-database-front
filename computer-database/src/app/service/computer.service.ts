@@ -8,8 +8,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ComputerService {
-
-  baseUrl= 'http://10.0.1.108:8080/webapprest/computers';
+  baseUrl= 'http://10.0.1.205:8080/webapprest/computers';
 
 constructor(private http: HttpClient) { }
   getComputers(page: Page, search?: string): Observable<Computer[]>{
@@ -41,7 +40,12 @@ constructor(private http: HttpClient) { }
   }
   getNbComputer(search?: string): Observable<number>{
     let parameters = new HttpParams();
-    parameters = parameters.append('search', search);
-    return this.http.get<number>(`${this.baseUrl}/numbers`, {params: parameters});
+    if(search){
+      parameters = parameters.append('search', search);
+    } else {
+      parameters = parameters.append('search', "");
+    }
+    const plop : Observable<number> = this.http.get<number>(`${this.baseUrl}/numbers`, {params: parameters});
+    return plop;
   }
 }

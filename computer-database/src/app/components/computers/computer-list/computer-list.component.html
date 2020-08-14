@@ -4,7 +4,7 @@
 <div>
 <h4>mat select</h4>
 <mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifOrder($event)" [(value)]="orderSelect" required>
+  <mat-select (selectionChange)="modifOrder($event)" value="{{orders[0].value}}" required>
     <mat-option *ngFor="let order of orders" value="{{order.value}}" >
       {{order.label}}
     </mat-option>
