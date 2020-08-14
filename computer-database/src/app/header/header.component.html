@@ -1,5 +1,4 @@
-<header>
-    <div id="fh5co-page">
+<div id="fh5co-page">
         <header id="fh5co-header" role="banner">
             <div class="container">
                 <div class="header-inner">
@@ -14,12 +13,12 @@
                             <li><a routerLink="#">Sign in</a></li>
                             <li><a routerLink="#">Sign up</a></li>
                             <li><a routerLink="#">About Us</a></li>
-                            <li class="cta"><a routerLink="/computers/new">Add a Computer</a></li>
+                            <li class="cta"><button mat-button (click)="openDialog()">Add Computer</button></li>
                             <li><a routerLink="#">fr</a></li>
                             <li><a routerLink="#">en</a></li>
-
                         </ul>
                     </nav>
                 </div>
             </div>
-</header>
+        </header>
+</div>

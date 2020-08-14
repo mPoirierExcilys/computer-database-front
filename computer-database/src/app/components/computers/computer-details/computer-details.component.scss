@@ -1,0 +1,49 @@
+.computerdetails {
+    width: 40%;
+    margin-left:30%;
+    padding: 50px 0px;
+}
+
+mat-card-content {
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.mat-card-image {
+    width:auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.example-header-image {
+    margin-left: 2%;
+    background-image: url('./../../../../assets/images/logo.png');
+    background-size: cover;
+  }
+
+.example-header{
+    margin-left:150%;
+}
+
+.detailsTitle {
+    margin-left: 45%;
+    color: #2BBDB5;
+}
+
+button {
+    background: #27E1CE;
+    color: #fff;
+    border: 2px solid #27E1CE;
+    margin: 15px;
+    font-family: "Raleway", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    width:150px;
+    height: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+}
