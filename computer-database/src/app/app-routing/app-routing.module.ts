@@ -7,6 +7,7 @@ import { ComputerModifyFormComponent } from '../components/computers/computer-mo
 import { CompanyListComponent } from '../components/companies/company-list/company-list.component';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component';
 import { AuthGuard } from '../helpers/auth.guard';
+import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'companies',
     component: CompanyListComponent,
     canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: 'create-user',
+    component: UserAddFormComponent,
     pathMatch: 'full'
   },
   {
