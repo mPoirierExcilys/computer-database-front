@@ -18,6 +18,7 @@ import { ComputerComponent } from './components/computers/computer/computer.comp
 import { CompanyListComponent } from './components/companies/company-list/company-list.component';
 import { CompanyComponent } from './components/companies/company/company.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,

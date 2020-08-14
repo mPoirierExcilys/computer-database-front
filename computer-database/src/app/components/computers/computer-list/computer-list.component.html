@@ -1,38 +1,148 @@
-<p>computer-list works! On est sur la page {{page.currentPage}} sur {{page.nbPage}}</p>
-<p>il y a {{nbComputers}} computers en tout.</p>
+<p>On est sur la page {{page.currentPage}} sur {{page.nbPage}}</p>
+
+<div id="fh5co-pricing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+        <h1 id="homeTitle">{{nbComputers}} Computers found</h1>
+      </div>
+    </div>
+
+    <section id="main">
+      <div class="container">
+        <div id="actions" class="form-horizontal">
+          <div class="pull-left">
+              <input value="{{this.motSearch}}"
+                     (change)="modifSearch($event.target.value)"
+                     type="search" id="searchbox" name="search" class="form-control" placeholder="Search name"/>
+          </div>
+          <div class="pull-right">
+            <a class="btn btn-default" id="editComputer" routerLink="/" (click)="toggleEditMode()">Edit</a>
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-select (selectionChange)="modifOrder($event)" [(value)]="orderSelect" required>
+          <mat-option *ngFor="let order of orders" value="{{order.value}}" >
+            {{order.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-select (selectionChange)="modifAscending($event)" [(value)]="ascendingSelect" required>
+          <mat-option  *ngFor="let ascending of ascendings"  value="{{ascending.value}}" >
+            {{ascending.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="container">
+        <table mat-table [dataSource]="computersList">
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>
+
+              <span>
+                <a id="deleteSelected" routerLink="" (click)="deleteSelected()">
+                   <input id="selectall" type="checkbox">
+                </a>
+                Select All
+              </span>
+            </th>
+
+            <td mat-cell *matCellDef="let computer; let i = index">
+              <input class="cb" type="checkbox" name="cb" value="{{i}}">
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let computer">
+              <a routerLink="/computers/{{computer.idComputer}}">{{computer.name}}</a>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="introduced">
+            <th mat-header-cell *matHeaderCellDef> Introduced date </th>
+            <td mat-cell *matCellDef="let computer"> {{computer.introduced}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="discontinued">
+            <th mat-header-cell *matHeaderCellDef> Discontinued date </th>
+            <td mat-cell *matCellDef="let computer"> {{computer.discontinued}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="companyDto">
+            <th mat-header-cell *matHeaderCellDef> Company </th>
+            <td mat-cell *matCellDef="let computer"> {{computer.companyDto.name}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+<!--        <table class="table table-striped table-bordered">-->
+<!--            <tr>-->
+<!--              <th class="editMode" style="width: 60px; height: 22px;">-->
+<!--                <input type="checkbox" id="selectall" />-->
+<!--                <span style="vertical-align: top;">-->
+<!--                   -  <a routerLink="#" id="deleteSelected" onclick="$.fn.deleteSelected();">-->
+<!--                          <i class="fa fa-trash-o fa-lg"></i>-->
+<!--                      </a>-->
+<!--                </span>-->
+<!--              </th>-->
+<!--              &lt;!&ndash; Variable declarations for passing labels as parameters &ndash;&gt;-->
+<!--              &lt;!&ndash; Table header for Computer Name &ndash;&gt;-->
+<!--              <th (selectionChange)="modifOrder2('computer.name')" >-->
+<!--                <mat-form-field appearance="fill">-->
+<!--                  <mat-select (selectionChange)="modifOrder($event)" [(value)]="orderSelect" required>-->
+<!--                    <mat-option  *ngFor="let order of orders"  value="{{order.value}}" >-->
+<!--                      Computer-->
+<!--                    </mat-option>-->
+<!--                  </mat-select>-->
+<!--                </mat-form-field>-->
+<!--              </th>-->
+<!--              <th>-->
+<!--                Introduced date-->
+<!--              </th>-->
+<!--              &lt;!&ndash; Table header for Discontinued Date &ndash;&gt;-->
+<!--              <th>-->
+<!--                Discontinued date-->
+<!--              </th>-->
+<!--              &lt;!&ndash; Table header for Company &ndash;&gt;-->
+<!--              <th>-->
+<!--                Company-->
+<!--              </th>-->
+<!--            </tr>-->
+<!--          <tbody id="results">-->
+<!--            <tr *ngFor="let computer of computersList"-->
+<!--          [computer]="computer" (removeToParent)="remove($event)">-->
+<!--              <td class="editMode">-->
+<!--                <input type="checkbox" name="cb" class="cb" value="0">-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <a routerLink="/computers/{{computer.idComputer}}" >{{computer.name}}</a>-->
+<!--              </td>-->
+<!--              <td>{{computer.introduced}}</td>-->
+<!--              <td>{{computer.discontinued}}</td>-->
+<!--              <td>{{computer.companyDto.name}}</td>-->
+<!--            </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+    </section>
+  </div>
+</div>
 
 <div>
-<h4>mat select</h4>
-<mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifOrder($event)" value="{{orders[0].value}}" required>
-    <mat-option *ngFor="let order of orders" value="{{order.value}}" >
-      {{order.label}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <button (click)="nextPage()"> Next Page </button>
 
-<mat-form-field appearance="fill">
-  <mat-select (selectionChange)="modifAscending($event)" [(value)]="ascendingSelect" required>
-    <mat-option  *ngFor="let ascending of ascendings"  value="{{ascending.value}}" >
-      {{ascending.label}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <button (click)="previousPage()"> Previous Page </button>
 
-<button (click)="nextPage()"> Next Page </button>
-
-<button (click)="previousPage()"> Previous Page </button>
-
-<input type="number" min="1" value="{{this.page.itemsByPage}}" id="ItemsByPage" 
-    name="ItemsByPage" (change)="modifItemsByPage($event.target.value)" />
-
-<input type="text" value="{{this.motSearch}}" id="search" 
-    name="search" (change)="modifSearch($event.target.value)" />
+  <input type="number" min="1" value="{{this.page.itemsByPage}}" id="ItemsByPage"
+      name="ItemsByPage" (change)="modifItemsByPage($event.target.value)" />
 </div>
-<!-- <ng-container *ngIf="computersList"> -->
 
-<app-computer *ngFor="let computer of computersList"
-            [computer]="computer" (removeToParent)="remove($event)">
-        </app-computer>
 
 <!-- </ng-container> -->
