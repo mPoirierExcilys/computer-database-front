@@ -1,14 +1,15 @@
 <div>
 <mat-dialog-content class="mat-dialog">
 <form class="addForm">
+        
         <div class="form-group">
-        <label class="white_label">Name : *</label>
+        <label class="white_label">Name : *        </label>
         <input type="text" class="form-control" name="name" [(ngModel)]="computer.name" required>
         </div>
         <br/>
 
         <div class="form-group">
-        <label class="white_label">Introduced :</label>
+        <label class="white_label">Introduced :  </label>
         <input type="date"  class="form-control" name="introduced" [(ngModel)]="computer.introduced">
         <br/>
         </div>
@@ -19,13 +20,11 @@
         <br/>
         </div>
 
-        <div class="form-group">
-        <label class="white_label">Company :</label>
-        <select class="companies">
-                <option *ngFor="let company of companies" value="company">{{company.name}}</option>
-        </select>
-        <br/>
-        </div>
+        <mat-label>Company : </mat-label>
+        <mat-select>
+                <mat-option *ngFor="let company of companies" value="company">{{company.name}}</mat-option>
+        </mat-select>
+
         <div>
         <button (click)="onSubmit()" class="button" mat-button> Submit </button>
         <button (click)="onCancel()" class="button" mat-button> Cancel </button>
