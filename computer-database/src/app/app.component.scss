@@ -1,0 +1,78 @@
+body {
+    font-family: "Raleway", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #404B4E;
+    background: #fff;
+    height: 100%;
+    position: relative;
+  }
+
+  a {
+    color: #27E1CE;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+  }
+
+  a:hover, a:active, a:focus {
+    color: #27E1CE;
+    outline: none;
+  }
+
+  p {
+    margin-bottom: 30px;
+  }
+
+  h1, h2, h3, h4, h5, h6, figure {
+    color: #000;
+    font-family: "Raleway", Arial, sans-serif;
+    font-weight: 400;
+    margin: 0 0 30px 0;
+  }
+
+  .btn {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    font-family: "Raleway", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+  }
+
+  .btn.btn-md {
+    padding: 10px 20px !important;
+  }
+  .btn.btn-lg {
+    padding: 18px 36px !important;
+  }
+  .btn:hover, .btn:active, .btn:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .btn-info {
+    background: #5bc0de;
+    color: #fff;
+    border: 2px solid #5bc0de;
+  }
+  .btn-info:hover, .btn-info:focus, .btn-info:active {
+    background: #46b8da !important;
+    border-color: #46b8da !important;
+  }
+  .btn-info.btn-outline {
+    background: transparent;
+    color: #5bc0de;
+    border: 2px solid #5bc0de;
+  }
+  .btn-info.btn-outline:hover, .btn-info.btn-outline:focus, .btn-info.btn-outline:active {
+    background: #5bc0de;
+    color: #fff;
+  }

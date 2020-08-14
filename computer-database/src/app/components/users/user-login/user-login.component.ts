@@ -13,6 +13,7 @@ import { User } from 'src/app/Models/user.model';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
+
   pathOrigin: String = "#";
   user: User = new User();
   constructor(private userService: UserService, 
@@ -33,7 +34,7 @@ export class UserLoginComponent implements OnInit {
 
   onLogout() {
     this.userService.logout();
-    // this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
 }
 
   onCancel(){
