@@ -1,1 +1,18 @@
-<p>computer-modify-form works!</p>
+<form *ngIf="computer">
+    <label>Computer name</label>
+    <input type="text" name="name" [(ngModel)]="computer.name"> 
+    <br/>
+    <label>Introduction date</label>
+    <input  type="date"  name="introduced" [(ngModel)]="computer.introduced"> 
+    <br/>
+    <label>Discontinuition date</label>
+    <input  type="date" name="discontinued" [(ngModel)]="computer.discontinued"> 
+    <br/>
+    <label>Company</label>
+    <select [compareWith]="byCompany" name="companyDto" [(ngModel)]="computer.companyDto">  
+            <option *ngFor="let company of companies"  [ngValue]="company">{{company.name}}</option>
+    </select>
+    <br/>
+    <button (click)="onSubmit()" mat-button> Edit computer </button>
+    <button  (click)="onCancel()" mat-button> Cancel </button>
+</form>

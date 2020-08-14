@@ -3,11 +3,8 @@ import { Computer } from '../../../Models/computer.model';
 import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
 import { ComputerService } from 'src/app/service/computer.service';
-import { HttpResponse } from '@angular/common/http';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
-import { FormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
-
+import { MatTableModule } from '@angular/material/table';
 
 interface Order {
   label : string;
@@ -24,6 +21,7 @@ interface Ascending {
   templateUrl: './computer-list.component.html',
   styleUrls: ['./computer-list.component.scss']
 })
+
 export class ComputerListComponent implements OnInit {
   private route : ActivatedRoute;
   computersList : Computer[] = [];
@@ -45,6 +43,9 @@ export class ComputerListComponent implements OnInit {
     {label: "ASC", value: "ASC"},
     {label: "DESC", value: "DESC"}
   ]
+
+  displayedColumns: string[] = ['delete', 'name', 'introduced', 'discontinued', 'companyDto'];
+
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
     this.route = routeParam;
@@ -106,7 +107,18 @@ export class ComputerListComponent implements OnInit {
   }
 
   remove(id : number): void{
-    this.computerService.deleteComputer(id).subscribe();
+    this.computerService.deleteComputer(id).subscribe(
+      () => {
+        this.getList();
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du removeComputer.");
+      }
+    );
+  }
+
+  modifOrder2(orderSelectEvent : string) : void {
+    this.page.setOrder(orderSelectEvent);
     this.getList();
   }
 
@@ -146,4 +158,31 @@ export class ComputerListComponent implements OnInit {
       this.getList();
     }
   }
+
+  toggleEditMode(): void {
+
+    console.log("coioaiz");
+  }
+
+  deleteSelected(): void {
+    console.log("selected");
+    var checkBox = document.getElementById("selectall");
+
+  }
+
+// (function ( $ ) {
+//
+//     $.fn.toggleEditMode = function() {
+//       if($(".editMode").is(":visible")) {
+//         $(".editMode").hide();
+//         $("#editComputer").text("Edit");
+//       }
+//       else {
+//         $(".editMode").show();
+//         $("#editComputer").text("View");
+//       }
+//       return this;
+//     };
+//
+//   }( jQuery ));
 }
