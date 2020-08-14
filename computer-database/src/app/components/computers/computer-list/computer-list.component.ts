@@ -6,7 +6,6 @@ import { ComputerService } from 'src/app/service/computer.service';
 import { MatSelectChange } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
-
 interface Order {
   label : string;
   value : string;
@@ -45,7 +44,7 @@ export class ComputerListComponent implements OnInit {
     {label: "DESC", value: "DESC"}
   ]
 
-  displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
+  displayedColumns: string[] = ['delete', 'name', 'introduced', 'discontinued', 'companyDto'];
 
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
@@ -159,4 +158,33 @@ export class ComputerListComponent implements OnInit {
       this.getList();
     }
   }
+
+  toggleEditMode(): void {
+
+    console.log("coioaiz");
+  }
+
+  deleteSelected(): void {
+    console.log("selected");
+    var checkBox = document.getElementById("selectall");
+    if(checkBox.checked){
+
+    }
+  }
+
+// (function ( $ ) {
+//
+//     $.fn.toggleEditMode = function() {
+//       if($(".editMode").is(":visible")) {
+//         $(".editMode").hide();
+//         $("#editComputer").text("Edit");
+//       }
+//       else {
+//         $(".editMode").show();
+//         $("#editComputer").text("View");
+//       }
+//       return this;
+//     };
+//
+//   }( jQuery ));
 }
