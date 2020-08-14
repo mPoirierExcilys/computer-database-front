@@ -14,7 +14,7 @@ interface Order {
 interface Ascending {
   label : string;
   value : string;
-} 
+}
 
 @Component({
   selector: 'app-computer-list',
@@ -167,9 +167,7 @@ export class ComputerListComponent implements OnInit {
   deleteSelected(): void {
     console.log("selected");
     var checkBox = document.getElementById("selectall");
-    if(checkBox.checked){
-
-    }
+ 
   }
 
 // (function ( $ ) {
