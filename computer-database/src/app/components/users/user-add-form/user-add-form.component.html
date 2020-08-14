@@ -3,12 +3,12 @@
     <form class="SignUpForm" method="POST">
          <div class="form-group">
                     <label class="white_label" for="role">Role :</label>
-                    <select id="role" name="role">
-                        <option value="USER">USER</option>
-                        <option value="ADMIN">ADMIN</option>
-                    </select>
+                        <select class="custom-select" id="role" name="role">
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                        </select>
                     </div> 
-        <div>
+        <div class="form-group">
             <label class="white_label" for="email">Username :</label>
             <input  id="username" name="username" required="required" placeholder="Username" class="form-control mr-sm-2 home_input" />
         </div>
@@ -16,12 +16,12 @@
             <label class="white_label" for="password">Password :</label>
             <input type="password" class="form-control mr-sm-2 home_input" id="password" name="password"  required="required"  placeholder="ex. X8df!90EO"/>
         </div>
-        <div>
+        <div class="form-group">
             <label class="white_label" for="passwordConfirm">Please confirm your password :</label>
             <input type="password" class="form-control mr-sm-2 home_input" id="passwordConfirm" name="passwordConfirm" required="required" placeholder="ex X8df!90EO" />
         </div>
         <br>
-        <div>
+        <div class="inline">
                 <input type="submit" class="btn btn-primary" value="Submit"/>
                 <a href="#" class="btn btn-primary "> Cancel </a>
         </div>
