@@ -7,6 +7,7 @@ import { ComputerModifyFormComponent } from '../components/computers/computer-mo
 import { CompanyListComponent } from '../components/companies/company-list/company-list.component';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component';
 import { AuthGuard } from '../helpers/auth.guard';
+import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
 
 const routes: Routes = [
   {
@@ -21,25 +22,30 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'create-user',
+    component: UserAddFormComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'computers',
     component: ComputerListComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'computer/new',
+    path: 'computers/new',
     component: ComputerAddFormComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'computer/edit/:id',
+    path: 'computers/edit/:id',
     component: ComputerModifyFormComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'computer/:id',
+    path: 'computers/:id',
     component: ComputerDetailsComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
