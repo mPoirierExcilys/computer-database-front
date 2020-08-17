@@ -1,16 +1,18 @@
+import {Role} from './role.model';
+
 export class User{
   id?: number;
   username: string;
   password: string;
   token?: string;
-  role: string;
+  roles: Role[];
 
   constructor(
     id?: number,
     username?: string,
     password?: string,
     token?: string,
-    role?: string) {
+    roles?: Role[]) {
       if(id){
         this.id = id;
       }
@@ -23,8 +25,8 @@ export class User{
       if(token){
         this.token = token;
       }
-      if(role){
-        this.role = role;
+      if(roles){
+        this.roles = roles;
       }
     }
 }
