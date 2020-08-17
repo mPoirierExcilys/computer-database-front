@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../Models/user.model';
 import { Token } from '../Models/token.model';
 import { map } from 'rxjs/operators';
+import { URL } from '../../assets/configurations/config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ import { map } from 'rxjs/operators';
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  baseUrl= 'http://10.0.1.108:8080/webapprest/authenticate';
-  // baseUrl= 'http://localhost:8080/webapprest/authenticate';
+
+  baseUrl = URL.baseUrl + '/authenticate';
+
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
