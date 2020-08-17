@@ -1,3 +1,4 @@
+import { UserAddFormComponent } from './../user-add-form/user-add-form.component';
 import { Component, OnInit } from '@angular/core';
 import { CustomMaterialModule } from './../../../custom-material/custom-material.module';
 import { Company } from './../../../Models/company.model';
@@ -6,6 +7,8 @@ import { Computer } from './../../../Models/computer.model';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-user-login',
@@ -18,7 +21,8 @@ export class UserLoginComponent implements OnInit {
   user: User = new User();
   constructor(private userService: UserService, 
               private router: Router,              
-              private location: Location){}
+              private location: Location,
+              public dialog: MatDialog){}
 
   ngOnInit(): void {
   }
@@ -30,6 +34,14 @@ export class UserLoginComponent implements OnInit {
 
   returnHome(){
     this.router.navigate(['computers']);
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(UserAddFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   onLogout() {

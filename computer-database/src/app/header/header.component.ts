@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
 
 @Component({
