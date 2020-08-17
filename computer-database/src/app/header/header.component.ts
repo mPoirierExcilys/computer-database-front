@@ -6,6 +6,7 @@ import { User } from '../Models/user.model';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component'
+import { Role } from '../Models/role.model';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { UserLoginComponent } from '../components/users/user-login/user-login.co
 export class HeaderComponent implements OnInit {
 
   user: User;
+  roles: Role[];
 
   messageLogout = "Logout";
 
@@ -33,8 +35,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.currentUserValue;
+    this.roles = this.userService.currentUserValue.roles;
     console.log(this.user.token);
-    console.log(this.user.role);
+    console.log(this.user.roles);
+    console.log(this.roles);
     console.log(this.user.username);
   }
 
