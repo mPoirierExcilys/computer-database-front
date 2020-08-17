@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
+import { Router } from '@angular/router';
+import { UserLoginComponent } from '../components/users/user-login/user-login.component'
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,11 @@ import { ComputerAddFormComponent } from '../components/computers/computer-add-f
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  messageLogout = "Logout";
+
+  @Output() logoutEvent = new EventEmitter<string>();
+  
+  constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(ComputerAddFormComponent);
@@ -22,4 +28,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sendLogout() {
+    this.router.navigate(['/login'], { state : { isToLogout : true}});
+  }
 }
