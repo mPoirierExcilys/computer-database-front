@@ -3,13 +3,14 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Company} from '../Models/company.model';
 import {Page} from '../Models/page.model';
+import { URL } from '../../assets/configurations/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  baseUrl= 'http://10.0.1.205:8080/webapprest/companies';
+  baseUrl = URL.baseUrl + '/companies';
 
   constructor(private http: HttpClient) { }
   getCompanies(): Observable<Company[]>{
