@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Computer } from '../../../Models/computer.model';
 import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
@@ -19,10 +19,12 @@ interface Ascending {
 @Component({
   selector: 'app-computer-list',
   templateUrl: './computer-list.component.html',
-  styleUrls: ['./computer-list.component.scss']
+  styleUrls: ['./computer-list.component.scss'],
+  template: `<button #ul></button>`
 })
 
 export class ComputerListComponent implements OnInit {
+
   private route : ActivatedRoute;
   computersList : Computer[] = [];
   computerService : ComputerService;
@@ -46,11 +48,12 @@ export class ComputerListComponent implements OnInit {
 
   displayedColumns: string[] = ['delete', 'name', 'introduced', 'discontinued', 'companyDto'];
 
+  @ViewChild("ul", {read: ElementRef}) testButton: ElementRef;
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
     this.route = routeParam;
     this.computerService = computerService;
-   }
+  }
 
   ngOnInit(): void {
     this.setPage();
@@ -85,6 +88,7 @@ export class ComputerListComponent implements OnInit {
     this.computerService.getNbPages(this.page, this.motSearch).subscribe(
       (result: number) => {
         this.page.setNbPage(result);
+        this.listOfButtonPage();
       },
       (error: any) => {
         console.log("Erreur avec l'observable lors du getnombrePages.");
@@ -149,13 +153,21 @@ export class ComputerListComponent implements OnInit {
     if(this.page.currentPage < this.page.nbPage){
       this.page.currentPage = this.page.currentPage + 1;
       this.getList();
+      this.listOfButtonPage();
     }
+  }
+
+  setCurrentPage(currentPage : number) : void {
+    this.page.currentPage = currentPage;
+    this.getList();
+    this.listOfButtonPage();
   }
 
   previousPage() : void {
     if(this.page.currentPage > 1){
       this.page.currentPage = this.page.currentPage - 1;
       this.getList();
+      this.listOfButtonPage();
     }
   }
 
@@ -164,25 +176,73 @@ export class ComputerListComponent implements OnInit {
     console.log("coioaiz");
   }
 
+  @ViewChild('test') myDiv: ElementRef;
+
   deleteSelected(): void {
     console.log("selected");
-    var checkBox = document.getElementById("selectall");
+    var checkBox = document.getElementById("test");
 
+    if(this.myDiv.nativeElement.checked){
+      this.myDiv.nativeElement.checked = false;
+      console.log(this.myDiv.nativeElement.checked);
+    }
+    else{
+      this.myDiv.nativeElement.checked= true;
+      console.log(this.myDiv.nativeElement.checked);
+    }
   }
 
-// (function ( $ ) {
-//
-//     $.fn.toggleEditMode = function() {
-//       if($(".editMode").is(":visible")) {
-//         $(".editMode").hide();
-//         $("#editComputer").text("Edit");
-//       }
-//       else {
-//         $(".editMode").show();
-//         $("#editComputer").text("View");
-//       }
-//       return this;
-//     };
-//
-//   }( jQuery ));
+  listOfButtonPage(): void {
+    var listNumPage = document.getElementById("listPage");
+    var li = [];
+    var currentPage = this.page.currentPage;
+    var maxPage = this.page.nbPage;
+    var clickAttribute = document.createAttribute("click");
+
+    // listNumPage.querySelectorAll('*').forEach(n => n.remove());
+    console.log(this.testButton.nativeElement);
+    if(currentPage > 1){
+      //li.push(document.createElement("button"));
+      // listNumPage.firstChild.appendChild(document.createTextNode("<<"));
+      listNumPage.firstChild.textContent = "<<";
+      this.testButton.nativeElement.style.hidden = false;
+      // clickAttribute.value = "setCurrentPage(" + (currentPage - 1) + ")";
+      // li[0].setAttribute("\(click\)", "setCurrentPage(" + (currentPage - 1) + ")");
+    }
+
+    for(let i = 1; i < 2; i++){
+      if((currentPage - (3 - i)) >= 1){
+        li.push(document.createElement("button"));
+        li[li.length - 1].appendChild(document.createTextNode(String (this.page.currentPage - (2 - i))));
+        li[li.length - 1].firstChild.nodeValue = String (this.page.currentPage - (2 - i));
+        // clickAttribute.value = "setCurrentPage(" + (this.page.currentPage - (2 - i)) + ")";
+        // li[li.length - 1].setAttribute(clickAttribute);
+      }
+    }
+
+    for(let i = 0; i < 2; i++){
+      if((currentPage + i) <= maxPage){
+        if((currentPage + i) == currentPage){
+        }
+        li.push(document.createElement("button"));
+        li[li.length - 1].appendChild(document.createTextNode(String (this.page.currentPage + i)));
+        li[li.length - 1].firstChild.nodeValue = String (this.page.currentPage + i);
+        // clickAttribute.value = "setCurrentPage(" + (this.page.currentPage - (2 - i)) + ")";
+        // li[li.length - 1].setAttribute(this.page.currentPage - (2 - i));
+      }
+    }
+
+    if(currentPage < maxPage){
+      li.push(document.createElement("button"));
+      li[li.length - 1].appendChild(document.createTextNode(">>"));
+      li[li.length - 1].firstChild.nodeValue =">>";
+      // clickAttribute.value = "setCurrentPage(" + (currentPage + 1) + ")";
+      // li[li.length - 1].setAttribute(clickAttribute);
+
+    }
+
+    for(let i = 0; i < li.length; i++){
+      listNumPage.appendChild(li[i]);
+    }
+  }
 }
