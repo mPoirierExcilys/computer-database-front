@@ -1,3 +1,4 @@
+import { Role } from './../Models/role.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
@@ -6,7 +7,6 @@ import { User } from '../Models/user.model';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component'
-import { Role } from '../Models/role.model';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { Role } from '../Models/role.model';
 export class HeaderComponent implements OnInit {
 
   user: User;
-  roles: Role[];
+  userRoles: Role[];
 
   messageLogout = "Logout";
 
@@ -33,13 +33,17 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+
+  getUserRole(){
+    this.userService.getUser().subscribe((result: User) => {
+      this.user = result;
+    })
+
+  }
+
+
   ngOnInit(): void {
-    this.user = this.userService.currentUserValue;
-    this.roles = this.userService.currentUserValue.roles;
-    console.log(this.user.token);
-    console.log(this.user.roles);
-    console.log(this.roles);
-    console.log(this.user.username);
+    this.getUserRole();
   }
 
   sendLogout() {
