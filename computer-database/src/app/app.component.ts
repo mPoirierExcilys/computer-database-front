@@ -12,31 +12,31 @@ import { UserService } from './service/user.service';
 })
 export class AppComponent {
   title = 'computer-database';
-  
-  roles : Role[];
+
+  // roles : Role[];
 
   constructor(private routeParam: ActivatedRoute, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getRoles();
+    // this.getRoles();
   }
 
-  
-  getRoles(){
-    this.userService.getRole().subscribe(
-      (result : Role[] ) => {
-        if(result){
-          this.roles = result;
-          console.log("plop");
-          console.log(this.roles);
-        } else {
-          console.log("Error with getRoles().");
-        }
-      },
-      error => {
-        console.log("Error with getRoles().");
-      }
-    )
-  }
+
+  // getRoles(){
+  //   this.userService.getRole().subscribe(
+  //     (result : Role[] ) => {
+  //       if(result){
+  //         this.roles = result;
+  //         console.log("plop");
+  //         console.log(this.roles);
+  //       } else {
+  //         console.log("Error with getRoles().");
+  //       }
+  //     },
+  //     error => {
+  //       console.log("Error with getRoles().");
+  //     }
+  //   )
+  // }
 
 }
