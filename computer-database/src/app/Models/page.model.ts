@@ -46,6 +46,9 @@ export class Page{
   
   setOrder(order: string){
     switch(order){
+      case "company.idCompany":
+        this.order = order;
+        break;
       case "computer.id":
         this.order = order;
         break;
