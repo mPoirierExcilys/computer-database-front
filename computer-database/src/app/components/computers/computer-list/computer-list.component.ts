@@ -46,7 +46,6 @@ export class ComputerListComponent implements OnInit {
 
   displayedColumns: string[] = ['delete', 'name', 'introduced', 'discontinued', 'companyDto'];
 
-
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
     this.route = routeParam;
     this.computerService = computerService;
@@ -67,13 +66,29 @@ export class ComputerListComponent implements OnInit {
     this.getNombrePages();
   }
 
+  getList() : void {
+    this.computerService.getComputers(this.page, this.motSearch).subscribe(
+      (result: Computer[]) => {
+        this.computersList = [];
+        result.forEach(computer => {
+          this.computersList.push(computer);
+        });
+        
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du getComputersList.");
+      }
+    );
+  }
+
   getNombreComputers(){
     this.computerService.getNbComputer(this.motSearch).subscribe(
       (result: number) => {
         this.nbComputers = result;
+        this.getNombrePages();
       },
       (error: any) => {
-        console.log("Erreur avec l'observable lors du getComputersList.");
+        console.log("Erreur avec l'observable lors du getNombreComputers.");
       }
     )
   }
@@ -85,25 +100,22 @@ export class ComputerListComponent implements OnInit {
     this.computerService.getNbPages(this.page, this.motSearch).subscribe(
       (result: number) => {
         this.page.setNbPage(result);
+        this.MAJCurrentPage();
       },
       (error: any) => {
-        console.log("Erreur avec l'observable lors du getnombrePages.");
+        console.log("Erreur avec l'observable lors du getNombrePages.");
       }
     )
   }
 
-  getList() : void {
-    this.computerService.getComputers(this.page, this.motSearch).subscribe(
-      (result: Computer[]) => {
-        this.computersList = [];
-        result.forEach(computer => {
-          this.computersList.push(computer);
-        });
-      },
-      (error: any) => {
-        console.log("Erreur avec l'observable lors du getComputersList.");
-      }
-    );
+  MAJCurrentPage(): void{
+    if(this.page.currentPage <= 0){
+      this.page.currentPage = 1;
+    }
+    if(this.page.currentPage > this.page.nbPage){
+      this.page.currentPage = this.page.nbPage;
+    }
+    this.getList();
   }
 
   remove(id : number): void{
@@ -117,10 +129,10 @@ export class ComputerListComponent implements OnInit {
     );
   }
 
-  modifOrder2(orderSelectEvent : string) : void {
-    this.page.setOrder(orderSelectEvent);
-    this.getList();
-  }
+  // modifOrder2(orderSelectEvent : string) : void {
+  //   this.page.setOrder(orderSelectEvent);
+  //   this.getList();
+  // }
 
   modifOrder(orderSelectEvent :  MatSelectChange) : void {
     this.page.setOrder(orderSelectEvent.value);
@@ -135,14 +147,11 @@ export class ComputerListComponent implements OnInit {
   modifItemsByPage(nombreItems : number) : void {
     this.page.setItemsByPage(nombreItems);
     this.getNombrePages();
-    this.getList();
   }
 
   modifSearch(motSearch: string): void{
     this.motSearch = motSearch;
     this.getNombreComputers();
-    this.getNombrePages();
-    this.getList();
   }
 
   nextPage() : void {
@@ -160,7 +169,6 @@ export class ComputerListComponent implements OnInit {
   }
 
   toggleEditMode(): void {
-
     console.log("coioaiz");
   }
 
@@ -169,20 +177,4 @@ export class ComputerListComponent implements OnInit {
     var checkBox = document.getElementById("selectall");
 
   }
-
-// (function ( $ ) {
-//
-//     $.fn.toggleEditMode = function() {
-//       if($(".editMode").is(":visible")) {
-//         $(".editMode").hide();
-//         $("#editComputer").text("Edit");
-//       }
-//       else {
-//         $(".editMode").show();
-//         $("#editComputer").text("View");
-//       }
-//       return this;
-//     };
-//
-//   }( jQuery ));
 }
