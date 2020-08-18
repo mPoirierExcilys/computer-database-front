@@ -85,8 +85,6 @@ export class ComputerListComponent implements OnInit {
   @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
   @ViewChild("cb", {read: ElementRef}) colloneFirst: ElementRef;
 
-
-
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService, dialog: MatDialog) {
     this.route = routeParam;
     this.computerService = computerService;
@@ -107,32 +105,6 @@ export class ComputerListComponent implements OnInit {
     this.getNombrePages();
   }
 
-  getNombreComputers(){
-    this.computerService.getNbComputer(this.motSearch).subscribe(
-      (result: number) => {
-        this.nbComputers = result;
-      },
-      (error: any) => {
-        console.log("Erreur avec l'observable lors du getComputersList.");
-      }
-    )
-  }
-
-  getNombrePages() {
-    if(!this.page.itemsByPage){
-      this.page.setItemsByPage(25);
-    }
-    this.computerService.getNbPages(this.page, this.motSearch).subscribe(
-      (result: number) => {
-        this.page.setNbPage(result);
-        this.listOfButtonPage();
-      },
-      (error: any) => {
-        console.log("Erreur avec l'observable lors du getnombrePages.");
-      }
-    )
-  }
-
   getList() : void {
     this.computerService.getComputers(this.page, this.motSearch).subscribe(
       (result: Computer[]) => {
@@ -146,6 +118,44 @@ export class ComputerListComponent implements OnInit {
         console.log("Erreur avec l'observable lors du getComputersList.");
       }
     );
+  }
+
+  getNombreComputers(){
+    this.computerService.getNbComputer(this.motSearch).subscribe(
+      (result: number) => {
+        this.nbComputers = result;
+        this.getNombrePages();
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du getNombreComputers.");
+      }
+    )
+  }
+
+  getNombrePages() {
+    if(!this.page.itemsByPage){
+      this.page.setItemsByPage(25);
+    }
+    this.computerService.getNbPages(this.page, this.motSearch).subscribe(
+      (result: number) => {
+        this.page.setNbPage(result);
+        this.listOfButtonPage();
+        this.MAJCurrentPage();
+      },
+      (error: any) => {
+        console.log("Erreur avec l'observable lors du getNombrePages.");
+      }
+    )
+  }
+
+  MAJCurrentPage(): void{
+    if(this.page.currentPage <= 0){
+      this.page.currentPage = 1;
+    }
+    if(this.page.currentPage > this.page.nbPage){
+      this.page.currentPage = this.page.nbPage;
+    }
+    this.getList();
   }
 
   remove(id : number): void{
@@ -185,14 +195,11 @@ export class ComputerListComponent implements OnInit {
   modifItemsByPage(nombreItems : number) : void {
     this.page.setItemsByPage(nombreItems);
     this.getNombrePages();
-    this.getList();
   }
 
   modifSearch(motSearch: string): void{
     this.motSearch = motSearch;
     this.getNombreComputers();
-    this.getNombrePages();
-    this.getList();
   }
 
   nextPage() : void {
@@ -281,15 +288,6 @@ export class ComputerListComponent implements OnInit {
     }
   }
 
-
-  // openDialog() {
-  //   const dialogRef = this.dialog.open();
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
-
   hideAllButton(): void {
     this.pageButtonBegin.nativeElement.hidden = true;
     this.pageButton1.nativeElement.hidden = true;
@@ -311,7 +309,7 @@ export class ComputerListComponent implements OnInit {
 
     for(let i = 0; i < 3; i++){
       if((currentPage + i) == currentPage){
-        this.pageButton2.nativeElement.style.color = "#ff5733";
+        this.pageButton2.nativeElement.style.color = "#6d4e4e";
       }
 
       if(i == 0){

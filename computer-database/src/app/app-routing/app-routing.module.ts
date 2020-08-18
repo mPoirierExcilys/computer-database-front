@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Input } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComputerDetailsComponent } from '../components/computers/computer-details/computer-details.component';
 import { ComputerListComponent } from '../components/computers/computer-list/computer-list.component';
@@ -8,6 +8,10 @@ import { CompanyListComponent } from '../components/companies/company-list/compa
 import { UserLoginComponent } from '../components/users/user-login/user-login.component';
 import { AuthGuard } from '../helpers/auth.guard';
 import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
+import { Role } from '../Models/role.model';
+import { CompanyComponent } from '../components/companies/company/company.component';
+
+
 
 const routes: Routes = [
   {
@@ -22,8 +26,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'companies/:id',
+    component: CompanyComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
     path: 'create-user',
     component: UserAddFormComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
@@ -66,4 +77,5 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

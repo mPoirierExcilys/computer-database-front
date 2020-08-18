@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Computer } from '../../../Models/computer.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComputerService } from '../../../service/computer.service';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-computer-details',
@@ -13,7 +12,7 @@ export class ComputerDetailsComponent implements OnInit {
 
   computer: Computer;
 
-  constructor(private routeParam: ActivatedRoute, private computerService: ComputerService) {}
+  constructor(private routeParam: ActivatedRoute, private router: Router, private computerService: ComputerService) {}
 
   ngOnInit(): void {
     this.getComputer();
@@ -31,5 +30,8 @@ export class ComputerDetailsComponent implements OnInit {
     )
   }
 
+  goBackHome(){
+    this.router.navigate(['/computers']);
+  }
 
 }
