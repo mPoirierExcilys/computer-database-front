@@ -1,10 +1,13 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Computer } from '../../../Models/computer.model';
 import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
 import { ComputerService } from 'src/app/service/computer.service';
 import { MatSelectChange } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ThemePalette } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 
 interface Order {
   label : string;
@@ -16,11 +19,27 @@ interface Ascending {
   value : string;
 }
 
+export interface Task {
+  name: string;
+  completed: boolean;
+  color: ThemePalette;
+  subtasks?: Task[];
+  hidden: boolean;
+}
+
 @Component({
   selector: 'app-computer-list',
   templateUrl: './computer-list.component.html',
   styleUrls: ['./computer-list.component.scss'],
-  template: `<button #ul></button>`
+  template: `<mat-checkbox #cbA></mat-checkbox>
+             <checkbox #cb></checkbox>
+             <input #cbM></input>
+             <button #pageButtonBegin></button>
+             <button #pageButton1></button>
+             <button #pageButton2></button>
+             <button #pageButton3></button>
+             <button #pageButtonEnd></button>`,
+
 })
 
 export class ComputerListComponent implements OnInit {
@@ -40,17 +59,35 @@ export class ComputerListComponent implements OnInit {
     {label: "discontinued", value: "computer.discontinued"},
     {label: "company name", value: "cp.name"}
   ]
-
   ascendings : Ascending[] = [
     {label: "ASC", value: "ASC"},
     {label: "DESC", value: "DESC"}
   ]
 
-  displayedColumns: string[] = ['delete', 'name', 'introduced', 'discontinued', 'companyDto'];
+  task: Task = {
+    name: 'Indeterminate',
+    completed: false,
+    color: 'primary',
+    subtasks: [],
+    hidden: true
+  };
 
-  @ViewChild("ul", {read: ElementRef}) testButton: ElementRef;
+  displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
 
-  constructor(private routeParam: ActivatedRoute, computerService: ComputerService) {
+  allComplete: boolean = false;
+
+  @ViewChild("pageButtonBegin", {read: ElementRef}) pageButtonBegin: ElementRef;
+  @ViewChild("pageButton1", {read: ElementRef}) pageButton1: ElementRef;
+  @ViewChild("pageButton2", {read: ElementRef}) pageButton2: ElementRef;
+  @ViewChild("pageButton3", {read: ElementRef}) pageButton3: ElementRef;
+  @ViewChild("pageButtonEnd", {read: ElementRef}) pageButtonEnd: ElementRef;
+  @ViewChild("cbM", {read: ElementRef}) checkBoxAll: ElementRef;
+  @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
+  @ViewChild("cb", {read: ElementRef}) colloneFirst: ElementRef;
+
+
+
+  constructor(private routeParam: ActivatedRoute, computerService: ComputerService, dialog: MatDialog) {
     this.route = routeParam;
     this.computerService = computerService;
   }
@@ -103,6 +140,7 @@ export class ComputerListComponent implements OnInit {
         result.forEach(computer => {
           this.computersList.push(computer);
         });
+        this.setSubTask();
       },
       (error: any) => {
         console.log("Erreur avec l'observable lors du getComputersList.");
@@ -121,18 +159,26 @@ export class ComputerListComponent implements OnInit {
     );
   }
 
-  modifOrder2(orderSelectEvent : string) : void {
-    this.page.setOrder(orderSelectEvent);
+  modifOrder(orderSelect : string) : void {
+    if(this.orderSelect === orderSelect){
+      if(this.ascendingSelect === 'ASC'){
+        this.ascendingSelect = 'DESC';
+      }
+      else{
+        this.ascendingSelect = 'ASC';
+      }
+      this.modifAscending(this.ascendingSelect);
+    }
+    else{
+      this.ascendingSelect = 'ASC';
+      this.orderSelect = orderSelect;
+      this.page.setOrder(orderSelect);
+    }
     this.getList();
   }
 
-  modifOrder(orderSelectEvent :  MatSelectChange) : void {
-    this.page.setOrder(orderSelectEvent.value);
-    this.getList();
-  }
-
-  modifAscending(ascendingSelectEvent :  MatSelectChange) : void {
-    this.page.setAscending(ascendingSelectEvent.value);
+  modifAscending(ascendingSelectEvent : string) : void {
+    this.page.setAscending(ascendingSelectEvent);
     this.getList();
   }
 
@@ -172,77 +218,121 @@ export class ComputerListComponent implements OnInit {
   }
 
   toggleEditMode(): void {
-
-    console.log("coioaiz");
-  }
-
-  @ViewChild('test') myDiv: ElementRef;
-
-  deleteSelected(): void {
-    console.log("selected");
-    var checkBox = document.getElementById("test");
-
-    if(this.myDiv.nativeElement.checked){
-      this.myDiv.nativeElement.checked = false;
-      console.log(this.myDiv.nativeElement.checked);
+    console.log("ottoot");
+    if(this.task.hidden){
+      console.log("c'est vrai");
+      this.task.hidden = false;
+      this.task.subtasks.forEach(t => t.hidden = false);
     }
     else{
-      this.myDiv.nativeElement.checked= true;
-      console.log(this.myDiv.nativeElement.checked);
+      console.log("c'esy faux");
+      this.task.hidden = true;
+      this.task.subtasks.forEach(t => t.hidden = true);
     }
+  }
+
+  setSubTask() {
+    let newSubTask;
+    this.task.subtasks = [];
+    this.task.hidden = true;
+    this.allComplete = false;
+    for(let i = 0; i < this.computersList.length; i++){
+      newSubTask = {name: this.computersList[i].idComputer, completed: false, color: 'primary', hidden: true};
+      this.task.subtasks.push(newSubTask);
+    }
+  }
+
+  setAll() {
+    this.allComplete = !this.allComplete;
+    if (this.task.subtasks == null) {
+      return;
+    }
+    this.task.subtasks.forEach(t => t.completed =  this.allComplete);
+  }
+
+  updateAllComplete() {
+    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+  }
+
+  someComplete(): boolean {
+    if (this.task.subtasks == null) {
+      return false;
+    }
+    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+  }
+
+  deleteSelected(): void {
+
+    for(let i = 0; i < this.task.subtasks.length; i++){
+      if(this.task.subtasks[i].completed){
+        console.log("true");
+        console.log(this.task.subtasks[i].name);
+        this.computerService.deleteComputer(Number(this.task.subtasks[i].name)).subscribe(
+          (result) => {
+            console.log("Supression réussi");
+            this.ngOnInit();
+            this.allComplete = false;
+          },
+          (error: any) => {
+            console.log("Erreur lors de la supression");
+          }
+        );
+      }
+    }
+  }
+
+
+  // openDialog() {
+  //   const dialogRef = this.dialog.open();
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result: ${result}`);
+  //   });
+  // }
+
+  hideAllButton(): void {
+    this.pageButtonBegin.nativeElement.hidden = true;
+    this.pageButton1.nativeElement.hidden = true;
+    this.pageButton2.nativeElement.hidden = true;
+    this.pageButton3.nativeElement.hidden = true;
+    this.pageButtonEnd.nativeElement.hidden = true;
+
   }
 
   listOfButtonPage(): void {
-    var listNumPage = document.getElementById("listPage");
-    var li = [];
     var currentPage = this.page.currentPage;
     var maxPage = this.page.nbPage;
-    var clickAttribute = document.createAttribute("click");
 
-    // listNumPage.querySelectorAll('*').forEach(n => n.remove());
-    console.log(this.testButton.nativeElement);
+    this.hideAllButton();
+
     if(currentPage > 1){
-      //li.push(document.createElement("button"));
-      // listNumPage.firstChild.appendChild(document.createTextNode("<<"));
-      listNumPage.firstChild.textContent = "<<";
-      this.testButton.nativeElement.style.hidden = false;
-      // clickAttribute.value = "setCurrentPage(" + (currentPage - 1) + ")";
-      // li[0].setAttribute("\(click\)", "setCurrentPage(" + (currentPage - 1) + ")");
+      this.pageButtonBegin.nativeElement.hidden = false;
     }
 
-    for(let i = 1; i < 2; i++){
-      if((currentPage - (3 - i)) >= 1){
-        li.push(document.createElement("button"));
-        li[li.length - 1].appendChild(document.createTextNode(String (this.page.currentPage - (2 - i))));
-        li[li.length - 1].firstChild.nodeValue = String (this.page.currentPage - (2 - i));
-        // clickAttribute.value = "setCurrentPage(" + (this.page.currentPage - (2 - i)) + ")";
-        // li[li.length - 1].setAttribute(clickAttribute);
+    for(let i = 0; i < 3; i++){
+      if((currentPage + i) == currentPage){
+        this.pageButton2.nativeElement.style.color = "#ff5733";
       }
-    }
 
-    for(let i = 0; i < 2; i++){
-      if((currentPage + i) <= maxPage){
-        if((currentPage + i) == currentPage){
+      if(i == 0){
+        if(!(currentPage - 1 < 1)){
+          this.pageButton1.nativeElement.hidden = false;
         }
-        li.push(document.createElement("button"));
-        li[li.length - 1].appendChild(document.createTextNode(String (this.page.currentPage + i)));
-        li[li.length - 1].firstChild.nodeValue = String (this.page.currentPage + i);
-        // clickAttribute.value = "setCurrentPage(" + (this.page.currentPage - (2 - i)) + ")";
-        // li[li.length - 1].setAttribute(this.page.currentPage - (2 - i));
+      }
+      else if(i == 1){
+        this.pageButton2.nativeElement.hidden = false;
+      }
+      else if(i == 2){
+        if(!(currentPage + 1 > maxPage)){
+          this.pageButton3.nativeElement.hidden = false;
+        }
       }
     }
 
     if(currentPage < maxPage){
-      li.push(document.createElement("button"));
-      li[li.length - 1].appendChild(document.createTextNode(">>"));
-      li[li.length - 1].firstChild.nodeValue =">>";
-      // clickAttribute.value = "setCurrentPage(" + (currentPage + 1) + ")";
-      // li[li.length - 1].setAttribute(clickAttribute);
-
-    }
-
-    for(let i = 0; i < li.length; i++){
-      listNumPage.appendChild(li[i]);
+      this.pageButtonEnd.nativeElement.hidden = false;
     }
   }
+
+  @Output() removeToParent = new EventEmitter<number>();
 }
