@@ -7,10 +7,10 @@
                         <img src="assets/images/logo.png" width="40" height="40" alt="image"/>
                         <a routerLink="/"> Team Angular </a>
                     </h1>
-                    <nav role="navigation" [(ngModel)]="user" >
+                    <nav role="navigation" >
                         <ul>
                             <li><a routerLink="#">About Us</a></li>
-                            <li *ngIf="user != null && user.token != null"><a routerLink="#">Computer List</a></li>
+                            <li *ngIf="user.username != null"><a routerLink="#">Computer List</a></li>
                             <li><a *ngIf="user == null" routerLink="#">Sign in</a></li>
                             <li><a *ngIf="user == null" routerLink="#">Sign up</a></li>
                             <li *ngIf="user.roles == null && user != null" class="cta"><button mat-button (click)="openDialog()">Add Computer</button></li>
