@@ -278,7 +278,6 @@ export class ComputerListComponent implements OnInit {
   }
 
   deleteSelected(): void {
-    this.openDialog();
     for(let i = 0; i < this.task.subtasks.length; i++){
       if(this.task.subtasks[i].completed){
         console.log("true");
@@ -300,13 +299,17 @@ export class ComputerListComponent implements OnInit {
   openDialog(): void{
     const dialogRef = this.dialog.open(ComputerValidDeleteComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
-      console.log(this.animal);
+      if(result){
+        console.log("true");
+        this.deleteSelected();
+      }
+      else{
+        console.log("false");
+      }
     });
   }
 
