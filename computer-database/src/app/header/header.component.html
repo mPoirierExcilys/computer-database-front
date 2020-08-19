@@ -9,6 +9,9 @@
                     </h1>
                     <nav role="navigation">
                         <ul>
+                            <li><a routerLink="/users">Users List</a></li>
+                            <li><a routerLink="/companies">Companies List</a></li>
+                            <li class="cta"><button mat-button (click)="sendLogout()"> Log out</button> </li>
                             <li><a routerLink="computers">{{ 'HEADER.LIST' | translate }}</a></li>
                             <li><a (click)="openDialogUser()">{{ 'HEADER.SIGNUP' | translate }}</a></li>
                             <li class="cta"><button mat-button (click)="openDialog()">{{ 'HEADER.ADD' | translate }}</button></li>

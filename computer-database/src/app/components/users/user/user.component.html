@@ -1,0 +1,38 @@
+<td class="editMode">
+    <input type="checkbox" name="cb" class="cb" value="0">
+</td>
+<td>
+  <a href="editUser.html" onclick="">{{user.name}}</a>
+</td>
+<!-- <td>{{user.token.name}}</td> -->
+<!-- <td>{{user.roles.name}}</td> -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{user.name}} : {{user.id}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- <ul>
+      <li >
+        user token
+        <ul>
+          <li>{{user.token.name}}</li>
+        </ul>
+      </li>
+    </ul> -->
+
+    <ul>
+      <li >
+        user roles name
+        <ul>
+          <li>{{user.roles.name}}</li>
+        </ul>
+      </li>
+    </ul>
+
+    
+    <a routerLink="/computers/{{computer.idComputer}}">{{computer.name}}</a>
+
+    <a routerLink="/user/{{user.id}}">Details</a>
+  </mat-card-content>
+</mat-card>
