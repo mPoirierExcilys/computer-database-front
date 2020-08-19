@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { User } from './../Models/user.model';
 import { map } from 'rxjs/operators';
 import { Role } from './../Models/role.model';
@@ -8,6 +9,7 @@ import { ComputerAddFormComponent } from '../components/computers/computer-add-f
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component'
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -18,13 +20,17 @@ import { UserLoginComponent } from '../components/users/user-login/user-login.co
 export class HeaderComponent implements OnInit {
 
   user: User;
-  userForRole: User;
+  userRoles: Role[];
+  isAdministrator: boolean = false;
 
   messageLogout = "Logout";
 
   @Output() logoutEvent = new EventEmitter<string>();
 
-  constructor(public dialog: MatDialog, private router: Router, private userService: UserService) { }
+  constructor(public dialog: MatDialog, 
+              private router: Router, 
+              private userService: UserService, 
+              private location: Location) { }
 
   openDialog() {
     const dialogRef = this.dialog.open(ComputerAddFormComponent);
@@ -36,9 +42,9 @@ export class HeaderComponent implements OnInit {
 
   getUserRoles() {
     this.userService.getUser().subscribe((result: User) => {
-      console.log("result : " + result.roles[0].name)
-      console.log("result : " + result.roles[1].name)
-      this.user. roles = result.roles;
+      this.userRoles = result.roles;
+console.log(this.userRoles);
+     this.isAdmin(this.userRoles);
     }, (error) => { console.log(error);
   });
 }
@@ -47,17 +53,21 @@ setUser(){
   this.user = this.userService.currentUserValue;
 }
 
-showUser(){
-  
+isAdmin(list: Role[]){
+  let self = this;
+  list.forEach(function(element){
+    for(let name of element.name)
+    if(element.name === "ROLE_ADMIN"){
+      self.isAdministrator = true;
+      break;
+    } 
+  })
 }
-
+ 
 
 ngOnInit(): void {
   this.setUser();
   this.getUserRoles();
-  console.log(this.user.username);
-  console.log(this.user.token);
-  console.log(this.user.roles);
 }
 
 sendLogout() {
