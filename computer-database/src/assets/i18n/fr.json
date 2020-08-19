@@ -2,7 +2,7 @@
     "HEADER": {
     
         "ADD": "Ajouter Ordinateur",
-        "TITLE": "Base de données ordinateurs",
+        "TITLE": "Base de données d'ordinateurs",
         "SIGNIN": "Connexion",
         "SIGNUP" : "Inscription",
         "LIST" : "Liste ordinateur"
@@ -15,17 +15,13 @@
         "INTRODUCED": "Date d'introduction",
         "DISCONTINUED" : "Date d'arrêt",
         "COMPANY" : "Entreprise",
-        "EDIT" : "Modifier"
+        "EDIT" : "Modifier",
+        "SEARCH" : "Rechercher"
+
     },
 
     "DETAILS": {
-        "NUMBERCOMPS": "Ordinateurs trouvés",
-        "NUMBERCOMP": "Ordinateur trouvé",
-        "NAME": "Nom de l'ordinateur",
-        "INTRODUCED": "Date d'introduction",
-        "DISCONTINUED" : "Date d'arrêt",
-        "COMPANY" : "Entreprise",
-        "EDIT" : "Modifier"
+        "DETAIL": "Détails ordinateur"
     },
 
     "USER": {

@@ -8,13 +8,19 @@
     },
 
     "LIST": {
-        "NUMBERCOMPS": "Computers found",
-        "NUMBERCOMP": "Computer found",
+        "NUMBERCOMPS": "computers found",
+        "NUMBERCOMP": "computer found",
         "NAME": "Name",
         "INTRODUCED": "Introduced date",
         "DISCONTINUED" : "Discontinued date",
         "COMPANY" : "Company",
-        "EDIT" : "Edit"
+        "EDIT" : "Edit",
+        "SEARCH" : "Search"
+    },
+
+    "DETAILS": {
+        "DETAIL": "Details computer",
+        "BACK": "Back Home"
     },
 
     "USER": {

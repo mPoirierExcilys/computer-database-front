@@ -47,7 +47,7 @@ input[type='checkbox'] {
 }
 
 a {
-  color: #27E1CE;
+  color: #17afa0;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -98,6 +98,10 @@ body {
   color: #404B4E;
 }
 
+.delete{
+  text-align: left;
+}
+
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -137,6 +141,7 @@ body {
 .fit-picture {
   width: 20px;
 }
+
 .form-control {
   box-shadow: none;
   margin: 15px;
@@ -167,5 +172,8 @@ body {
 }
 
 button {
-  color: #27E1CE;
+  color: #17afa0;
+  border-color: #17afa0;
+  border-radius: 20em;
+  padding:0.5%;
 }

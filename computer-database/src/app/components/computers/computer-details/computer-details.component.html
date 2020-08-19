@@ -1,6 +1,6 @@
 <div id="details">
   <div class="detailsTitle">
-    <h2>Computer Details</h2>
+    <h2>{{ 'DETAILS.DETAIL' | translate }}</h2>
   </div>
 
   <mat-card class="computerdetails">
@@ -14,19 +14,19 @@
     
         <ul>
           <li>
-            Date Introduced : <br/>
+            {{ 'LIST.INTRODUCED' | translate }} : <br/>
             {{computer.introduced}}
           </li>
         </ul>
         <ul>
           <li>
-            Date Discontinued : <br/>
+            {{ 'LIST.DISCONTINUED' | translate }} : <br/>
            {{computer.discontinued}}
           </li>
         </ul>
         <mat-card-actions>
-          <button mat-button>Edit</button>
-          <button mat-button (click)="goBackHome()">Back Home</button>
+          <button mat-button>{{ 'LIST.EDIT' | translate }}</button>
+          <button mat-button (click)="goBackHome()">{{ 'DETAILS.BACK' | translate }}</button>
         </mat-card-actions>
     </mat-card-content>
   </mat-card>
