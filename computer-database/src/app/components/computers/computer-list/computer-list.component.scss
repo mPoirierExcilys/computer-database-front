@@ -106,7 +106,30 @@ body {
   border-color: #ccc;
 }
 
-
 .fit-picture {
   width: 20px;
+}
+
+footer {
+  bottom:0;
+  width:100%;
+  background:#fff;
+  border-top:1px solid #CCC;
+  font-family: Georgia, sans-serif;
+  height:80px;
+}
+
+footer .pagination {
+  margin:20px 0px;
+  background:#ddd;
+}
+
+footer .pagination li a {
+  
+    color: #27E1CE;
+}
+
+footer .btn-group {
+  font-family: Georgia, sans-serif;
+  margin:30px 10px;
 }

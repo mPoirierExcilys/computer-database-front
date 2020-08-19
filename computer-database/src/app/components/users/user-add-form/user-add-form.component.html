@@ -2,7 +2,7 @@
     <mat-dialog-content class="mat-dialog">
         <form class="SignUpForm" method="POST">
             <div class="form-group">
-                <mat-label>Role :</mat-label>
+                <mat-label>{{ 'USER.ROLE' | translate }} :</mat-label>
                 <mat-select class="select">
                     <mat-option value="USER">User </mat-option>
                     <mat-option value="ADMIN">Admin </mat-option>
@@ -10,27 +10,27 @@
 
             </div>
             <div class="form-group">
-                <mat-label>Username :</mat-label>
-                <input id="username" name="username" required="required" placeholder="Username"
+                <mat-label>{{ 'USER.USERNAME' | translate }} :</mat-label>
+                <input id="username" name="username" required="required" placeholder="{{ 'USER.USERNAME' | translate }}"
                     class="form-control mr-sm-2 home_input" />
             </div>
 
             <div class="form-group">
-                <mat-label>Password :</mat-label>
+                <mat-label>{{ 'USER.PASSWORD' | translate }} :</mat-label>
                 <input type="password" class="form-control mr-sm-2 home_input" id="password" name="password"
-                    required="required" placeholder="ex. X8df!90EO" />
+                    required="required" placeholder="{{ 'USER.PASSWORD' | translate }}" />
             </div>
 
             <div class="form-group">
-                <mat-label>Confirm password :</mat-label>
+                <mat-label>{{ 'USER.CONFIRMPASSWORD' | translate }} : </mat-label>
                 <input type="password" class="form-control mr-sm-2 home_input" id="passwordConfirm"
-                    name="passwordConfirm" required="required" placeholder="ex X8df!90EO" />
+                    name="passwordConfirm" required="required" placeholder="{{ 'USER.PASSWORD' | translate }}" />
             </div>
 
             <br>
             <div class="inline">
-                <input type="submit" class="btn btn-primary" value="Submit" />
-                <a href="#" class="btn btn-primary "> Cancel </a>
+                <input type="submit" class="btn btn-primary" value="{{ 'USER.SUBMIT' | translate }}" />
+                <a href="#" class="btn btn-primary "> {{ 'USER.CANCEL' | translate }} </a>
             </div>
         </form>
     </mat-dialog-content>

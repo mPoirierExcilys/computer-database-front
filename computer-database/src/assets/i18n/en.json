@@ -15,5 +15,16 @@
         "DISCONTINUED" : "Discontinued date",
         "COMPANY" : "Company",
         "EDIT" : "Edit"
+    },
+
+    "USER": {
+        "SIGNUP" : "Don't have an account yet? Sign up here!",
+        "USERNAME" : "Username",
+        "PASSWORD" : "Password",
+        "CONFIRMPASSWORD" : "Confirm password",
+        "ROLE" : "Role",
+        "CANCEL" : "Cancel",
+        "SUBMIT" : "Submit",
+        "SIGNIN" : "Sign In"
     }
 }

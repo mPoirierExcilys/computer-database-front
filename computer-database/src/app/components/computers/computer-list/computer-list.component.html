@@ -74,7 +74,7 @@
 <footer class="navbar-fixed-bottom">
   <div class="container text-center">
       <ul class="pagination" id="listPage" #ul>
-        <button hidden (click)="previousPage()" #pageButtonBegin><<</button>
+        <button hidden (click)="previousPage()" #pageButtonBegin></button>
         <button hidden (click)="setCurrentPage(this.page.currentPage - 1)" #pageButton1>{{page.currentPage - 1}}</button>
         <button hidden (click)="setCurrentPage(this.page.currentPage)" #pageButton2>{{page.currentPage}}</button>
         <button hidden (click)="setCurrentPage(this.page.currentPage + 1)" #pageButton3>{{page.currentPage + 1}}</button>
