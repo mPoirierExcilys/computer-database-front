@@ -4,21 +4,20 @@
                 <div class="header-inner">
 
                     <h1>
-                        <img src="assets/images/logo.png" width="40" height="40" alt="image"/>
-                        <a routerLink="/"> Team Angular </a>
+                        <img class="logo"  src="assets/images/logo.png" width="40" height="40" alt="image"/>
+                        <a routerLink="/"> {{ 'HEADER.TITLE' | translate }} </a>
                     </h1>
                     <nav role="navigation">
                         <ul>
                             <li><a routerLink="/users">Users List</a></li>
                             <li><a routerLink="/companies">Companies List</a></li>
-                            <li><a routerLink="#">Computer List</a></li>
-                            <li><a routerLink="#">Sign in</a></li>
-                            <li><a routerLink="#">Sign up</a></li>
                             <li class="cta"><button mat-button (click)="sendLogout()"> Log out</button> </li>
-                            <li><a routerLink="#">About Us</a></li>
-                            <li class="cta"><button mat-button (click)="openDialog()">Add Computer</button></li>
-                            <li><a routerLink="#">fr</a></li>
-                            <li><a routerLink="#">en</a></li>
+                            <li><a routerLink="computers">{{ 'HEADER.LIST' | translate }}</a></li>
+                            <li><a (click)="openDialogUser()">{{ 'HEADER.SIGNUP' | translate }}</a></li>
+                            <li class="cta"><button mat-button (click)="openDialog()">{{ 'HEADER.ADD' | translate }}</button></li>
+                            <li><a (click)="translate.use('fr')">fr</a></li>
+                            <li><a (click)="translate.use('en')">en</a></li>
+
                         </ul>
                     </nav>
                 </div>

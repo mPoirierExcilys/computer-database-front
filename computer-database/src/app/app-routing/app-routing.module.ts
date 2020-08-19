@@ -12,7 +12,7 @@ import { UserAddFormComponent } from './../components/users/user-add-form/user-a
 import { Role } from '../Models/role.model';
 import { CompanyComponent } from '../components/companies/company/company.component';
 import { UserListComponent } from '../components/users/user-list/user-list.component';
-
+import { Error404Component } from '../components/error/error404/error404.component';
 
 
 const routes: Routes = [
@@ -28,8 +28,20 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '',
+    redirectTo: 'computers',
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
     path: 'users/edit/:id',
     component: UserPasswordFormComponent,
+        canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: 'companies',
+    component: CompanyListComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
@@ -76,8 +88,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '404',
+    component: Error404Component,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
     path: '**',
-    redirectTo: 'computers',
+    redirectTo: '/404',
     canActivate: [AuthGuard],
     pathMatch: 'full'
   }
