@@ -22,7 +22,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatToolbarModule,
@@ -31,7 +32,8 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ]
 })
 export class CustomMaterialModule { }

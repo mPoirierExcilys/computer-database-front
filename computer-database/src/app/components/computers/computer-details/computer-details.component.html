@@ -11,7 +11,7 @@
     </mat-card-header>
     <img mat-card-image src="assets/images/comp.jpg" width="10" height="300">
     <mat-card-content>
-    
+
         <ul>
           <li>
             Date Introduced : <br/>
@@ -25,8 +25,8 @@
           </li>
         </ul>
         <mat-card-actions>
-          <button mat-button>Edit</button>
-          <button mat-button>Back Home</button>
+          <button mat-button (click)="openEditDialog()">Edit</button>
+          <button mat-button routerLink="/computers">Back Home</button>
         </mat-card-actions>
     </mat-card-content>
   </mat-card>

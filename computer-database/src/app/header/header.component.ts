@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
 import { Router } from '@angular/router';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component'
+import {ComputerService} from '../service/computer.service';
 
 @Component({
   selector: 'app-header',
@@ -14,14 +15,16 @@ export class HeaderComponent implements OnInit {
   messageLogout = "Logout";
 
   @Output() logoutEvent = new EventEmitter<string>();
-  
-  constructor(public dialog: MatDialog, private router: Router) {}
 
-  openDialog() {
+  constructor(public dialog: MatDialog, private router: Router, private computerService: ComputerService) {}
+
+  openDialog(): void{
     const dialogRef = this.dialog.open(ComputerAddFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result){
+        this.computerService.createComputer(result).subscribe();
+      }
     });
   }
 

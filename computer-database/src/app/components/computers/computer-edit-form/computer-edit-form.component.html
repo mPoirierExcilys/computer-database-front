@@ -15,9 +15,11 @@
         <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
                                                    formControlName="introduced"
                                                    name="introduced"
-                                                   [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateIntroduced}"
+                                                   [ngClass]="{'is-invalid': editForm.errors && (editForm.errors.dateIntroduced
+                                                   || editForm.errors.introducedSetNull)}"
                                                    [(ngModel)]="computer.introduced">
         <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{editForm.errors.dateIntroduced}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.introducedSetNull" class="invalid-input">{{editForm.errors.introducedSetNull}}</div>
         <br />
       </div>
 
@@ -26,13 +28,14 @@
         <input matInput type="date" class="form-control" name="discontinued"
                formControlName="discontinued"
                [(ngModel)]="computer.discontinued"
-               [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateDiscontinued}">
+               [ngClass]="{'is-invalid': editForm.errors && (editForm.errors.dateDiscontinued || editForm.errors.discontinuedSetNull)}">
         <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{editForm.errors.dateDiscontinued}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.discontinuedSetNull" class="invalid-input">{{editForm.errors.discontinuedSetNull}}</div>
         <br />
       </div>
 
       <mat-label>Company : </mat-label>
-      <mat-select formControlName="companyDto"  [(ngModel)]="computer.companyDto">
+      <mat-select [compareWith]="byCompany" formControlName="companyDto"  [(ngModel)]="computer.companyDto">
         <mat-option *ngFor="let company of companies" [value]="company" >{{company.name}}
         </mat-option>
       </mat-select>

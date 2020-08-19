@@ -6,6 +6,12 @@ import { Computer } from './../../../Models/computer.model';
 import { Component, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import {MatDialogRef} from '@angular/material/dialog';
+import {
+  dateValidatorDiscontinuedNotSetToNull,
+  dateValidatorIntroducedNotSetToNull
+} from '../computer-edit-form/computer-edit-form.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-computer-add-form',
@@ -17,32 +23,66 @@ export class ComputerAddFormComponent implements OnInit {
 
   computer: Computer = new Computer();
   companies: Company[];
-  pathOrigin: String = "#";
+  editForm: FormGroup;
 
   constructor(private computerService: ComputerService,
               private companyService: CompanyService,
               private location: Location,
-              private router: Router){}
+              private router: Router,
+              private formBuilder: FormBuilder,
+              private dialogRef: MatDialogRef<ComputerAddFormComponent>){}
 
   ngOnInit(): void {
     this.getCompanies();
+    this.createForm();
   }
 
-  onSubmit(){
-    this.computerService.createComputer(this.computer).subscribe();
-    this.returnHome();
+  createForm(): void{
+    this.editForm = this.formBuilder.group({
+      name: [''],
+      introduced: [''],
+      discontinued: [''],
+      companyDto: ['']
+    }, {validator: [this.dateValidatorDiscontinued, this.dateValidatorIntroduced, this.nameValidator]});
   }
 
-  returnHome(){
-    this.router.navigate(['computers']);
-    console.log("going home");
+  nameValidator(form: FormGroup): object{
+    const name = form.get('name').value;
+    if (name === ''){
+      return {
+        nameRequired: 'Name is required'
+      };
+    }
+    return null;
   }
 
-  onCancel(){
-    this.location.back();
+  dateValidatorDiscontinued(form: FormGroup): object{
+    const condition = Date.parse(form.get('introduced').value) > Date.parse(form.get('discontinued').value);
+    if (condition){
+      return {
+        dateDiscontinued: 'Must be after introduced date'
+      };
+    }
+    return null;
   }
 
-  getCompanies(){
+  dateValidatorIntroduced(form: FormGroup): object{
+    const condition = Date.parse(form.get('introduced').value) > Date.parse(form.get('discontinued').value);
+    if (condition){
+      return {
+        dateIntroduced: 'Must be before discontinued date'
+      };
+    }
+    return null;
+  }
+
+  onSubmit(): void{
+    if (this.editForm.invalid){
+      return;
+    }
+  }
+
+  getCompanies(): void{
     this.companyService.getCompanies().subscribe(
       (result: Company[]) => {
         this.companies = result;

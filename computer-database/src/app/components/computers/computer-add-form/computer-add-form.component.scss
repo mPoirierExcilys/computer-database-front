@@ -63,3 +63,11 @@ form.addForm{
     display: inline-block;
     width: 115px;
   }
+
+.invalid-input{
+  color: #FF0000;
+}
+
+.is-invalid{
+  border-color: #FF0000;
+}
