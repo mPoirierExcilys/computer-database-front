@@ -1,0 +1,38 @@
+{
+    "HEADER": {
+    
+        "ADD": "Ajouter Ordinateur",
+        "TITLE": "Base de données d'ordinateurs",
+        "SIGNIN": "Connexion",
+        "SIGNUP" : "Inscription",
+        "LIST" : "Liste ordinateur"
+    },
+
+    "LIST": {
+        "NUMBERCOMPS": "Ordinateurs trouvés",
+        "NUMBERCOMP": "Ordinateur trouvé",
+        "NAME": "Nom de l'ordinateur",
+        "INTRODUCED": "Date d'introduction",
+        "DISCONTINUED" : "Date d'arrêt",
+        "COMPANY" : "Entreprise",
+        "EDIT" : "Modifier",
+        "SEARCH" : "Rechercher"
+
+    },
+
+    "DETAILS": {
+        "DETAIL": "Détails ordinateur"
+    },
+
+    "USER": {
+        "SIGNUP" : "Pas encore de compte? Inscription ici !",
+        "USERNAME" : "Nom d'utilisateur",
+        "PASSWORD" : "Mot de passe ",
+        "CONFIRMPASSWORD" : "Confirmez le mot de passe",
+        "ROLE" : "Rôle",
+        "CANCEL" : "Annuler",
+        "SUBMIT" : "Inscription",
+        "SIGNIN" : "Connexion"
+    }
+
+}
