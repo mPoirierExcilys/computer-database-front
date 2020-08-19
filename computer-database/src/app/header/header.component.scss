@@ -6,6 +6,11 @@
     background: #404B4E;
     text-decoration: none;
   }
+
+  .logo{
+    display: inline-block;
+    vertical-align: top;
+  }
   
   #fh5co-header h1 {
     float: left;
@@ -14,6 +19,7 @@
     line-height: 0;
     font-size: 30px;
     text-decoration: none;
+    line-height: 1.6;
   }
   #fh5co-header h1 a {
     position: relative;

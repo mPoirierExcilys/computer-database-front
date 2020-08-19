@@ -7,8 +7,6 @@ import { Computer } from './../../../Models/computer.model';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Models/user.model';
-import { switchMap } from 'rxjs/operators';
-import { Route } from '@angular/compiler/src/core';
 import { Token } from 'src/app/Models/token.model';
 import { MatDialog } from '@angular/material/dialog';
 
