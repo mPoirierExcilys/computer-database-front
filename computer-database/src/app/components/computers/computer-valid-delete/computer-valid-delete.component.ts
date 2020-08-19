@@ -9,13 +9,8 @@ import { DialogData } from '../computer-list/computer-list.component';
 })
 export class ComputerValidDeleteComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ComputerValidDeleteComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  constructor(public dialogRef: MatDialogRef<ComputerValidDeleteComponent>) { }
 
   ngOnInit(): void {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }
