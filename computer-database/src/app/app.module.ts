@@ -12,12 +12,14 @@ import { ComputerModifyFormComponent } from './components/computers/computer-mod
 import { ComputerRemoveComponent } from './components/computers/computer-remove/computer-remove.component';
 import { UserAddFormComponent } from './components/users/user-add-form/user-add-form.component';
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { ComputerComponent } from './components/computers/computer/computer.component';
 import { CompanyListComponent } from './components/companies/company-list/company-list.component';
 import { CompanyComponent } from './components/companies/company/company.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,14 @@ import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
@@ -47,3 +56,7 @@ import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}

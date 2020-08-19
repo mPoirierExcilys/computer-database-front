@@ -1,0 +1,19 @@
+{
+    "HEADER": {
+        "ADD": "Add Computer",
+        "TITLE": "Computer Database",
+        "SIGNIN": "Sign In",
+        "SIGNUP" : "Sign Up",
+        "LIST" : "Computer List"
+    },
+
+    "LIST": {
+        "NUMBERCOMPS": "Computers found",
+        "NUMBERCOMP": "Computer found",
+        "NAME": "Name",
+        "INTRODUCED": "Introduced date",
+        "DISCONTINUED" : "Discontinued date",
+        "COMPANY" : "Company",
+        "EDIT" : "Edit"
+    }
+}

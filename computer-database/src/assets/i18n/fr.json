@@ -1,0 +1,21 @@
+{
+    "HEADER": {
+    
+        "ADD": "Ajouter Ordinateur",
+        "TITLE": "Base de données ordinateurs",
+        "SIGNIN": "Connexion",
+        "SIGNUP" : "Inscription",
+        "LIST" : "Liste ordinateur"
+    },
+
+    "LIST": {
+        "NUMBERCOMPS": "Ordinateurs trouvés",
+        "NUMBERCOMP": "Ordinateur trouvé",
+        "NAME": "Nom de l'ordinateur",
+        "INTRODUCED": "Date d'introduction",
+        "DISCONTINUED" : "Date d'arrêt",
+        "COMPANY" : "Entreprise",
+        "EDIT" : "Modifier"
+    }
+
+}
