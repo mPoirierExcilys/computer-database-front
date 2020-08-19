@@ -1,0 +1,7 @@
+
+<h1>Êtes-vous sûr de vouloir supprimé ?</h1>
+<input matInput [(ngModel)]="data.animal">
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.animal">Oui</button>
+  <button mat-button (click)="onNoClick()" >Non</button>
+</div>
