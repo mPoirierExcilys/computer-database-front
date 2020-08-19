@@ -4,6 +4,7 @@ import { ComputerAddFormComponent } from '../components/computers/computer-add-f
 import {TranslateService} from '@ngx-translate/core'; 
 import { Router } from '@angular/router';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component'
+import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
 
 
 @Component({
@@ -12,7 +13,6 @@ import { UserLoginComponent } from '../components/users/user-login/user-login.co
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
 
   messageLogout = "Logout";
 
@@ -26,6 +26,14 @@ export class HeaderComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(ComputerAddFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openDialogUser() {
+    const dialogRef = this.dialog.open(UserAddFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
