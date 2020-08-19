@@ -55,7 +55,7 @@ export class UserLoginComponent implements OnInit {
   onLogout() {
     this.userService.logout();
     this.router.navigate(['/login']);
-}
+  }
 
   onCancel(){
     this.location.back();

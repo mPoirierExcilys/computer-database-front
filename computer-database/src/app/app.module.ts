@@ -18,6 +18,9 @@ import { ComputerComponent } from './components/computers/computer/computer.comp
 import { CompanyListComponent } from './components/companies/company-list/company-list.component';
 import { CompanyComponent } from './components/companies/company/company.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
+import { UserPasswordFormComponent } from './components/users/user-password-form/user-password-form.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserComponent } from './components/users/user/user.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
     ComputerComponent,
     CompanyListComponent,
     CompanyComponent,
+    UserPasswordFormComponent,
+    UserListComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
