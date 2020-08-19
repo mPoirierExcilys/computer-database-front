@@ -7,6 +7,7 @@ import { CompanyService } from 'src/app/service/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 
+
 @Component({
   selector: 'app-computer-modify-form',
   templateUrl: './computer-modify-form.component.html',
