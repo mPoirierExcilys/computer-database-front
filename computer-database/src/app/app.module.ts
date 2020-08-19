@@ -20,6 +20,8 @@ import { CompanyComponent } from './components/companies/company/company.compone
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ComputerValidDeleteComponent } from './components/computers/computer-valid-delete/computer-valid-delete.component';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     ComputerComponent,
     CompanyListComponent,
     CompanyComponent,
+    ComputerValidDeleteComponent,
   ],
   imports: [
     BrowserModule,

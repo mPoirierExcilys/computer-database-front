@@ -5,6 +5,7 @@ import { User } from '../Models/user.model';
 import { Token } from '../Models/token.model';
 import { map } from 'rxjs/operators';
 import { URL } from '../../assets/configurations/config';
+import {Role} from '../Models/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { URL } from '../../assets/configurations/config';
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  baseUrl = URL.baseUrl + '/authenticate';
+  baseUrl = URL.baseUrl;
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -23,7 +24,7 @@ export class UserService {
 }
 
   authenticate(user: User): Observable<Token>{
-    return this.http.post<Token>(this.baseUrl, user).pipe(map(
+    return this.http.post<Token>(this.baseUrl + '/authenticate', user).pipe(map(
       (result : Token) => {
         if(result){
           user.token = result.token;
@@ -35,7 +36,15 @@ export class UserService {
     ));
   }
   getUser(): Observable<User>{
-    return this.http.get<User>(this.baseUrl);
+    return this.http.get<User>(this.baseUrl + '/user');
+  }
+
+  getRole(): Observable<Role[]>{
+    return this.http.get<Role[]>(this.baseUrl + '/roles');
+  }
+
+  register(user: User): Observable<string>{
+    return this.http.post<string>(this.baseUrl + '/register', user);
   }
 
   logout() {

@@ -9,10 +9,10 @@ form.addForm{
     font-style: normal;
     font: Georgia, sans-serif;
     left:40%;
-    width:500px; 
+    width:500px;
     height:400px;
   }
-  
+
   .white_label{
     color: #404B4E;
   }
@@ -52,7 +52,7 @@ form.addForm{
     margin: auto;
 
   }
-  
+
   .form-control:active, .form-control:focus {
     outline: none;
     box-shadow: none;
@@ -62,5 +62,6 @@ form.addForm{
   mat-label {
     margin : 30px;
     color: #404B4E;
-
+    display: inline-block;
+    width: 115px;
   }

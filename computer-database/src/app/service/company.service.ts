@@ -25,22 +25,30 @@ export class CompanyService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  getNbPages(page: Page): Observable<number>{
+  getNbPages(page: Page, search?: string): Observable<number>{
     let parameters = new HttpParams();
     parameters = parameters.append('itemsByPage', String(page.itemsByPage));
+    parameters = parameters.append('search', search);
     return this.http.get<number>(`${this.baseUrl}/nbPages`, {params: parameters});
   }
 
-  getNbCompanies(): Observable<number>{
-    return this.http.get<number>(`${this.baseUrl}/numbers`);
+  getNbCompanies(search?: string): Observable<number>{
+    let parameters = new HttpParams();
+    if(search){
+      parameters = parameters.append('search', search);
+    } else {
+      parameters = parameters.append('search', '');
+    }
+    return this.http.get<number>(`${this.baseUrl}/numbers`, {params: parameters});
   }
 
-  getCompaniesByPage(page: Page): Observable<Company[]>{
+  getCompaniesByPage(page: Page, search?: string): Observable<Company[]>{
     let parameters = new HttpParams();
     parameters = parameters.append('ascending', page.ascending);
     parameters = parameters.append('currentPage', String(page.currentPage));
     parameters = parameters.append('itemsByPage', String(page.itemsByPage));
     parameters = parameters.append('order', String(page.order));
+    parameters = parameters.append('search', search);
     return this.http.get<Company[]>(`${this.baseUrl}/page`, {params: parameters});
   }
 }

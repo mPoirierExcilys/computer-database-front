@@ -23,6 +23,10 @@ a {
   margin-right: 10%;
 }
 
+.cbH, cbI{
+  visibility: hidden;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -100,4 +104,9 @@ body {
   color: #333;
   background-color: #fff;
   border-color: #ccc;
+}
+
+
+.fit-picture {
+  width: 20px;
 }

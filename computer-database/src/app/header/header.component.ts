@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
 import {TranslateService} from '@ngx-translate/core'; 
+import { Router } from '@angular/router';
+import { UserLoginComponent } from '../components/users/user-login/user-login.component'
+
 
 @Component({
   selector: 'app-header',
@@ -10,11 +13,15 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public translate: TranslateService) {
-      translate.addLangs(['en', 'fr']);  
+
+  messageLogout = "Logout";
+
+  @Output() logoutEvent = new EventEmitter<string>();
+  
+  constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService) {
+    translate.addLangs(['en', 'fr']);  
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
-    
   }
 
   openDialog() {
@@ -28,4 +35,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sendLogout() {
+    this.router.navigate(['/login'], { state : { isToLogout : true}});
+  }
 }
