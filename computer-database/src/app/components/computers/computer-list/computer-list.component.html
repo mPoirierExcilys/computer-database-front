@@ -25,7 +25,7 @@
 
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef >
-              <img class="fit-picture" src="https://www.aggloroanne.fr/fileadmin/_processed_/6/6/csm_Accroche_dechets_menagers_088def858f.png" [(hidden)]="this.task.hidden">
+              <img class="fit-picture" (click)="deleteSelected()" src="https://www.aggloroanne.fr/fileadmin/_processed_/6/6/csm_Accroche_dechets_menagers_088def858f.png" [(hidden)]="this.task.hidden">
               <mat-checkbox
                 class="example-margin"
                 [checked]="allComplete"

@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ComputerValidDeleteComponent } from '../computer-valid-delete/computer-valid-delete.component';
 
 interface Order {
   label : string;
@@ -25,6 +26,11 @@ export interface Task {
   color: ThemePalette;
   subtasks?: Task[];
   hidden: boolean;
+}
+
+export interface DialogData {
+  animal: string;
+  name: string;
 }
 
 @Component({
@@ -72,6 +78,9 @@ export class ComputerListComponent implements OnInit {
     hidden: true
   };
 
+  animal: string;
+  name: string;
+
   displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
 
   allComplete: boolean = false;
@@ -85,7 +94,7 @@ export class ComputerListComponent implements OnInit {
   @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
   @ViewChild("cb", {read: ElementRef}) colloneFirst: ElementRef;
 
-  constructor(private routeParam: ActivatedRoute, computerService: ComputerService, dialog: MatDialog) {
+  constructor(private routeParam: ActivatedRoute, computerService: ComputerService, public dialog: MatDialog) {
     this.route = routeParam;
     this.computerService = computerService;
   }
@@ -269,7 +278,7 @@ export class ComputerListComponent implements OnInit {
   }
 
   deleteSelected(): void {
-
+    this.openDialog();
     for(let i = 0; i < this.task.subtasks.length; i++){
       if(this.task.subtasks[i].completed){
         console.log("true");
@@ -286,6 +295,19 @@ export class ComputerListComponent implements OnInit {
         );
       }
     }
+  }
+
+  openDialog(): void{
+    const dialogRef = this.dialog.open(ComputerValidDeleteComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log(this.animal);
+    });
   }
 
   hideAllButton(): void {
