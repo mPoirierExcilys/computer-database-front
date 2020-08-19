@@ -22,10 +22,14 @@ export class ComputerDetailsComponent implements OnInit {
     this.computerService.getComputer(Number(this.routeParam.snapshot.paramMap.get('id'))).subscribe(
       (result: Computer) => {
           this.computer = result;
+          if(this.computer.idComputer === null){
+            this.router.navigate(['404']);
+          }
       },
       (error : any) => {
         console.log("Erreur avec l'observable lors du getComputer.");
         console.log(error);
+        this.router.navigate(['404']);
       }
     )
   }

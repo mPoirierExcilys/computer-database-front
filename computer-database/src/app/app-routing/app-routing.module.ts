@@ -10,6 +10,7 @@ import { AuthGuard } from '../helpers/auth.guard';
 import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
 import { Role } from '../Models/role.model';
 import { CompanyComponent } from '../components/companies/company/company.component';
+import { Error404Component } from '../components/error/error404/error404.component';
 
 
 
@@ -17,6 +18,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: UserLoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    redirectTo: 'computers',
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
@@ -62,8 +69,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '404',
+    component: Error404Component,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
     path: '**',
-    redirectTo: 'computers',
+    redirectTo: '/404',
     canActivate: [AuthGuard],
     pathMatch: 'full'
   }

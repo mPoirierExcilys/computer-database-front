@@ -19,6 +19,7 @@ import { CompanyListComponent } from './components/companies/company-list/compan
 import { CompanyComponent } from './components/companies/company/company.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
 import { ComputerValidDeleteComponent } from './components/computers/computer-valid-delete/computer-valid-delete.component';
+import { Error404Component } from './components/error/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ComputerValidDeleteComponent } from './components/computers/computer-va
     CompanyListComponent,
     CompanyComponent,
     ComputerValidDeleteComponent,
+    Error404Component,
   ],
   imports: [
     BrowserModule,
