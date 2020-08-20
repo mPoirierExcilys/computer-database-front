@@ -5,9 +5,8 @@
       <div class="form-group">
         <mat-label>Name :  *    </mat-label> <input matInput class="form-control" name="name"
                                                     formControlName="name"
-                                                    [ngClass]="{'is-invalid': editForm.errors && editForm.errors.nameRequired}"
-                                                    [(ngModel)]="computer.name">
-        <div *ngIf="editForm.errors && editForm.errors.nameRequired" class="invalid-input">{{editForm.errors.nameRequired}}</div>
+                                                    [ngClass]="{'is-invalid': editForm.get('name').hasError('required')}"
+                                                    [(ngModel)]="computer.name" required>
         <br />
       </div>
 
@@ -41,6 +40,7 @@
         <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> Submit </button>
         <button [mat-dialog-close]="false" class="button" mat-button> Cancel </button>
       </div>
+
     </form>
   </mat-dialog-content>
 </div>

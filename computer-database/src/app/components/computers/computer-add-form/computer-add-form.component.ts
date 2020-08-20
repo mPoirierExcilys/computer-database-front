@@ -24,6 +24,7 @@ export class ComputerAddFormComponent implements OnInit {
   computer: Computer = new Computer();
   companies: Company[];
   editForm: FormGroup;
+  submitted = false;
 
   constructor(private computerService: ComputerService,
               private companyService: CompanyService,
@@ -77,6 +78,8 @@ export class ComputerAddFormComponent implements OnInit {
   }
 
   onSubmit(): void{
+    console.log(this.submitted);
+    this.submitted = true;
     if (this.editForm.invalid){
       return;
     }
