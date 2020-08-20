@@ -42,10 +42,12 @@ export interface DialogData {
   template: `<mat-checkbox #cbA></mat-checkbox>
              <checkbox #cb></checkbox>
              <input #cbM></input>
+             <button #pageButtonFirst></button>
              <button #pageButtonBegin></button>
              <button #pageButton1></button>
              <button #pageButton2></button>
              <button #pageButton3></button>
+             <button #pageButtonNext></button>
              <button #pageButtonEnd></button>`,
 
 })
@@ -84,10 +86,12 @@ export class ComputerListComponent implements OnInit {
 
   allComplete: boolean = false;
 
+  @ViewChild("pageButtonFirst", {read: ElementRef}) pageButtonFirst: ElementRef;
   @ViewChild("pageButtonBegin", {read: ElementRef}) pageButtonBegin: ElementRef;
   @ViewChild("pageButton1", {read: ElementRef}) pageButton1: ElementRef;
   @ViewChild("pageButton2", {read: ElementRef}) pageButton2: ElementRef;
   @ViewChild("pageButton3", {read: ElementRef}) pageButton3: ElementRef;
+  @ViewChild("pageButtonNext", {read: ElementRef}) pageButtonNext: ElementRef;
   @ViewChild("pageButtonEnd", {read: ElementRef}) pageButtonEnd: ElementRef;
   @ViewChild("cbM", {read: ElementRef}) checkBoxAll: ElementRef;
   @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
@@ -310,10 +314,12 @@ export class ComputerListComponent implements OnInit {
   }
 
   hideAllButton(): void {
+    this.pageButtonFirst.nativeElement.hidden = true;
     this.pageButtonBegin.nativeElement.hidden = true;
     this.pageButton1.nativeElement.hidden = true;
     this.pageButton2.nativeElement.hidden = true;
     this.pageButton3.nativeElement.hidden = true;
+    this.pageButtonNext.nativeElement.hidden = true;
     this.pageButtonEnd.nativeElement.hidden = true;
 
   }
@@ -325,6 +331,7 @@ export class ComputerListComponent implements OnInit {
     this.hideAllButton();
 
     if(currentPage > 1){
+      this.pageButtonFirst.nativeElement.hidden = false;
       this.pageButtonBegin.nativeElement.hidden = false;
     }
 
@@ -349,6 +356,7 @@ export class ComputerListComponent implements OnInit {
     }
 
     if(currentPage < maxPage){
+      this.pageButtonNext.nativeElement.hidden = false;
       this.pageButtonEnd.nativeElement.hidden = false;
     }
   }
