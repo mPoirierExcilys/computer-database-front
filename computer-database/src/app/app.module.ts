@@ -20,7 +20,6 @@ import { CompanyComponent } from './components/companies/company/company.compone
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
 import { UserPasswordFormComponent } from './components/users/user-password-form/user-password-form.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
-import { UserComponent } from './components/users/user/user.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ComputerValidDeleteComponent } from './components/computers/computer-valid-delete/computer-valid-delete.component';
@@ -43,7 +42,6 @@ import { Error404Component } from './components/error/error404/error404.componen
     CompanyComponent,
     UserPasswordFormComponent,
     UserListComponent,
-    UserComponent,
     ComputerValidDeleteComponent,
     Error404Component,
   ],

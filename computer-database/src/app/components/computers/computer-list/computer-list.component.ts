@@ -80,9 +80,6 @@ export class ComputerListComponent implements OnInit {
     hidden: true
   };
 
-  animal: string;
-  name: string;
-
   displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
 
   allComplete: boolean = false;
@@ -108,7 +105,7 @@ export class ComputerListComponent implements OnInit {
 
   setPage(){
     this.page = new Page();
-    this.page.setItemsByPage(25);
+    this.page.setItemsByPage(10);
     this.page.setAscending("ASC");
     this.page.setOrder("computer.id");
     this.page.setCurrentPage(1);
@@ -236,14 +233,11 @@ export class ComputerListComponent implements OnInit {
   }
 
   toggleEditMode(): void {
-    console.log("ottoot");
     if(this.task.hidden){
-      console.log("c'est vrai");
       this.task.hidden = false;
       this.task.subtasks.forEach(t => t.hidden = false);
     }
     else{
-      console.log("c'esy faux");
       this.task.hidden = true;
       this.task.subtasks.forEach(t => t.hidden = true);
     }
