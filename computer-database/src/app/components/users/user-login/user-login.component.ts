@@ -19,6 +19,7 @@ export class UserLoginComponent implements OnInit {
   
   pathOrigin: String = "#";
   user: User = new User();
+  errorCredentials: boolean = false;
   constructor(private userService: UserService, 
               private activatedRoute: ActivatedRoute,  
               private router: Router,              
@@ -44,7 +45,8 @@ export class UserLoginComponent implements OnInit {
         }
       },
       error => {
-        console.log("Problème de loginage. Dommage :(");
+        this.errorCredentials = true;
+        console.log(error);
       }
     );
   }
