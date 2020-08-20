@@ -66,8 +66,6 @@ isAdmin(list: Role[]){
       } 
   })
 }
-
-
  
 ngOnInit(): void {
   this.setUser();
