@@ -5,7 +5,8 @@ table {
 }
 
 p {
-  font-size: 150%;
+  font-size: 200%;
+  text-align: center;
 }
 
 body {
@@ -34,7 +35,7 @@ footer {
 }
 
 .numbers {
-  width: 10%;
+  width: 90%;
 }
 
 footer .btn-group {
@@ -56,7 +57,7 @@ a {
 }
 
 h1 {
-  color: #27E1CE;
+  color: #1b9b8e;
   text-align: center;
 }
 
@@ -172,8 +173,11 @@ body {
 }
 
 button {
-  color: #17afa0;
-  border-color: #17afa0;
-  border-radius: 20em;
-  padding:0.5%;
+  color : #17afa0;
+}
+
+button:not([disabled]):hover {
+  color: black;
+  background-color : #17afa0 ;
+  opacity: 70%;
 }

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
-        <h1 id="homeTitle">{{nbCompanies}} Companies found</h1>
+        <h1 id="homeTitle">{{nbCompanies}} {{ 'LIST.COMPANIES' | translate }}</h1>
       </div>
     </div>
 
@@ -27,10 +27,10 @@
                 <img class="fit-picture" (click)="openDialog()"
                      src="https://www.aggloroanne.fr/fileadmin/_processed_/6/6/csm_Accroche_dechets_menagers_088def858f.png"
                      [(hidden)]="this.task.hidden">
-                <mat-checkbox class="example-margin" [checked]="allComplete" [indeterminate]="someComplete()"
+                <mat-checkbox class="checkdelete" [checked]="allComplete" [indeterminate]="someComplete()"
                               (change)="setAll()" [(hidden)]="this.task.hidden">
-                </mat-checkbox>
-                <p (click)="modifOrder('cp.name')">{{ 'LIST.NAMECOMPANY' | translate }}</p>
+                              <p (click)="modifOrder('cp.name')" style="text-align: center;">{{ 'LIST.NAMECOMPANY' | translate }}</p>
+                            </mat-checkbox>
 
               </div>
 

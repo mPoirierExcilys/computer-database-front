@@ -1,6 +1,9 @@
 
-<h1>Êtes-vous sûr de vouloir supprimé ?</h1>
-<div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true">Oui</button>
-  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Non</button>
+<div class="confirm">
+  <h1>{{ 'LIST.CONFIRMDELETE' | translate }}</h1>
+  <div mat-dialog-actions class="buttons">
+    <button mat-button [mat-dialog-close]="true">{{ 'LIST.YES' | translate }}</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>{{ 'LIST.NO' | translate }}</button>
+  </div>
 </div>
+

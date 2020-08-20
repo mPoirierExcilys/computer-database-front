@@ -1,10 +1,12 @@
 {
     "HEADER": {
         "ADD": "Add Computer",
-        "TITLE": "Computer Database",
         "SIGNIN": "Sign In",
         "SIGNUP" : "Sign Up",
-        "LIST" : "Computer List"
+        "LOGOUT" : "Log Out",
+        "LIST" : "Computer List",
+        "COMPANYLIST" : "Company List",
+        "USERLIST" : "User List"
     },
 
     "LIST": {
@@ -16,7 +18,11 @@
         "DISCONTINUED" : "Discontinued date",
         "COMPANY" : "Company",
         "EDIT" : "Edit",
-        "SEARCH" : "Search"
+        "COMPANIES" : "Companies found",
+        "SEARCH" : "Search",
+        "CONFIRMDELETE":"Are you sure you want to delete?",
+        "YES" : "Yes ",
+        "NO" : "No"
     },
 
     "DETAILS": {
