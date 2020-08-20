@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/Models/user.model';
 import { UserService } from 'src/app/service/user.service';
 import { Role } from 'src/app/Models/role.model';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-user-add-form',
@@ -10,52 +11,47 @@ import { Role } from 'src/app/Models/role.model';
 })
 export class UserAddFormComponent implements OnInit {
 
-  username : string = "";
-  passwordFirst : string = "";
-  passwordSecond : string = "";
-  rolesPossibles : Role[] = [];
-  rolesSelected : Role[] = [];
-  user : User = new User();
+  username: string;
+  passwordFirst: string;
+  passwordSecond: string;
+  rolesPossibles: Role[] = [];
+  rolesSelected: Role[] = [];
+  user: User;
+  addUserForm: FormGroup;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.user = new User();
+    this.user.roles = [];
+    this.createForm();
     this.userService.getRoles().subscribe(
       result => {
-        console.log(result);
         this.rolesPossibles = result;
-        console.log(this.rolesPossibles);
-        this.rolesSelected.push(this.rolesPossibles.find((role : Role) => {return role.name === "ROLE_USER" ? role : null}));
       },
       error => {
-        console.log("Error with the request of getRoles : " + error);
+        console.log('Error with the request of getRoles : ' + error);
       }
     );
   }
 
-  onSubmit(){
-    console.log("On n'essaye de créer un user.");
-    console.log(this.username);
-    console.log(this.passwordFirst);
-    console.log(this.passwordSecond);
-    if(this.username && this.passwordFirst && this.passwordSecond && this.passwordFirst === this.passwordSecond){
-    this.user.name = this.username;
-    this.user.password = this.passwordFirst;
-    console.log(this.rolesSelected);
-    this.user.roles = this.rolesSelected;
-    console.log(this.user);
-    this.userService.register(this.user).subscribe(
-      result => {
-        console.log(result);
-      },
-      error => {
-        console.log("Error with the request of onSubmit : ");
-        console.log(error);
-        
-      }
-    );
-    } else {
-      console.log("The two password need to be the same.");
-    }
+  createForm(): void{
+    this.addUserForm = this.formBuilder.group({
+      name: [''],
+      rolesSelected: [''],
+      password: [''],
+      confirmPassword: ['']
+    },
+      {validators: this.passwordValidator});
   }
+
+  passwordValidator(form: FormGroup): object{
+    const password = form.get('password').value;
+    const confirmPassword = form.get('confirmPassword').value;
+    if (password !== '' && confirmPassword !== '' && password !== confirmPassword){
+      return { noMatchingPassword: 'Passwords not matching' };
+    }
+    return null;
+  }
+
 }

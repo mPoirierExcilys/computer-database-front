@@ -7,17 +7,17 @@
                         <img class="logo"  src="assets/images/logo.png" width="40" height="40" alt="image"/>
                         <a routerLink="/"> {{ 'HEADER.TITLE' | translate }} </a>
                     </h1>
-                    <nav role="navigation">
+
+                    <nav role="navigation" >
                         <ul>
-                            <li><a routerLink="/users">Users List</a></li>
-                            <li><a routerLink="/companies">Companies List</a></li>
-                            <li class="cta"><button mat-button (click)="sendLogout()"> Log out</button> </li>
-                            <li><a routerLink="computers">{{ 'HEADER.LIST' | translate }}</a></li>
-                            <li><a (click)="openDialogUser()">{{ 'HEADER.SIGNUP' | translate }}</a></li>
-                            <li class="cta"><button mat-button (click)="openDialog()">{{ 'HEADER.ADD' | translate }}</button></li>
+                            <li *ngIf="user.token !== null" ><a routerLink="/companies">Companies List</a></li>
+                            <li *ngIf="user.token !== null" ><a routerLink="computers">{{ 'HEADER.LIST' | translate }}</a></li>
+                            <li *ngIf="isAdministrator === true"><a (click)="openDialogUser()">{{ 'HEADER.SIGNUP' | translate }}</a></li>
+                            <li *ngIf="isAdministrator === true"><a routerLink="/users">Users List</a></li>
+                            <li *ngIf="isAdministrator === true" class="cta"><button mat-button (click)="openDialog()">{{ 'HEADER.ADD' | translate }}</button></li>
+                            <li *ngIf="user.token !== null && user !== null" class="cta"><button mat-button (click)="sendLogout()"> Log out</button> </li>
                             <li><a (click)="translate.use('fr')">fr</a></li>
                             <li><a (click)="translate.use('en')">en</a></li>
-
                         </ul>
                     </nav>
                 </div>
