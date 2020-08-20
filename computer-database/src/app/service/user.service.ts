@@ -24,31 +24,60 @@ export class UserService {
 }
 
   authenticate(user: User): Observable<Token>{
+    console.log(user);
     return this.http.post<Token>(this.baseUrl + '/authenticate', user).pipe(map(
       (result : Token) => {
         if(result){
           user.token = result.token;
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
+          this.getYourself().subscribe(result => {
+            localStorage.removeItem('currentUser');
+            this.currentUserSubject.next(null);
+            user.id = result.id;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+          });
         }
         return result;
       }
     ));
   }
-  getUser(): Observable<User>{
-    return this.http.get<User>(this.baseUrl + '/user');
+  getYourself(): Observable<User>{
+    return this.http.get<User>(this.baseUrl + '/self');
   }
 
-  getRole(): Observable<Role[]>{
+  getUser(id : string): Observable<User>{
+    return this.http.get<User>(this.baseUrl + '/user/' + id);
+  }
+
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl + '/users');
+  }
+
+
+  getRoles(): Observable<Role[]>{
     return this.http.get<Role[]>(this.baseUrl + '/roles');
   }
 
-  register(user: User): Observable<string>{
-    return this.http.post<string>(this.baseUrl + '/register', user);
+  register(user: User): Observable<String>{
+    return this.http.post<string>(this.baseUrl + '/register', user).pipe(map(
+      (result : String) => {
+        return result;
+      }
+    ));
   }
 
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-}
+  }
+
+  modify(user: User): Observable<User>{
+    return this.http.post<User>(this.baseUrl + '/modify', user).pipe(map(
+      (result : User) => {
+        return result;
+      }
+    ));
+  }
 }

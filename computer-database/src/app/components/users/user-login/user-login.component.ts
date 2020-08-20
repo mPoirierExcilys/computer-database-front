@@ -1,3 +1,4 @@
+import { UserAddFormComponent } from './../user-add-form/user-add-form.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { CustomMaterialModule } from './../../../custom-material/custom-material.module';
 import { Company } from './../../../Models/company.model';
@@ -6,9 +7,8 @@ import { Computer } from './../../../Models/computer.model';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/Models/user.model';
-import { switchMap } from 'rxjs/operators';
-import { Route } from '@angular/compiler/src/core';
 import { Token } from 'src/app/Models/token.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-login',
@@ -22,7 +22,8 @@ export class UserLoginComponent implements OnInit {
   constructor(private userService: UserService, 
               private activatedRoute: ActivatedRoute,  
               private router: Router,              
-              private location: Location){
+              private location: Location,
+              public dialog: MatDialog){
     let isToLogout : boolean = false;
     if(this.router.getCurrentNavigation().extras.state){
       isToLogout = this.router.getCurrentNavigation().extras.state.isToLogout;
@@ -52,10 +53,18 @@ export class UserLoginComponent implements OnInit {
     this.router.navigate(['computers']);
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(UserAddFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   onLogout() {
     this.userService.logout();
     this.router.navigate(['/login']);
-}
+  }
 
   onCancel(){
     this.location.back();

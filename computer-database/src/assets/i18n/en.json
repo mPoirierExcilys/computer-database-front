@@ -1,0 +1,36 @@
+{
+    "HEADER": {
+        "ADD": "Add Computer",
+        "TITLE": "Computer Database",
+        "SIGNIN": "Sign In",
+        "SIGNUP" : "Sign Up",
+        "LIST" : "Computer List"
+    },
+
+    "LIST": {
+        "NUMBERCOMPS": "computers found",
+        "NUMBERCOMP": "computer found",
+        "NAME": "Name",
+        "INTRODUCED": "Introduced date",
+        "DISCONTINUED" : "Discontinued date",
+        "COMPANY" : "Company",
+        "EDIT" : "Edit",
+        "SEARCH" : "Search"
+    },
+
+    "DETAILS": {
+        "DETAIL": "Details computer",
+        "BACK": "Back Home"
+    },
+
+    "USER": {
+        "SIGNUP" : "Don't have an account yet? Sign up here!",
+        "USERNAME" : "Username",
+        "PASSWORD" : "Password",
+        "CONFIRMPASSWORD" : "Confirm password",
+        "ROLE" : "Role",
+        "CANCEL" : "Cancel",
+        "SUBMIT" : "Submit",
+        "SIGNIN" : "Sign In"
+    }
+}
