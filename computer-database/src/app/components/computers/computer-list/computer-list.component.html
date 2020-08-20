@@ -1,4 +1,4 @@
-<div id="fh5co-pricing-section">
+<div id="fh5co-pricing-section" class="body-list">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
@@ -25,7 +25,7 @@
 
               <div class="delete">
                 <img class="fit-picture" (click)="openDialog()"
-                src="https://www.aggloroanne.fr/fileadmin/_processed_/6/6/csm_Accroche_dechets_menagers_088def858f.png"
+                src="../../../../assets/images/trash.png"
                 [(hidden)]="this.task.hidden">
               <mat-checkbox class="example-margin" [checked]="allComplete" [indeterminate]="someComplete()"
                 (change)="setAll()" [(hidden)]="this.task.hidden">
@@ -75,11 +75,13 @@
 <footer class="navbar-fixed-bottom">
   <div class="container text-center" >
     <ul class="pagination" id="listPage" style="text-align: center;" #ul>
+      <button hidden (click)="setCurrentPage(1)" #pageButtonFirst><<<</button>
       <button hidden (click)="previousPage()" #pageButtonBegin><<</button>
       <button hidden (click)="setCurrentPage(this.page.currentPage - 1)" #pageButton1>{{page.currentPage - 1}}</button>
       <button hidden (click)="setCurrentPage(this.page.currentPage)" #pageButton2>{{page.currentPage}}</button>
       <button hidden (click)="setCurrentPage(this.page.currentPage + 1)" #pageButton3>{{page.currentPage + 1}}</button>
-      <button hidden (click)="nextPage()" #pageButtonEnd>>></button>
+      <button hidden (click)="nextPage()" #pageButtonNext>>></button>
+      <button hidden (click)="setCurrentPage(this.page.nbPage)" #pageButtonEnd>>>></button>
     </ul>
     <div class="numbers" role="group" style="text-align: right;">
       <button type="button" class="buttonNumber" (click)="modifItemsByPage(10)">10</button>

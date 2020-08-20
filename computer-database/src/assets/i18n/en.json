@@ -38,6 +38,7 @@
         "ROLE" : "Role",
         "CANCEL" : "Cancel",
         "SUBMIT" : "Submit",
-        "SIGNIN" : "Sign In"
+        "SIGNIN" : "Sign In",
+        "ERRORSIGNINGIN" : "Wrong username or password !"
     }
 }

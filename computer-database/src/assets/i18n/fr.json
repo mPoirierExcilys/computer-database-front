@@ -40,7 +40,8 @@
         "ROLE" : "Rôle",
         "CANCEL" : "Annuler",
         "SUBMIT" : "Inscription",
-        "SIGNIN" : "Connexion"
+        "SIGNIN" : "Connexion",
+        "ERRORSIGNINGIN" : "Mauvais nom d'utilisateur ou mot de passe"
     }
 
 }

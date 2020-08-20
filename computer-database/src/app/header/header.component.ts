@@ -17,21 +17,22 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-
   user: User;
   userRoles: Role[];
   isAdministrator: boolean = false;
-
   messageLogout = "Logout";
 
   @Output() logoutEvent = new EventEmitter<string>();
 
-  
   constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService, private userService: UserService, private computerService: ComputerService) {
-    translate.addLangs(['en', 'fr']);  
+    translate.addLangs(['en', 'fr']);
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+  }
+
+  ngOnInit(): void {
+    this.setUser();
+    this.getUserRoles();
   }
 
   openDialog(): void{
@@ -44,7 +45,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-
   getUserRoles() {
     this.userService.getUser("" + this.userService.currentUserValue.id).subscribe((result: User) => {
       this.userRoles = result.roles;
@@ -53,45 +53,46 @@ export class HeaderComponent implements OnInit {
   });
 }
 
-setUser(){
-  this.user = this.userService.currentUserValue;
-}
 
-isAdmin(list: Role[]){
-  let self = this;
-  list.forEach(function(element){
-    for(let name of element.name)
-      if(element.name === "ROLE_ADMIN"){
-        self.isAdministrator = true;
-        break;
-      } 
-  })
-}
- 
+  setUser(){
+    this.user = this.userService.currentUserValue;
+  }
 
-sendUserIsAdmin(){
-  return this.isAdministrator;
-}
+  isAdmin(list: Role[]){
+    let self = this;
+    list.forEach(function(element){
+      for(let name of element.name)
+        if(element.name === "ROLE_ADMIN"){
+          self.isAdministrator = true;
+          break;
+        }
+    })
+  }
 
+  sendUserIsAdmin(){
+    return this.isAdministrator;
+  }
 
+  sendLogout() {
+    this.router.navigate(['/login'], { state: { isToLogout: true } });
+  }
 
-ngOnInit(): void {
-  this.setUser();
-  this.getUserRoles();
-}
-
-sendLogout() {
-  this.router.navigate(['/login'], { state: { isToLogout: true } });
-}
-
-  openDialogUser() {
+  openDialogUser(): void {
     const dialogRef = this.dialog.open(UserAddFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result){
+        this.userService.register(result).subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.log('Error with the request of onSubmit : ');
+            console.log(error);
+
+          }
+        );
+      }
     });
   }
-
-
-
 }

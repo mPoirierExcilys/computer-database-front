@@ -44,12 +44,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
-  // {
-  //   path: 'companies/:id',
-  //   component: CompanyComponent,
-  //   canActivate: [AuthGuard],
-  //   pathMatch: 'full'
-  // },
   {
     path: 'create-user',
     component: UserAddFormComponent,
