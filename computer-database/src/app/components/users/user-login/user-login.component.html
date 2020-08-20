@@ -1,19 +1,25 @@
 <div class="loginbox">
     <form class="SignInForm" method="post">
-        <div class="form-group">
-            <label class="white_label" for="email">Username : </label>
-            <input [(ngModel)]="user.username" class="form-control mr-sm-2 home_input" id="username" name="username"   required="required" placeholder="Username" />
-        </div>
-        <div class="form-group">
-            <label class="white_label" for="password">Password : </label>
-            <input [(ngModel)]="user.password" class="form-control mr-sm-2 home_input"  id="password" name="password"  required="required" type="password" placeholder="password"/>
-        </div>
-            <br>
-        <div class="form-group">
-            <span class="inline"> 
-                <input (click)="onSubmit()" type="submit" class="btn btn-primary button-center"  value="Sign in"/>
-                <input (click)="onCancel()" type="submit" class="btn btn-primary button-center"  value="Cancel"/>
-            </span>
-        </div>
+
+      <div class="form-group">
+          <label class="white_label" for="email">{{ 'USER.USERNAME' | translate }} :</label>
+          <input [(ngModel)]="user.name" class="form-control mr-sm-2 home_input" id="username" name="username"
+              required="required" placeholder="{{ 'USER.USERNAME' | translate }}" />
+      </div>
+
+      <div class="form-group">
+          <label class="white_label" for="password">{{ 'USER.PASSWORD' | translate }} :</label>
+          <input [(ngModel)]="user.password" class="form-control mr-sm-2 home_input" id="password" name="password"
+              required="required" type="password" placeholder="{{ 'USER.PASSWORD' | translate }}" />
+      </div>
+
+      <br>
+
+      <div class="form-group">
+          <a (click)="openDialog()">{{ 'USER.SIGNUP' | translate }}</a>
+          <span class="inline">
+              <input (click)="onSubmit()" type="submit" class="btn btn-primary button-center" value="{{ 'USER.SIGNIN' | translate }}" />
+          </span>
+      </div>
     </form>
 </div>

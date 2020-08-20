@@ -1,0 +1,27 @@
+<div id="fh5co-pricing-section">
+  <div class="container">
+    <section id="main">
+      <div class="container">
+        <table mat-table [dataSource]="usersList">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> name </th>
+            <td mat-cell *matCellDef="let user">
+              <a routerLink="/users/edit/{{user.id}}">{{user.name}}</a>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="roles">
+            <th mat-header-cell *matHeaderCellDef> Roles </th>
+            <td mat-cell *matCellDef="let user"> 
+              <li *ngFor="let role of user.roles">{{ role.name }}</li>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

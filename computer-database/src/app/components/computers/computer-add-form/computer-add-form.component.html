@@ -9,7 +9,6 @@
                                                     [(ngModel)]="computer.name" required>
         <br />
       </div>
-
       <div class="form-group">
         <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
                                                    formControlName="introduced"
@@ -19,7 +18,6 @@
         <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{editForm.errors.dateIntroduced}}</div>
         <br />
       </div>
-
       <div class="form-group">
         <mat-label>Discontinued :</mat-label>
         <input matInput type="date" class="form-control" name="discontinued"

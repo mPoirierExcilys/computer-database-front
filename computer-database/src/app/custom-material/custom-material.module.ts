@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -23,7 +23,7 @@ import { MatTableModule } from '@angular/material/table';
     BrowserAnimationsModule,
     MatDialogModule,
     MatTableModule,
-    ReactiveFormsModule
+    MatCheckboxModule
   ],
   exports: [
     MatToolbarModule,
@@ -33,7 +33,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatDialogModule,
     MatTableModule,
-    ReactiveFormsModule
+    MatCheckboxModule
   ]
 })
 export class CustomMaterialModule { }

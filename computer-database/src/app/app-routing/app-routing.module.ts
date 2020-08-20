@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Input } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ComputerDetailsComponent } from '../components/computers/computer-details/computer-details.component';
 import { ComputerListComponent } from '../components/computers/computer-list/computer-list.component';
@@ -6,13 +6,37 @@ import { ComputerAddFormComponent } from '../components/computers/computer-add-f
 import { ComputerModifyFormComponent } from '../components/computers/computer-modify-form/computer-modify-form.component';
 import { CompanyListComponent } from '../components/companies/company-list/company-list.component';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component';
+import { UserPasswordFormComponent } from '../components/users/user-password-form/user-password-form.component';
 import { AuthGuard } from '../helpers/auth.guard';
 import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
+import { Role } from '../Models/role.model';
+import { CompanyComponent } from '../components/companies/company/company.component';
+import { UserListComponent } from '../components/users/user-list/user-list.component';
+import { Error404Component } from '../components/error/error404/error404.component';
+
 
 const routes: Routes = [
   {
     path: 'login',
     component: UserLoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    redirectTo: 'computers',
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: 'users/edit/:id',
+    component: UserPasswordFormComponent,
+        canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
@@ -22,8 +46,21 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'companies',
+    component: CompanyListComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  // {
+  //   path: 'companies/:id',
+  //   component: CompanyComponent,
+  //   canActivate: [AuthGuard],
+  //   pathMatch: 'full'
+  // },
+  {
     path: 'create-user',
     component: UserAddFormComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
@@ -51,8 +88,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '404',
+    component: Error404Component,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
     path: '**',
-    redirectTo: 'computers',
+    redirectTo: '/404',
     canActivate: [AuthGuard],
     pathMatch: 'full'
   }
@@ -66,4 +109,5 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
