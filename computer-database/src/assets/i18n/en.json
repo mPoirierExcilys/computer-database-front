@@ -19,6 +19,7 @@
         "COMPANY" : "Company",
         "EDIT" : "Edit",
         "COMPANIES" : "Companies found",
+        "COMPANYFOUND" : "Company found",
         "SEARCH" : "Search",
         "CONFIRMDELETE":"Are you sure you want to delete?",
         "YES" : "Yes ",
