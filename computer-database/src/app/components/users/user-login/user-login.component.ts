@@ -53,7 +53,7 @@ export class UserLoginComponent implements OnInit {
   }
 
   returnHome(){
-    window.location.assign("/");
+    this.router.navigate(["/computers"]);
   }
 
   openDialog() {
