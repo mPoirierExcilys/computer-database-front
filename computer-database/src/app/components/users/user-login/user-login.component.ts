@@ -16,12 +16,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  
+
   pathOrigin: String = "#";
   user: User = new User();
-  constructor(private userService: UserService, 
-              private activatedRoute: ActivatedRoute,  
-              private router: Router,              
+  constructor(private userService: UserService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
               private location: Location,
               public dialog: MatDialog){
     let isToLogout : boolean = false;
@@ -50,7 +50,7 @@ export class UserLoginComponent implements OnInit {
   }
 
   returnHome(){
-    this.router.navigate(['computers']);
+    window.location.assign("/");
   }
 
   openDialog() {
@@ -63,7 +63,7 @@ export class UserLoginComponent implements OnInit {
 
   onLogout() {
     this.userService.logout();
-    this.router.navigate(['/login']);
+    window.location.assign("/login");
   }
 
   onCancel(){
