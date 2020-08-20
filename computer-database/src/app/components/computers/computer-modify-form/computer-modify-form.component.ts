@@ -1,3 +1,4 @@
+import { HeaderComponent } from './../../../header/header.component';
 import { Location } from '@angular/common';
 import { Computer } from './../../../Models/computer.model';
 import { Company } from './../../../Models/company.model';
@@ -19,16 +20,23 @@ export class ComputerModifyFormComponent implements OnInit {
   companies: Company[];
   private routeSub: Subscription;
 
+  isAdministrator: boolean = false;
+
   constructor(private computerService: ComputerService,
               private companyService: CompanyService,
               private location: Location,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private header: HeaderComponent) { }
 
   byCompany(company1: Company, company2: Company) {
     return company1?.idCompany === company2?.idCompany;
   }
 
+  setDisplayOn(){
+    this.isAdministrator = this.header.isAdministrator;
+
+  }
 
   getId(){
     return this.route.snapshot.paramMap.get('id');
@@ -70,5 +78,8 @@ export class ComputerModifyFormComponent implements OnInit {
     const id = parseInt(this.getId());
     this.retriveCompanyList();
     this.retriveComputer(id);
+    this.setDisplayOn();
+    console.log("page" + this.isAdministrator)
+    console.log("header" + this.header.isAdministrator)
   }
 }

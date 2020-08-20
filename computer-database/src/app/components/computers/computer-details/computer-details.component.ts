@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ComputerEditFormComponent} from '../computer-edit-form/computer-edit-form.component';
 import {Company} from '../../../Models/company.model';
 
+
 export interface ComputerData{
   [x: string]: any;
 }
@@ -18,6 +19,7 @@ export interface ComputerData{
 export class ComputerDetailsComponent implements OnInit {
 
   computer: Computer;
+  isAdministrator: boolean = false;
 
   constructor(private routeParam: ActivatedRoute, private computerService: ComputerService, public dialog: MatDialog, private router: Router) {}
 
@@ -25,6 +27,10 @@ export class ComputerDetailsComponent implements OnInit {
     this.computer = new Computer();
     this.computer.companyDto = new Company();
     this.getComputer();
+  }
+
+  setDisplayOn(){
+    this.isAdministrator;// TODO
   }
 
   getComputer(): void{

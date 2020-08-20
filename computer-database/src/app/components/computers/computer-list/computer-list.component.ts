@@ -83,6 +83,7 @@ export class ComputerListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
 
   allComplete: boolean = false;
+  isAdministrator: boolean = false;
 
   @ViewChild("pageButtonBegin", {read: ElementRef}) pageButtonBegin: ElementRef;
   @ViewChild("pageButton1", {read: ElementRef}) pageButton1: ElementRef;
