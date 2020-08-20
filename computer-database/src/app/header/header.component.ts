@@ -27,9 +27,9 @@ export class HeaderComponent implements OnInit {
 
   @Output() logoutEvent = new EventEmitter<string>();
 
-  
+
   constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService, private userService: UserService, private computerService: ComputerService) {
-    translate.addLangs(['en', 'fr']);  
+    translate.addLangs(['en', 'fr']);
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
@@ -64,10 +64,10 @@ isAdmin(list: Role[]){
       if(element.name === "ROLE_ADMIN"){
         self.isAdministrator = true;
         break;
-      } 
+      }
   })
 }
- 
+
 
 sendUserIsAdmin(){
   return this.isAdministrator;
@@ -84,11 +84,22 @@ sendLogout() {
   this.router.navigate(['/login'], { state: { isToLogout: true } });
 }
 
-  openDialogUser() {
+  openDialogUser(): void {
     const dialogRef = this.dialog.open(UserAddFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result){
+        this.userService.register(result).subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.log('Error with the request of onSubmit : ');
+            console.log(error);
+
+          }
+        );
+      }
     });
   }
 
