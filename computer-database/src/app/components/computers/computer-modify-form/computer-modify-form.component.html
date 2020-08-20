@@ -13,6 +13,6 @@
             <option *ngFor="let company of companies"  [ngValue]="company">{{company.name}}</option>
     </select>
     <br/>
-    <button (click)="onSubmit()" mat-button> Edit computer </button>
+    <button *ngIf="isAdministrator === true" (click)="onSubmit()" mat-button> Edit computer </button>
     <button  (click)="onCancel()" mat-button> Cancel </button>
 </form>

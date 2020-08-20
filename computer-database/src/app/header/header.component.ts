@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 import { UserLoginComponent } from '../components/users/user-login/user-login.component';
 import {ComputerService} from '../service/computer.service';
 import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
+import { User } from '../Models/user.model';
+import { Role } from '../Models/role.model';
+import { UserService } from '../service/user.service';
+
 
 @Component({
   selector: 'app-header',
@@ -14,12 +18,18 @@ import { UserAddFormComponent } from './../components/users/user-add-form/user-a
 })
 export class HeaderComponent implements OnInit {
 
+
+  user: User;
+  userRoles: Role[];
+  isAdministrator: boolean = false;
+
   messageLogout = "Logout";
 
   @Output() logoutEvent = new EventEmitter<string>();
 
-  constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService,  private computerService: ComputerService) {
-    translate.addLangs(['en', 'fr']);
+  
+  constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService, private userService: UserService, private computerService: ComputerService) {
+    translate.addLangs(['en', 'fr']);  
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
@@ -34,6 +44,46 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+
+  getUserRoles() {
+    this.userService.getUser("" + this.userService.currentUserValue.id).subscribe((result: User) => {
+      this.userRoles = result.roles;
+      this.isAdmin(this.userRoles);
+    }, (error) => { console.log(error);
+  });
+}
+
+setUser(){
+  this.user = this.userService.currentUserValue;
+}
+
+isAdmin(list: Role[]){
+  let self = this;
+  list.forEach(function(element){
+    for(let name of element.name)
+      if(element.name === "ROLE_ADMIN"){
+        self.isAdministrator = true;
+        break;
+      } 
+  })
+}
+ 
+
+sendUserIsAdmin(){
+  return this.isAdministrator;
+}
+
+
+
+ngOnInit(): void {
+  this.setUser();
+  this.getUserRoles();
+}
+
+sendLogout() {
+  this.router.navigate(['/login'], { state: { isToLogout: true } });
+}
+
   openDialogUser() {
     const dialogRef = this.dialog.open(UserAddFormComponent);
 
@@ -42,10 +92,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
 
-  sendLogout() {
-    this.router.navigate(['/login'], { state : { isToLogout : true}});
-  }
+
 }

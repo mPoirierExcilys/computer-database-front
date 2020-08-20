@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
+import { AppComponent } from './../../../app.component';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { Computer } from '../../../Models/computer.model';
 import { Page } from '../../../Models/page.model';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +10,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComputerValidDeleteComponent } from '../computer-valid-delete/computer-valid-delete.component';
+
 
 interface Order {
   label : string;
