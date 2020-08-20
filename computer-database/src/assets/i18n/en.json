@@ -10,7 +10,8 @@
     "LIST": {
         "NUMBERCOMPS": "computers found",
         "NUMBERCOMP": "computer found",
-        "NAME": "Name",
+        "NAME": "Name of computer",
+        "NAMECOMPANY": "Name of company",
         "INTRODUCED": "Introduced date",
         "DISCONTINUED" : "Discontinued date",
         "COMPANY" : "Company",
