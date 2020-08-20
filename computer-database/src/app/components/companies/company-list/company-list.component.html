@@ -35,8 +35,8 @@
               </div>
 
             </th>
-
             <td mat-cell *matCellDef="let company; let i = index">
+
               <mat-checkbox [(ngModel)]="this.task.subtasks[i].completed" [color]="this.task.subtasks[i].color"
                             (ngModelChange)="updateAllComplete()" [(hidden)]="this.task.subtasks[i].hidden">
               </mat-checkbox>

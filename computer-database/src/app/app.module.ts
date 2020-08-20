@@ -14,9 +14,7 @@ import { UserAddFormComponent } from './components/users/user-add-form/user-add-
 import { UserLoginComponent } from './components/users/user-login/user-login.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
-import { ComputerComponent } from './components/computers/computer/computer.component';
 import { CompanyListComponent } from './components/companies/company-list/company-list.component';
-import { CompanyComponent } from './components/companies/company/company.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
 import { ComputerEditFormComponent } from './components/computers/computer-edit-form/computer-edit-form.component';
 import { UserPasswordFormComponent } from './components/users/user-password-form/user-password-form.component';
@@ -38,7 +36,6 @@ import { Error404Component } from './components/error/error404/error404.componen
     ComputerRemoveComponent,
     UserAddFormComponent,
     UserLoginComponent,
-    ComputerComponent,
     CompanyListComponent,
     CompanyComponent,
     ComputerEditFormComponent,
