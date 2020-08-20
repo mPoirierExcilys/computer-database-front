@@ -37,7 +37,6 @@ import { Error404Component } from './components/error/error404/error404.componen
     UserAddFormComponent,
     UserLoginComponent,
     CompanyListComponent,
-    CompanyComponent,
     ComputerEditFormComponent,
     UserPasswordFormComponent,
     UserListComponent,
