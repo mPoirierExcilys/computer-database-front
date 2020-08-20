@@ -18,6 +18,7 @@ import { ComputerComponent } from './components/computers/computer/computer.comp
 import { CompanyListComponent } from './components/companies/company-list/company-list.component';
 import { CompanyComponent } from './components/companies/company/company.component';
 import { JwtInterceptor } from '../app/helpers/jwt.interceptor';
+import { ComputerEditFormComponent } from './components/computers/computer-edit-form/computer-edit-form.component';
 import { UserPasswordFormComponent } from './components/users/user-password-form/user-password-form.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -40,10 +41,11 @@ import { Error404Component } from './components/error/error404/error404.componen
     ComputerComponent,
     CompanyListComponent,
     CompanyComponent,
+    ComputerEditFormComponent,
     UserPasswordFormComponent,
     UserListComponent,
     ComputerValidDeleteComponent,
-    Error404Component,
+    Error404Component
   ],
   imports: [
     BrowserModule,
