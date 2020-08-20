@@ -1,14 +1,14 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComputerAddFormComponent } from '../components/computers/computer-add-form/computer-add-form.component';
-import {TranslateService} from '@ngx-translate/core'; 
+import {TranslateService} from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { UserLoginComponent } from '../components/users/user-login/user-login.component'
+import { UserLoginComponent } from '../components/users/user-login/user-login.component';
+import {ComputerService} from '../service/computer.service';
 import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
 import { User } from '../Models/user.model';
 import { Role } from '../Models/role.model';
 import { UserService } from '../service/user.service';
-
 
 
 @Component({
@@ -28,18 +28,19 @@ export class HeaderComponent implements OnInit {
   @Output() logoutEvent = new EventEmitter<string>();
 
   
-  constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService, private userService: UserService) {
+  constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService, private userService: UserService, private computerService: ComputerService) {
     translate.addLangs(['en', 'fr']);  
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
   }
 
-
-  openDialog() {
+  openDialog(): void{
     const dialogRef = this.dialog.open(ComputerAddFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result){
+        this.computerService.createComputer(result).subscribe();
+      }
     });
   }
 

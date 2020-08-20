@@ -5,31 +5,37 @@
       <div class="form-group">
         <mat-label>Name :  *    </mat-label> <input matInput class="form-control" name="name"
                                                     formControlName="name"
-                                                    [ngClass]="{'is-invalid': editForm.get('name').hasError('required')}"
-                                                    [(ngModel)]="computer.name" required>
+                                                    [ngClass]="{'is-invalid': editForm.errors && editForm.errors.nameRequired}"
+                                                    [(ngModel)]="computer.name">
+        <div *ngIf="editForm.errors && editForm.errors.nameRequired" class="invalid-input">{{editForm.errors.nameRequired}}</div>
         <br />
       </div>
+
       <div class="form-group">
         <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
                                                    formControlName="introduced"
                                                    name="introduced"
-                                                   [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateIntroduced}"
+                                                   [ngClass]="{'is-invalid': editForm.errors && (editForm.errors.dateIntroduced
+                                                   || editForm.errors.introducedSetNull)}"
                                                    [(ngModel)]="computer.introduced">
         <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{editForm.errors.dateIntroduced}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.introducedSetNull" class="invalid-input">{{editForm.errors.introducedSetNull}}</div>
         <br />
       </div>
+
       <div class="form-group">
         <mat-label>Discontinued :</mat-label>
         <input matInput type="date" class="form-control" name="discontinued"
                formControlName="discontinued"
                [(ngModel)]="computer.discontinued"
-               [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateDiscontinued}">
+               [ngClass]="{'is-invalid': editForm.errors && (editForm.errors.dateDiscontinued || editForm.errors.discontinuedSetNull)}">
         <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{editForm.errors.dateDiscontinued}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.discontinuedSetNull" class="invalid-input">{{editForm.errors.discontinuedSetNull}}</div>
         <br />
       </div>
 
       <mat-label>Company : </mat-label>
-      <mat-select formControlName="companyDto"  [(ngModel)]="computer.companyDto">
+      <mat-select [compareWith]="byCompany" formControlName="companyDto"  [(ngModel)]="computer.companyDto">
         <mat-option *ngFor="let company of companies" [value]="company" >{{company.name}}
         </mat-option>
       </mat-select>
@@ -38,7 +44,6 @@
         <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> Submit </button>
         <button [mat-dialog-close]="false" class="button" mat-button> Cancel </button>
       </div>
-
     </form>
   </mat-dialog-content>
 </div>

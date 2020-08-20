@@ -10,7 +10,6 @@ import { UserPasswordFormComponent } from '../components/users/user-password-for
 import { AuthGuard } from '../helpers/auth.guard';
 import { UserAddFormComponent } from './../components/users/user-add-form/user-add-form.component';
 import { Role } from '../Models/role.model';
-import { CompanyComponent } from '../components/companies/company/company.component';
 import { UserListComponent } from '../components/users/user-list/user-list.component';
 import { Error404Component } from '../components/error/error404/error404.component';
 
@@ -37,12 +36,6 @@ const routes: Routes = [
     path: 'users/edit/:id',
     component: UserPasswordFormComponent,
         canActivate: [AuthGuard],
-    pathMatch: 'full'
-  },
-  {
-    path: 'companies',
-    component: CompanyListComponent,
-    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
