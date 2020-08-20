@@ -3,13 +3,13 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Page} from '../Models/page.model';
 import {Computer} from '../Models/computer.model';
 import {Observable} from 'rxjs';
+import { URL } from '../../assets/configurations/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComputerService {
-
-  baseUrl= 'http://10.0.1.108:8080/webapprest/computers';
+  baseUrl = URL.baseUrl + '/computers';
 
 constructor(private http: HttpClient) { }
   getComputers(page: Page, search?: string): Observable<Computer[]>{
@@ -41,7 +41,12 @@ constructor(private http: HttpClient) { }
   }
   getNbComputer(search?: string): Observable<number>{
     let parameters = new HttpParams();
-    parameters = parameters.append('search', search);
-    return this.http.get<number>(`${this.baseUrl}/numbers`, {params: parameters});
+    if(search){
+      parameters = parameters.append('search', search);
+    } else {
+      parameters = parameters.append('search', "");
+    }
+    const plop : Observable<number> = this.http.get<number>(`${this.baseUrl}/numbers`, {params: parameters});
+    return plop;
   }
 }

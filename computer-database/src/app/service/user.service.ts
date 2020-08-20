@@ -4,6 +4,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../Models/user.model';
 import { Token } from '../Models/token.model';
 import { map } from 'rxjs/operators';
+import { URL } from '../../assets/configurations/config';
+import {Role} from '../Models/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,9 @@ import { map } from 'rxjs/operators';
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  baseUrl= 'http://10.0.1.205:8080/webapprest/authenticate';
-  // baseUrl= 'http://localhost:8080/webapprest/authenticate';
-  constructor(private http: HttpClient) { 
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  baseUrl = URL.baseUrl;
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));    
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -23,23 +24,60 @@ export class UserService {
 }
 
   authenticate(user: User): Observable<Token>{
-    return this.http.post<Token>(this.baseUrl, user).pipe(map(
-      (result : Token) => { 
+    console.log(user);
+    return this.http.post<Token>(this.baseUrl + '/authenticate', user).pipe(map(
+      (result : Token) => {
         if(result){
           user.token = result.token;
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
+          this.getYourself().subscribe(result => {
+            localStorage.removeItem('currentUser');
+            this.currentUserSubject.next(null);
+            user.id = result.id;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+          });
         }
+        return result;
+      },
+    ));
+  }
+  getYourself(): Observable<User>{
+    return this.http.get<User>(this.baseUrl + '/self');
+  }
+
+  getUser(id : string): Observable<User>{
+    return this.http.get<User>(this.baseUrl + '/user/' + id);
+  }
+
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl + '/users');
+  }
+
+
+  getRoles(): Observable<Role[]>{
+    return this.http.get<Role[]>(this.baseUrl + '/roles');
+  }
+
+  register(user: User): Observable<String>{
+    return this.http.post<string>(this.baseUrl + '/register', user).pipe(map(
+      (result : String) => {
         return result;
       }
     ));
-  }
-  getUser(): Observable<User>{
-    return this.http.get<User>(this.baseUrl);
   }
 
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-}
+  }
+
+  modify(user: User): Observable<User>{
+    return this.http.post<User>(this.baseUrl + '/modify', user).pipe(map(
+      (result : User) => {
+        return result;
+      }
+    ));
+  }
 }

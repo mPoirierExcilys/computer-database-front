@@ -1,36 +1,44 @@
 <div>
-        <mat-dialog-content class="mat-dialog">
-                <form class="addForm">
+  <mat-dialog-content class="mat-dialog">
+    <form class="addForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
-                        <div class="form-group">
-                                <mat-label>Name :  *    </mat-label> <input matInput class="form-control" name="name"
-                                        [(ngModel)]="computer.name" required>
-                        </div>
-                        <br />
+      <div class="form-group">
+        <mat-label>Name :  *    </mat-label> <input matInput class="form-control" name="name"
+                                                    formControlName="name"
+                                                    [ngClass]="{'is-invalid': editForm.get('name').hasError('required')}"
+                                                    [(ngModel)]="computer.name" required>
+        <br />
+      </div>
+      <div class="form-group">
+        <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
+                                                   formControlName="introduced"
+                                                   name="introduced"
+                                                   [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateIntroduced}"
+                                                   [(ngModel)]="computer.introduced">
+        <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{editForm.errors.dateIntroduced}}</div>
+        <br />
+      </div>
+      <div class="form-group">
+        <mat-label>Discontinued :</mat-label>
+        <input matInput type="date" class="form-control" name="discontinued"
+               formControlName="discontinued"
+               [(ngModel)]="computer.discontinued"
+               [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateDiscontinued}">
+        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{editForm.errors.dateDiscontinued}}</div>
+        <br />
+      </div>
 
-                        <div class="form-group">
-                                <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
-                                        name="introduced" [(ngModel)]="computer.introduced">
-                                <br />
-                        </div>
+      <mat-label>Company : </mat-label>
+      <mat-select formControlName="companyDto"  [(ngModel)]="computer.companyDto">
+        <mat-option *ngFor="let company of companies" [value]="company" >{{company.name}}
+        </mat-option>
+      </mat-select>
 
-                  <div class="form-group">
-                                <mat-label>Discontinued :</mat-label>
-                                <input matInput type="date" class="form-control" name="discontinued"
-                                        [(ngModel)]="computer.discontinued">
-                                <br />
-                        </div>
+      <div>
+        <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> Submit </button>
+        <button [mat-dialog-close]="false" class="button" mat-button> Cancel </button>
+      </div>
 
-                        <mat-label>Company : </mat-label>
-                        <mat-select>
-                                <mat-option *ngFor="let company of companies" value="company">{{company.name}}
-                                </mat-option>
-                        </mat-select>
-
-                        <div>
-                                <button (click)="onSubmit()" class="button" mat-button> Submit </button>
-                                <button (click)="onCancel()" class="button" mat-button> Cancel </button>
-                        </div>
-                </form>
-        </mat-dialog-content>
+    </form>
+  </mat-dialog-content>
 </div>

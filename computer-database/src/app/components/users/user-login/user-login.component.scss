@@ -11,7 +11,18 @@ form.SignInForm{
     width:33%; 
     height:33%; 
     margin: auto;
-    background-color: rgba(64,75,78,0.7);
+    background-color: rgba(64,75,78,0.6);
+    border-radius: 5em;
+    border-style : solid;
+    border-color: #3de4d3 ;
+
+}
+
+a {
+  color: #27E1CE;
+  text-align: center;
+  margin : 5%;
+
 }
 
 .form-control {
@@ -74,7 +85,12 @@ label {
 .form-group{
   display: flex;
   flex-direction: column;
-  margin: 1%;
+  margin: 2%;
+  text-align: center;
+}
+
+.error{
+  color: rgb(255, 0, 0);
 }
 
 .loginbox{
