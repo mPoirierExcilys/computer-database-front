@@ -11,7 +11,7 @@
     </mat-card-header>
     <img mat-card-image src="assets/images/comp.jpg" width="10" height="300">
     <mat-card-content>
-    
+
         <ul>
           <li>
             {{ 'LIST.INTRODUCED' | translate }} : <br/>
@@ -25,8 +25,8 @@
           </li>
         </ul>
         <mat-card-actions>
-          <button mat-button>{{ 'LIST.EDIT' | translate }}</button>
-          <button mat-button (click)="goBackHome()">{{ 'DETAILS.BACK' | translate }}</button>
+          <button mat-button (click)="openEditDialog()">{{ 'LIST.EDIT' | translate }}</button>
+          <button mat-button routerLink="/computers">{{ 'DETAILS.BACK' | translate }}</button>
         </mat-card-actions>
     </mat-card-content>
   </mat-card>
