@@ -67,6 +67,13 @@ isAdmin(list: Role[]){
   })
 }
  
+
+sendUserIsAdmin(){
+  return this.isAdministrator;
+}
+
+
+
 ngOnInit(): void {
   this.setUser();
   this.getUserRoles();

@@ -10,10 +10,10 @@
 
                     <nav role="navigation" >
                         <ul>
-                            <li *ngIf="isAdministrator === true"><a routerLink="/users">Users List</a></li>
                             <li *ngIf="user.token !== null" ><a routerLink="/companies">Companies List</a></li>
                             <li *ngIf="user.token !== null" ><a routerLink="computers">{{ 'HEADER.LIST' | translate }}</a></li>
                             <li *ngIf="isAdministrator === true"><a (click)="openDialogUser()">{{ 'HEADER.SIGNUP' | translate }}</a></li>
+                            <li *ngIf="isAdministrator === true"><a routerLink="/users">Users List</a></li>
                             <li *ngIf="isAdministrator === true" class="cta"><button mat-button (click)="openDialog()">{{ 'HEADER.ADD' | translate }}</button></li>
                             <li *ngIf="user.token !== null && user !== null" class="cta"><button mat-button (click)="sendLogout()"> Log out</button> </li>
                             <li><a (click)="translate.use('fr')">fr</a></li>
