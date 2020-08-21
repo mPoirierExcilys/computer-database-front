@@ -1,11 +1,12 @@
 {
     "HEADER": {
-
         "ADD": "Ajouter Ordinateur",
-        "TITLE": "Base de données d'ordinateurs",
         "SIGNIN": "Connexion",
         "SIGNUP" : "Inscription",
-        "LIST" : "Liste ordinateur"
+        "LOGOUT" : "Déconnexion",
+        "LIST" : "Liste d'ordinateurs",
+        "COMPANYLIST" : "Liste d'entreprises",
+        "USERLIST" : "Liste d'utilisateurs"
     },
 
     "LIST": {
@@ -17,12 +18,30 @@
         "DISCONTINUED" : "Date d'arrêt",
         "COMPANY" : "Entreprise",
         "EDIT" : "Modifier",
-        "SEARCH" : "Rechercher"
+        "COMPANIES" : "Entreprises trouvées",
+        "COMPANYFOUND" : "Entreprise trouvée",
+        "SEARCH" : "Rechercher",
+        "CONFIRMDELETE":"Êtes-vous sûr de vouloir supprimer ?",
+        "YES" : "Oui",
+        "NO" : "Non"
+    },
 
+    "COMPUTER": {
+      "ERRORNAMEEMPTY" : "Le nom est requis",
+      "ERRORDATEIN" : "Doit être après la date d'arrêt",
+      "ERRORDATEDISC" : "Doit être avant la date d'introduction",
+      "ERRORDATENULL" : "La date ne pas peut être vide",
+      "NAME" : "Nom",
+      "INTRODUCED" : "Date introduction",
+      "DISCONTINUED" : "Date d'arrêt",
+      "COMPANY" : "Entreprise",
+      "SUBMIT" : "Confirmer",
+      "CANCEL" : "Annuler"
     },
 
     "DETAILS": {
-        "DETAIL": "Détails ordinateur"
+        "DETAIL": "Détails ordinateur",
+        "BACK": "Retour"
     },
 
     "USER": {
@@ -35,6 +54,10 @@
         "SUBMIT" : "Inscription",
         "SIGNIN" : "Connexion",
         "ERRORSIGNINGIN" : "Mauvais nom d'utilisateur ou mot de passe"
-    }
+    },
 
+    "FORM": {
+        "NAME": "Nom",
+        "SUBMIT" : "Valider"
+    }
 }
