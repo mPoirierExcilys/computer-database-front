@@ -45,7 +45,7 @@
     },
 
     "USER": {
-        "SIGNUP" : "Pas encore de compte? Inscription ici !",
+        "SIGNUP" : "Pas encore de compte? Contacter un administrateur !",
         "USERNAME" : "Nom d'utilisateur",
         "PASSWORD" : "Mot de passe ",
         "CONFIRMPASSWORD" : "Confirmez le mot de passe",

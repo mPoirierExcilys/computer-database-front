@@ -100,9 +100,7 @@ body {
   color: #404B4E;
 }
 
-.delete{
-  text-align: left;
-}
+
 
 .container {
   margin-right: auto;
@@ -173,9 +171,16 @@ body {
   margin-left: 10%;
 }
 
+.delete{
+  float: left;
+  margin-top: 25px;
+}
+
 .checkdelete{
-  margin-right: 100%;
   color: green;
+  margin-left:2px;
+  position: absolute;
+    right: 85%;
 }
 
 .body-list{
