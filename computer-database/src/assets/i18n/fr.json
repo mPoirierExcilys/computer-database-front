@@ -51,9 +51,16 @@
         "CONFIRMPASSWORD" : "Confirmez le mot de passe",
         "ROLE" : "Rôle",
         "CANCEL" : "Annuler",
-        "SUBMIT" : "Inscription",
+        "SUBMIT" : "Envoyer",
         "SIGNIN" : "Connexion",
-        "ERRORSIGNINGIN" : "Mauvais nom d'utilisateur ou mot de passe"
+        "ERRORSIGNINGIN" : "Mauvais nom d'utilisateur ou mot de passe",
+        "ERRORROLEFORM" : "Selectionnez au moins un role",
+        "ERRORUSERNAMELENGHT" : "Le nom doit contenir au moins 4 charactères",
+        "ERRORUSERNAMEREQUIRED" : "Nom requis",
+        "ERRORPASSWORDREQUIRED" : "Mot de passe requis",
+        "ERRORPASSWORDLENGHT" : "Le mot de passe doit contenir au moins 8 charactères",
+        "ERRORCONFIRMEPASSWORD" : "La confirmation du mot de passe est requise",
+        "ERRORPASSWORDSNOTMATCH" : "Les mots de passe de correspondent pas"
     },
 
     "FORM": {

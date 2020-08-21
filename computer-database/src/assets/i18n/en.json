@@ -53,7 +53,14 @@
         "CANCEL" : "Cancel",
         "SUBMIT" : "Submit",
         "SIGNIN" : "Sign In",
-        "ERRORSIGNINGIN" : "Wrong username or password !"
+        "ERRORSIGNINGIN" : "Wrong username or password !",
+        "ERRORROLEFORM" : "Must have at least one role",
+        "ERRORUSERNAMELENGHT" : "Name must contain at least 4 characteres",
+        "ERRORUSERNAMEREQUIRED" : "Name is required",
+        "ERRORPASSWORDREQUIRED" : "Password is required",
+        "ERRORPASSWORDLENGHT" : "Password must contain at least 8 characteres",
+        "ERRORCONFIRMEPASSWORD" : "Confirm Password is required",
+        "ERRORPASSWORDSNOTMATCH" : "Passwords not matching"
     },
 
     "FORM": {
