@@ -88,20 +88,5 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(UserAddFormComponent, {
       width: '750px',
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result){
-        this.userService.register(result).subscribe(
-          response => {
-            console.log(response);
-          },
-          error => {
-            console.log('Error with the request of onSubmit : ');
-            console.log(error);
-
-          }
-        );
-      }
-    });
   }
 }
