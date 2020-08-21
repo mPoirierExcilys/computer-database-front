@@ -298,7 +298,7 @@ export class ComputerListComponent implements OnInit {
 
   openDialog(): void{
     const dialogRef = this.dialog.open(ComputerValidDeleteComponent, {
-      width: '250px',
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -346,6 +346,13 @@ export class ComputerListComponent implements OnInit {
         }
       }
       else if(i == 1){
+        if(this.page.nbPage == 1){
+          this.pageButton1.nativeElement.hidden = true;
+          this.pageButtonFirst.nativeElement.hidden = true;
+          this.pageButtonBegin.nativeElement.hidden = true;
+          this.pageButtonNext.nativeElement.hidden = true;
+          this.pageButtonEnd.nativeElement.hidden = true;
+        }
         this.pageButton2.nativeElement.hidden = false;
       }
       else if(i == 2){

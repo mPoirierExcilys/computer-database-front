@@ -1,75 +1,37 @@
-<!--
-<div class="loginbox">
-    <form (ngSubmit)="onSubmit()" class="SignUpForm" method="POST">
-         <!-- <div class="form-group">
-                <label class="white_label" for="role">Role :</label>
-                <select class="select" id="role" name="role">
-                    <option value="USER">USER</option>
-                    <option value="ADMIN">ADMIN</option>
-                </select>
-        </div>  -->
-<!--
-        <div class="form-group">
-        <mat-label class="white_label">Roles : </mat-label>
-        <mat-select [(ngModel)]="rolesSelected" multiple name="rolesSelected">
-                <mat-option class="select" *ngFor="let role of rolesPossibles" [value]="role" > {{role.name}} </mat-option>
-        </mat-select>
-        </div> 
-
-        <div class="form-group">
-            <label class="white_label" for="email">Username :</label>
-            <input  [(ngModel)]="username" id="username" name="username" required="required" placeholder="Username" class="form-control mr-sm-2 home_input" />
-        </div>
-        <div class="form-group">
-            <label class="white_label" for="password">Password :</label>
-            <input [(ngModel)]="passwordFirst" type="password" class="form-control mr-sm-2 home_input" id="password" name="password"  required="required"  placeholder="ex. X8df!90EO"/>
-        </div>
-        <div class="form-group">
-            <label class="white_label" for="passwordConfirm">Please confirm your password :</label>
-            <input [(ngModel)]="passwordSecond" type="password" class="form-control mr-sm-2 home_input" id="passwordConfirm" name="passwordConfirm" required="required" placeholder="ex X8df!90EO" />
-        </div>
-        <br>
-        <div class="inline">
-                <input type="submit" class="btn btn-primary" value="Submit"/>
-                <a href="#" class="btn btn-primary "> Cancel </a>
-        </div>
-    </form>
--->
-
-
 <div class="registerbox">
     <mat-dialog-content class="mat-dialog">
-        <form class="SignUpForm" method="POST">
+        <form class="SignUpForm" [formGroup]="addUserForm">
             <div class="form-group">
                 <mat-label>{{ 'USER.ROLE' | translate }} :</mat-label>
-                <mat-select class="select">
-                    <mat-option value="USER">User </mat-option>
-                    <mat-option value="ADMIN">Admin </mat-option>
+                <mat-select  [(ngModel)]="user.roles" multiple name="rolesSelected" class="select" formControlName="rolesSelected" required>
+                  <mat-option class="select" *ngFor="let role of rolesPossibles" [value]="role" > {{role.name}} </mat-option>
                 </mat-select>
 
             </div>
             <div class="form-group">
                 <mat-label>{{ 'USER.USERNAME' | translate }} :</mat-label>
-                <input id="username" name="username" required="required" placeholder="{{ 'USER.USERNAME' | translate }}"
-                    class="form-control mr-sm-2 home_input" />
+                <input [(ngModel)]="user.name" id="username" name="username" required="required" placeholder="{{ 'USER.USERNAME' | translate }}"
+                    class="form-control mr-sm-2 home_input" formControlName="name" [ngClass]="{'is-invalid': addUserForm.get('name').hasError('required')}"/>
             </div>
 
             <div class="form-group">
                 <mat-label>{{ 'USER.PASSWORD' | translate }} :</mat-label>
-                <input type="password" class="form-control mr-sm-2 home_input" id="password" name="password"
-                    required="required" placeholder="{{ 'USER.PASSWORD' | translate }}" />
+                <input [(ngModel)]="user.password" type="password" class="form-control mr-sm-2 home_input" id="password" name="password"
+                    required="required" placeholder="{{ 'USER.PASSWORD' | translate }}" formControlName="password" [ngClass]="{'is-invalid': addUserForm.get('password').hasError('required')}"/>
             </div>
 
             <div class="form-group">
                 <mat-label>{{ 'USER.CONFIRMPASSWORD' | translate }} : </mat-label>
-                <input type="password" class="form-control mr-sm-2 home_input" id="passwordConfirm"
-                    name="passwordConfirm" required="required" placeholder="{{ 'USER.PASSWORD' | translate }}" />
+                <input [(ngModel)]="passwordSecond" type="password" class="form-control mr-sm-2 home_input" id="passwordConfirm"
+                    name="passwordConfirm" formControlName="confirmPassword" required="required" placeholder="{{ 'USER.PASSWORD' | translate }}"
+                       [ngClass]="{'is-invalid': (addUserForm.errors && addUserForm.errors.noMatchingPassword) || addUserForm.get('confirmPassword').hasError('required')}"/>
+              <div *ngIf="addUserForm.errors && addUserForm.errors.noMatchingPassword" class="invalid-input">{{addUserForm.errors.noMatchingPassword}}</div>
             </div>
 
             <br>
             <div class="inline">
-                <input type="submit" class="btn btn-primary" value="{{ 'USER.SUBMIT' | translate }}" />
-                <a href="#" class="btn btn-primary "> {{ 'USER.CANCEL' | translate }} </a>
+              <button [disabled]="addUserForm.invalid" [mat-dialog-close]="user" class="btn btn-primary" mat-button>{{ 'USER.SUBMIT' | translate }}</button>
+              <button [mat-dialog-close]="false" class="btn btn-primary" mat-button>{{ 'USER.CANCEL' | translate }}</button>
             </div>
         </form>
     </mat-dialog-content>

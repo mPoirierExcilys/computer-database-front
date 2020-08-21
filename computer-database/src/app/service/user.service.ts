@@ -40,7 +40,7 @@ export class UserService {
           });
         }
         return result;
-      }
+      },
     ));
   }
   getYourself(): Observable<User>{

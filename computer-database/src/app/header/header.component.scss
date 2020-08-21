@@ -253,3 +253,21 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     display:block
   }
 }
+
+@media screen and (max-width: 1400px) {
+  .button-hidde{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 759px) {
+  .button-hidde2{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .title{
+    display: none;
+  }
+}

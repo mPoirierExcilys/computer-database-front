@@ -49,8 +49,8 @@ form.SignUpForm{
 
 .btn-primary {
   padding: 2%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 9%;
+  padding-right: 9%;
   background: #27E1CE;
   color: #fff;
   border: 2px solid #27E1CE;
@@ -80,6 +80,7 @@ a {
 
 .select {
   border: solid;
+  border-color: #2BBDB5;
 }
 
 .form-group{
@@ -89,4 +90,12 @@ a {
 
 .registerbox{
 padding: 10%;
+}
+
+.invalid-input{
+  color: #FF0000;
+}
+
+.is-invalid{
+  border-color: #FF0000;
 }

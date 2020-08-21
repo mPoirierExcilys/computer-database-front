@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = new User();
     this.setUser();
     this.getUserRoles();
   }
@@ -52,6 +53,7 @@ export class HeaderComponent implements OnInit {
     }, (error) => { console.log(error);
   });
 }
+
 
   setUser(){
     this.user = this.userService.currentUserValue;
@@ -76,11 +78,24 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login'], { state: { isToLogout: true } });
   }
 
-  openDialogUser() {
-    const dialogRef = this.dialog.open(UserAddFormComponent);
+  openDialogUser(): void {
+    const dialogRef = this.dialog.open(UserAddFormComponent, {
+      width: '720px',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result){
+        this.userService.register(result).subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.log('Error with the request of onSubmit : ');
+            console.log(error);
+
+          }
+        );
+      }
     });
   }
 }
