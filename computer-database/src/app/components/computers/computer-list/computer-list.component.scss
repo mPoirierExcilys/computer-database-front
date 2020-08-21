@@ -30,11 +30,12 @@ footer {
 
 .pagination {
     margin-left: auto;
-  margin-right: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
 }
 
 .numbers {
-  width: 10%;
+  width: 90%;
 }
 
 footer .btn-group {
@@ -56,7 +57,7 @@ a {
 }
 
 h1 {
-  color: #27E1CE;
+  color: #1b9b8e;
   text-align: center;
 }
 
@@ -80,6 +81,7 @@ td, th, tr{
   border: 1px solid #ddd;
   padding: 8px;
   line-height: 1.42857;
+  font-size: 100%;
   vertical-align: center;
   align-content: center;
   text-align: center;
@@ -171,13 +173,15 @@ body {
   margin-left: 10%;
 }
 
+.checkdelete{
+  margin-right: 100%;
+  color: green;
+}
+
 .body-list{
   padding-bottom:100px;
 }
 
 button {
-  color: #17afa0;
-  border-color: #17afa0;
-  border-radius: 20em;
-  padding:0.5%;
+  color : #17afa0;
 }

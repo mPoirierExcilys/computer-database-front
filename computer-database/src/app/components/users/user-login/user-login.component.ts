@@ -41,19 +41,44 @@ export class UserLoginComponent implements OnInit {
   onSubmit(){
     this.userService.authenticate(this.user).subscribe(
       (result : Token) => {
-        if(result.token){
-          this.returnHome();
-        }
+          if(result){
+            this.user.token = result.token;
+            this.userService.setUser(this.user);
+            this.userService.getYourself().subscribe(result => {
+              this.userService.removeUser();
+              this.user.id = result.id;
+              this.user.roles = result.roles;
+              let isAdmin: Boolean = false;
+              let self = this;
+              this.user.roles.forEach(function(element){
+                for(let name of element.name)
+                  if(element.name === "ROLE_ADMIN"){
+                    isAdmin = true;
+                    break;
+                  }
+              })
+              this.userService.setIsAdmin(isAdmin);
+              this.userService.setUser(this.user);
+              this.returnHome();
+            });
+          }
+          return result;
+        // if(result.token){
+          // this.returnHome();
+        // }
       },
       error => {
-        this.errorCredentials = true;
-        console.log(error);
+        // If wrong username or password
+        if(error.status === 401){
+          this.errorCredentials = true;
+        } 
       }
     );
   }
 
   returnHome(){
-    this.router.navigate(["/computers"]);
+    // this.router.navigate(["/computers"]);
+    window.location.assign("/computers");
   }
 
   openDialog() {

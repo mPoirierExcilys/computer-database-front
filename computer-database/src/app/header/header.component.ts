@@ -19,7 +19,7 @@ import { UserService } from '../service/user.service';
 export class HeaderComponent implements OnInit {
   user: User;
   userRoles: Role[];
-  isAdministrator: boolean = false;
+  isAdministrator: Boolean = false;
   messageLogout = "Logout";
 
   @Output() logoutEvent = new EventEmitter<string>();
@@ -28,12 +28,18 @@ export class HeaderComponent implements OnInit {
     translate.addLangs(['en', 'fr']);
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    this.isAdministrator = this.userService.currentIsAdminValue;
+    console.log("administrator");
+    console.log(this.isAdministrator);
   }
 
   ngOnInit(): void {
     this.user = new User();
     this.setUser();
     this.getUserRoles();
+
+    console.log("isAdmin : ");
+    console.log(this.userService.currentIsAdminValue);
   }
 
   openDialog(): void{
@@ -79,7 +85,9 @@ export class HeaderComponent implements OnInit {
   }
 
   openDialogUser(): void {
-    const dialogRef = this.dialog.open(UserAddFormComponent);
+    const dialogRef = this.dialog.open(UserAddFormComponent, {
+      width: '750px',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
