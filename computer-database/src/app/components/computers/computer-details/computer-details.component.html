@@ -25,7 +25,7 @@
           </li>
         </ul>
         <mat-card-actions>
-          <button mat-button (click)="openEditDialog()">{{ 'LIST.EDIT' | translate }}</button>
+          <button *ngIf="isAdministrator === true" mat-button (click)="openEditDialog()">{{ 'LIST.EDIT' | translate }}</button>
           <button mat-button routerLink="/computers">{{ 'DETAILS.BACK' | translate }}</button>
         </mat-card-actions>
     </mat-card-content>

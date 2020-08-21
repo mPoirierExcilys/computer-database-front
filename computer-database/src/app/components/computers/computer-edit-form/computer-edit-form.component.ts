@@ -100,10 +100,12 @@ export class ComputerEditFormComponent implements OnInit {
 export function dateValidatorIntroducedNotSetToNull(computerOld: Computer): ValidatorFn{
   return (form: FormGroup): ValidationErrors => {
     const newIntroduced = form.get('introduced').value;
-    if (newIntroduced === '' && computerOld.introduced !== ''){
-      return{
-        introducedSetNull: 'Cannot set to null'
-      };
+    if (computerOld.introduced){
+      if (newIntroduced === '' && computerOld.introduced !== ''){
+        return{
+          introducedSetNull: 'Cannot set to null'
+        };
+      }
     }
     return null;
   };
@@ -112,10 +114,12 @@ export function dateValidatorIntroducedNotSetToNull(computerOld: Computer): Vali
 export function dateValidatorDiscontinuedNotSetToNull(computerOld: Computer): ValidatorFn{
   return (form: FormGroup): ValidationErrors => {
     const newDiscontinued = form.get('discontinued').value;
-    if (newDiscontinued === '' && computerOld.discontinued !== ''){
-      return{
-        discontinuedSetNull: 'Cannot set to null'
-      };
+    if (computerOld.discontinued){
+      if (newDiscontinued === '' && computerOld.discontinued !== ''){
+        return{
+          discontinuedSetNull: 'Cannot set to null'
+        };
+      }
     }
     return null;
   };

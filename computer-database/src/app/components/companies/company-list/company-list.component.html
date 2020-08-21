@@ -12,7 +12,7 @@
           <div class="pull-left">
             <input value="{{this.motSearch}}" (change)="modifSearch($event.target.value)" type="search" id="searchbox"
                    name="search" class="form-control" placeholder="{{ 'LIST.SEARCH' | translate }}" />
-            <a class="btn btn-default" id="editComputer" (click)="toggleEditMode()">{{ 'LIST.EDIT' | translate }}</a>
+            <a *ngIf="isAdministrator === true" class="btn btn-default" id="editComputer" (click)="toggleEditMode()">{{ 'LIST.EDIT' | translate }}</a>
           </div>
         </div>
       </div>
