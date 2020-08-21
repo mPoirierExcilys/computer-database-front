@@ -13,35 +13,47 @@ import {Role} from '../Models/role.model';
 export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private currentIsAdminSubject: BehaviorSubject<Boolean>;
+  public currentIsAdmin: Observable<Boolean>;
   baseUrl = URL.baseUrl;
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));    
     this.currentUser = this.currentUserSubject.asObservable();
+    this.currentIsAdminSubject = new BehaviorSubject<Boolean>(JSON.parse(localStorage.getItem('currentIsAdmin')));    
+    this.currentIsAdmin = this.currentIsAdminSubject.asObservable();
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
-}
+  }
+
+  public get currentIsAdminValue(): Boolean {
+    return this.currentIsAdminSubject.value;
+  }
+
+  public setIsAdmin(isAdmin: Boolean){
+    localStorage.setItem('currentIsAdmin', JSON.stringify(isAdmin));
+    this.currentIsAdminSubject.next(isAdmin);
+  }
+
+  public setUser(user: User){
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  }
+
+  public removeUser(){
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
+  public removeIsAdmin(){
+    localStorage.removeItem('currentIsAdmin');
+    this.currentIsAdminSubject.next(null);
+  }
 
   authenticate(user: User): Observable<Token>{
     console.log(user);
-    return this.http.post<Token>(this.baseUrl + '/authenticate', user).pipe(map(
-      (result : Token) => {
-        if(result){
-          user.token = result.token;
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          this.getYourself().subscribe(result => {
-            localStorage.removeItem('currentUser');
-            this.currentUserSubject.next(null);
-            user.id = result.id;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-          });
-        }
-        return result;
-      },
-    ));
+    return this.http.post<Token>(this.baseUrl + '/authenticate', user);
   }
   getYourself(): Observable<User>{
     return this.http.get<User>(this.baseUrl + '/self');
@@ -69,8 +81,8 @@ export class UserService {
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.removeIsAdmin();
+    this.removeUser();
   }
 
   modify(user: User): Observable<User>{
