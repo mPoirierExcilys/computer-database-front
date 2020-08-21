@@ -4,8 +4,6 @@ form.SignUpForm{
     font-size: 18px;
     padding-left: 10%;
     padding-right: 10%;
-    padding-bottom: 5%;
-    padding-top: 5%;
     font-style: normal;
     font: Georgia, sans-serif;
     display: block;
@@ -27,7 +25,7 @@ form.SignUpForm{
   background: transparent;
   border: 2px solid rgba(0, 0, 0, 0.1);
   height: 54px;
-  width: 250px;
+  width: 100%;
   font-size: 18px;
   font-weight: 300;
   margin: auto;
@@ -81,6 +79,7 @@ a {
 .select {
   border: solid;
   border-color: #2BBDB5;
+  width: 100%;
 }
 
 .form-group{

@@ -10,6 +10,10 @@ table {
     -o-transition: 0.5s;
     transition: 0.5s;
   }
+
+  p {
+    font-size: 150%;
+  }
   
   a {
     background-color: transparent;
@@ -52,8 +56,10 @@ table {
   .container {
     margin-right: auto;
     margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
   
   .btn {
