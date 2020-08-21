@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit {
 
   openDialogUser(): void {
     const dialogRef = this.dialog.open(UserAddFormComponent, {
-      width: '720px',
+      width: '750px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
