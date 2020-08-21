@@ -43,7 +43,9 @@ export class UserListComponent implements OnInit {
 
   openEditUserDialog(idUser: string): void{
     const dialogRef = this.dialog.open(UserPasswordFormComponent,
-      {data: {id: idUser}});
+      {data: {id: idUser},
+       width: '750px'
+});
 
     dialogRef.afterClosed().subscribe( result => {
       if (result){
@@ -51,22 +53,4 @@ export class UserListComponent implements OnInit {
       }
     });
   }
-
-
-
-  // remove(id : number): void{
-  //   this.computerService.deleteComputer(id).subscribe(
-  //     () => {
-  //       this.getList();
-  //     },
-  //     (error: any) => {
-  //       console.log("Error with the observable in removeUser.");
-  //     }
-  //   );
-  // }
-
-  // deleteSelected(): void {
-  //   console.log("selected");
-  //   var checkBox = document.getElementById("selectall");
-  // }
 }
