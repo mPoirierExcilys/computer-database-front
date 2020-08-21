@@ -43,7 +43,9 @@ export class UserListComponent implements OnInit {
 
   openEditUserDialog(idUser: string): void{
     const dialogRef = this.dialog.open(UserPasswordFormComponent,
-      {data: {id: idUser}});
+      {data: {id: idUser},
+       width: '750px'
+});
 
     dialogRef.afterClosed().subscribe( result => {
       if (result){
