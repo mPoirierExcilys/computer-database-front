@@ -10,6 +10,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ComputerValidDeleteComponent } from '../computer-valid-delete/computer-valid-delete.component';
+import { UserService } from 'src/app/service/user.service';
 
 
 interface Order {
@@ -97,7 +98,7 @@ export class ComputerListComponent implements OnInit {
   @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
   @ViewChild("cb", {read: ElementRef}) colloneFirst: ElementRef;
 
-  constructor(private routeParam: ActivatedRoute, computerService: ComputerService, public dialog: MatDialog) {
+  constructor(private routeParam: ActivatedRoute, computerService: ComputerService, public dialog: MatDialog, private userService : UserService) {
     this.route = routeParam;
     this.computerService = computerService;
   }
@@ -105,6 +106,7 @@ export class ComputerListComponent implements OnInit {
   ngOnInit(): void {
     this.setPage();
     this.getList();
+    console.log(this.userService.currentIsAdminValue);
   }
 
   setPage(){
