@@ -79,7 +79,9 @@ export class HeaderComponent implements OnInit {
   }
 
   openDialogUser(): void {
-    const dialogRef = this.dialog.open(UserAddFormComponent);
+    const dialogRef = this.dialog.open(UserAddFormComponent, {
+      width: '720px',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
