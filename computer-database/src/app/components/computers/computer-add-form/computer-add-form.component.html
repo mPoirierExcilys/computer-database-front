@@ -35,8 +35,8 @@
       </mat-select>
 
       <div>
-        <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> Submit </button>
-        <button [mat-dialog-close]="false" class="button" mat-button> Cancel </button>
+        <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> {{ 'COMPUTER.SUBMIT' | translate }} </button>
+        <button [mat-dialog-close]="false" class="button" mat-button> {{ 'COMPUTER.CANCEL' | translate }} </button>
       </div>
 
     </form>

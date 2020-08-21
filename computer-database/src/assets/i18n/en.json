@@ -27,7 +27,9 @@
     "NAME" : "Name",
     "INTRODUCED" : "Introduced",
     "DISCONTINUED" : "Discontinued",
-    "COMPANY" : "Company"
+    "COMPANY" : "Company",
+    "SUBMIT" : "Submit",
+    "CANCEL" : "Cancel"
   },
 
     "DETAILS": {

@@ -27,11 +27,14 @@
       "NAME" : "Nom",
       "INTRODUCED" : "Date introduction",
       "DISCONTINUED" : "Date d'arrêt",
-      "COMPANY" : "Entreprise"
+      "COMPANY" : "Entreprise",
+      "SUBMIT" : "Confirmer",
+      "CANCEL" : "Annuler"
     },
 
     "DETAILS": {
-        "DETAIL": "Détails ordinateur"
+        "DETAIL": "Détails ordinateur",
+      "BACK": "Accueil"
     },
 
     "USER": {
