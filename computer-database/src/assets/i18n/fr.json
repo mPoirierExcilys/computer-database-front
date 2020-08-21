@@ -1,6 +1,5 @@
 {
     "HEADER": {
-
         "ADD": "Ajouter Ordinateur",
         "TITLE": "Base de données d'ordinateurs",
         "SIGNIN": "Connexion",
@@ -18,11 +17,24 @@
         "COMPANY" : "Entreprise",
         "EDIT" : "Modifier",
         "SEARCH" : "Rechercher"
+    },
 
+    "COMPUTER": {
+      "ERRORNAMEEMPTY" : "Le nom est requis",
+      "ERRORDATEIN" : "Doit être après la date d'arrêt",
+      "ERRORDATEDISC" : "Doit être avant la date d'introduction",
+      "ERRORDATENULL" : "La date ne pas peut être vide",
+      "NAME" : "Nom",
+      "INTRODUCED" : "Date introduction",
+      "DISCONTINUED" : "Date d'arrêt",
+      "COMPANY" : "Entreprise",
+      "SUBMIT" : "Confirmer",
+      "CANCEL" : "Annuler"
     },
 
     "DETAILS": {
-        "DETAIL": "Détails ordinateur"
+        "DETAIL": "Détails ordinateur",
+      "BACK": "Accueil"
     },
 
     "USER": {
@@ -36,5 +48,4 @@
         "SIGNIN" : "Connexion",
         "ERRORSIGNINGIN" : "Mauvais nom d'utilisateur ou mot de passe"
     }
-
 }
