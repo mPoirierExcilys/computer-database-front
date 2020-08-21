@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/service/user.service';
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Company } from '../../../Models/company.model';
 import { ActivatedRoute } from '@angular/router';
@@ -89,8 +90,9 @@ export class CompanyListComponent implements OnInit {
   @ViewChild("cbM", {read: ElementRef}) checkBoxAll: ElementRef;
   @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
   @ViewChild("cb", {read: ElementRef}) colloneFirst: ElementRef;
+  isAdministrator: any;
 
-  constructor(private routeParam: ActivatedRoute, companyService: CompanyService, public dialog: MatDialog) {
+  constructor(private routeParam: ActivatedRoute, companyService: CompanyService, public dialog: MatDialog, private userService: UserService) {
     this.route = routeParam;
     this.companyService = companyService;
    }
@@ -98,6 +100,7 @@ export class CompanyListComponent implements OnInit {
   ngOnInit(): void {
     this.setPage();
     this.getList();
+    this.setAdmin();
   }
 
 
@@ -364,6 +367,10 @@ export class CompanyListComponent implements OnInit {
       this.pageButtonEnd.nativeElement.hidden = false;
     }
   }
+
+  setAdmin(){
+    this.isAdministrator = this.userService.currentIsAdminValue;
+    }
 
   @Output() removeToParent = new EventEmitter<number>();
 }

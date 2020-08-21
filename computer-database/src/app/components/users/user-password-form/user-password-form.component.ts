@@ -117,46 +117,6 @@ export class UserPasswordFormComponent implements OnInit {
     return null;
   }
 
-  modifyPassword(): void{
-    if ((this.passwordFirst && this.passwordSecond && this.passwordFirst.length > 7 && this.passwordFirst === this.passwordSecond) ||
-      (this.name && this.name !== '' && this.user.name !== this.name)){
-      if (this.passwordFirst && this.passwordSecond && this.passwordFirst.length > 7 && this.passwordFirst === this.passwordSecond) {
-        this.newUser.password = this.passwordFirst;
-      } else {
-        this.newUser.password = 'byDefault';
-      }
-      if (this.name && this.name !== '' && this.user.name !== this.name){
-        this.newUser.name = this.name;
-      } else {
-        this.newUser.name = this.user.name;
-      }
-      this.newUser.id = Number(this.getId());
-      this.newUser.roles = this.user.roles;
-      console.log('avant');
-      console.log(this.user);
-      this.userService.modify(this.newUser).subscribe(
-      result => {
-        console.log('après');
-        console.log(this.userService.currentUserValue);
-        console.log(result);
-        console.log(this.user);
-        this.user = result;
-        if (this.user.id === this.userService.currentUserValue.id){
-          console.log('plop');
-          this.router.navigate(['/login'], { state : { isToLogout : true}});
-        } else {
-          console.log('pas plop');
-        }
-      },
-        error => {
-          console.log('Request problem with Modification of password : ');
-          console.log(error);
-      });
-    } else {
-      console.log('Same value needed for the passwords or a new name is needed.');
-    }
-  }
-
   onSubmit(): void{
     this.submitted = true;
     console.log(this.editUserForm.get('rolesSelected').value);

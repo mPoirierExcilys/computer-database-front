@@ -45,7 +45,7 @@
     },
 
     "USER": {
-        "SIGNUP" : "Don't have an account yet? Sign up here!",
+        "SIGNUP" : "Don't have an account yet? Contact a administrator!",
         "USERNAME" : "Username",
         "PASSWORD" : "Password",
         "CONFIRMPASSWORD" : "Confirm password",
