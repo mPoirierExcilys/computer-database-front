@@ -298,7 +298,7 @@ export class ComputerListComponent implements OnInit {
 
   openDialog(): void{
     const dialogRef = this.dialog.open(ComputerValidDeleteComponent, {
-      width: '250px',
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
