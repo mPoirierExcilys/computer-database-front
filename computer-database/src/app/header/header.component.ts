@@ -53,12 +53,14 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserRoles() {
-    this.userService.getUser("" + this.userService.currentUserValue.id).subscribe((result: User) => {
-      this.userRoles = result.roles;
-      this.isAdmin(this.userRoles);
-    }, (error) => { console.log(error);
-  });
-}
+    if(this.userService.currentUserValue){
+      this.userService.getUser("" + this.userService.currentUserValue.id).subscribe((result: User) => {
+        this.userRoles = result.roles;
+        this.isAdmin(this.userRoles);
+        }, (error) => { console.log(error);
+      });
+    }
+  }
 
 
   setUser(){
