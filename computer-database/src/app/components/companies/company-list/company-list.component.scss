@@ -63,7 +63,7 @@ h1 {
 
 .checkdelete {
     position: absolute;
-    right: 80%;
+    right: 85%;
 }
 
 .mat-table {
@@ -179,10 +179,4 @@ body {
 
 button {
   color : #17afa0;
-}
-
-button:not([disabled]):hover {
-  color: black;
-  background-color : #17afa0 ;
-  opacity: 70%;
 }
