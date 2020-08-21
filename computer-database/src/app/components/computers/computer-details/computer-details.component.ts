@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Computer } from '../../../Models/computer.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,13 +19,15 @@ export interface ComputerData{
 export class ComputerDetailsComponent implements OnInit {
 
   computer: Computer;
+  isAdministrator: Boolean;
 
-  constructor(private routeParam: ActivatedRoute, private computerService: ComputerService, public dialog: MatDialog, private router: Router) {}
+  constructor(private routeParam: ActivatedRoute, private computerService: ComputerService, public dialog: MatDialog, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.computer = new Computer();
     this.computer.companyDto = new Company();
     this.getComputer();
+    this.setAdmin();
   }
 
   getComputer(): void{
@@ -55,6 +58,10 @@ export class ComputerDetailsComponent implements OnInit {
       }
     });
   }
+
+  setAdmin(){
+    this.isAdministrator = this.userService.currentIsAdminValue;
+    }
 
   goBackHome(){
     this.router.navigate(['/computers']);
