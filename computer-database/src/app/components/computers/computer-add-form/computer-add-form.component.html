@@ -26,7 +26,7 @@
                formControlName="discontinued"
                [(ngModel)]="computer.discontinued"
                [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateDiscontinued}">
-        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{ 'USCOMPUTERER.ERRORDATEDISC' | translate }}</div>
+        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{ 'COMPUTER.ERRORDATEDISC' | translate }}</div>
         <br />
       </div>
 
