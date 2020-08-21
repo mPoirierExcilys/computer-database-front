@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/app/Models/user.model';
+import {ComputerService} from '../../../service/computer.service';
+import {MatDialog} from '@angular/material/dialog';
+import {UserPasswordFormComponent} from '../user-password-form/user-password-form.component';
 
 @Component({
   selector: 'app-user-list',
@@ -9,13 +12,13 @@ import { User } from 'src/app/Models/user.model';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  private route : ActivatedRoute;
-  usersList : User[] = [];
-  userService : UserService;
+  private route: ActivatedRoute;
+  usersList: User[] = [];
+  userService: UserService;
 
   displayedColumns: string[] = ['name', 'roles'];
 
-  constructor(private routeParam: ActivatedRoute, userService: UserService) {
+  constructor(private routeParam: ActivatedRoute, userService: UserService, public dialog: MatDialog) {
     this.route = routeParam;
     this.userService = userService;
    }
@@ -24,7 +27,7 @@ export class UserListComponent implements OnInit {
     this.getList();
   }
 
-  getList() : void {
+  getList(): void {
     this.userService.getUsers().subscribe(
       (result: User[]) => {
         this.usersList = [];
@@ -33,9 +36,20 @@ export class UserListComponent implements OnInit {
         });
       },
       (error: any) => {
-        console.log("Error with the observable in getUsersList.");
+        console.log('Error with the observable in getUsersList.');
       }
     );
+  }
+
+  openEditUserDialog(idUser: string): void{
+    const dialogRef = this.dialog.open(UserPasswordFormComponent,
+      {data: {id: idUser}});
+
+    dialogRef.afterClosed().subscribe( result => {
+      if (result){
+        this.getList();
+      }
+    });
   }
 
 

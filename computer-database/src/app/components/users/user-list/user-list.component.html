@@ -7,13 +7,13 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> name </th>
             <td mat-cell *matCellDef="let user">
-              <a routerLink="/users/edit/{{user.id}}">{{user.name}}</a>
+              <button mat-button (click)="openEditUserDialog(user.id)">{{user.name}}</button>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="roles">
             <th mat-header-cell *matHeaderCellDef> Roles </th>
-            <td mat-cell *matCellDef="let user"> 
+            <td mat-cell *matCellDef="let user">
               <li *ngFor="let role of user.roles">{{ role.name }}</li>
             </td>
           </ng-container>
