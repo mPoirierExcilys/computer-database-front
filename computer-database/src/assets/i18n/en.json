@@ -41,5 +41,10 @@
         "SUBMIT" : "Submit",
         "SIGNIN" : "Sign In",
         "ERRORSIGNINGIN" : "Wrong username or password !"
+    },
+
+    "FORM": {
+        "NAME": "Name"
     }
+}
 }

@@ -3,14 +3,14 @@
     <form class="addForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
-        <mat-label>Name :  *    </mat-label> <input matInput class="form-control" name="name"
+        <mat-label>{{ 'FORM.NAME' | translate }}: *    </mat-label> <input matInput class="form-control" name="name"
                                                     formControlName="name"
                                                     [ngClass]="{'is-invalid': editForm.get('name').hasError('required')}"
                                                     [(ngModel)]="computer.name" required>
         <br />
       </div>
       <div class="form-group">
-        <mat-label>Introduced :</mat-label> <input matInput type="date" class="form-control"
+        <mat-label>{{ 'LIST.INTRODUCED' | translate }}: </mat-label> <input matInput type="date" class="form-control"
                                                    formControlName="introduced"
                                                    name="introduced"
                                                    [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateIntroduced}"
@@ -19,7 +19,7 @@
         <br />
       </div>
       <div class="form-group">
-        <mat-label>Discontinued :</mat-label>
+        <mat-label>{{ 'LIST.DISCONTINUED' | translate }}: </mat-label>
         <input matInput type="date" class="form-control" name="discontinued"
                formControlName="discontinued"
                [(ngModel)]="computer.discontinued"
@@ -28,15 +28,15 @@
         <br />
       </div>
 
-      <mat-label>Company : </mat-label>
+      <mat-label>{{ 'LIST.COMPANY' | translate }} : </mat-label>
       <mat-select formControlName="companyDto"  [(ngModel)]="computer.companyDto">
         <mat-option *ngFor="let company of companies" [value]="company" >{{company.name}}
         </mat-option>
       </mat-select>
 
       <div>
-        <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> Submit </button>
-        <button [mat-dialog-close]="false" class="button" mat-button> Cancel </button>
+        <button [disabled]="editForm.invalid" [mat-dialog-close]="computer" class="button" mat-button> {{ 'FORM.SUBMIT' | translate }} </button>
+        <button [mat-dialog-close]="false" class="button" mat-button> {{ 'USER.CANCEL' | translate }} </button>
       </div>
 
     </form>

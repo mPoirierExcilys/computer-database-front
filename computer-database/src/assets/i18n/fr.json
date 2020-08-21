@@ -43,6 +43,10 @@
         "SUBMIT" : "Inscription",
         "SIGNIN" : "Connexion",
         "ERRORSIGNINGIN" : "Mauvais nom d'utilisateur ou mot de passe"
-    }
+    },
 
+    "FORM": {
+        "NAME": "Nom",
+        "SUBMIT" : "Valider"
+    }
 }

@@ -25,19 +25,18 @@
 
               <div class="delete">
                 <img class="fit-picture" (click)="openDialog()"
-                     src="https://www.aggloroanne.fr/fileadmin/_processed_/6/6/csm_Accroche_dechets_menagers_088def858f.png"
+                     src="../../../../assets/images/trash.png"
                      [(hidden)]="this.task.hidden">
-                <mat-checkbox class="checkdelete" [checked]="allComplete" [indeterminate]="someComplete()"
-                              (change)="setAll()" [(hidden)]="this.task.hidden">
-                              <p (click)="modifOrder('cp.name')" style="text-align: center;">{{ 'LIST.NAMECOMPANY' | translate }}</p>
-                            </mat-checkbox>
+                <mat-checkbox class="checkdelete" [checked]="allComplete" [indeterminate]="someComplete()" (change)="setAll()" [(hidden)]="this.task.hidden">
+                </mat-checkbox>
+                <p (click)="modifOrder('cp.name')" style="text-align: center;">{{ 'LIST.NAMECOMPANY' | translate }}</p>
 
               </div>
 
             </th>
             <td mat-cell *matCellDef="let company; let i = index">
 
-              <mat-checkbox [(ngModel)]="this.task.subtasks[i].completed" [color]="this.task.subtasks[i].color"
+              <mat-checkbox class="checkdelete" [(ngModel)]="this.task.subtasks[i].completed" [color]="this.task.subtasks[i].color"
                             (ngModelChange)="updateAllComplete()" [(hidden)]="this.task.subtasks[i].hidden">
               </mat-checkbox>
               <a>
