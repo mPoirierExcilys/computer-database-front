@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = new User();
     this.setUser();
     this.getUserRoles();
   }

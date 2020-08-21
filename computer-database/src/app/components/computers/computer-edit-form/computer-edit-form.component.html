@@ -4,10 +4,11 @@
 
       <div class="form-group">
         <mat-label>{{ 'FORM.NAME' | translate }}: *    </mat-label> <input matInput class="form-control" name="name"
+
                                                     formControlName="name"
                                                     [ngClass]="{'is-invalid': editForm.errors && editForm.errors.nameRequired}"
                                                     [(ngModel)]="computer.name">
-        <div *ngIf="editForm.errors && editForm.errors.nameRequired" class="invalid-input">{{editForm.errors.nameRequired}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.nameRequired" class="invalid-input">{{ 'COMPUTER.ERRORNAMEEMPTY' | translate }}</div>
         <br />
       </div>
 
@@ -18,8 +19,8 @@
                                                    [ngClass]="{'is-invalid': editForm.errors && (editForm.errors.dateIntroduced
                                                    || editForm.errors.introducedSetNull)}"
                                                    [(ngModel)]="computer.introduced">
-        <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{editForm.errors.dateIntroduced}}</div>
-        <div *ngIf="editForm.errors && editForm.errors.introducedSetNull" class="invalid-input">{{editForm.errors.introducedSetNull}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{ 'COMPUTER.ERRORDATEIN' | translate }}</div>
+        <div *ngIf="editForm.errors && editForm.errors.introducedSetNull" class="invalid-input">{{ 'COMPUTER.ERRORDATENULL' | translate }}</div>
         <br />
       </div>
 
@@ -29,12 +30,13 @@
                formControlName="discontinued"
                [(ngModel)]="computer.discontinued"
                [ngClass]="{'is-invalid': editForm.errors && (editForm.errors.dateDiscontinued || editForm.errors.discontinuedSetNull)}">
-        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{editForm.errors.dateDiscontinued}}</div>
-        <div *ngIf="editForm.errors && editForm.errors.discontinuedSetNull" class="invalid-input">{{editForm.errors.discontinuedSetNull}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{ 'COMPUTER.ERRORDATEDISC' | translate }}</div>
+        <div *ngIf="editForm.errors && editForm.errors.discontinuedSetNull" class="invalid-input">{{ 'COMPUTER.ERRORDATENULL' | translate }}</div>
         <br />
       </div>
 
       <mat-label>{{ 'LIST.COMPANY' | translate }} : </mat-label>
+
       <mat-select [compareWith]="byCompany" formControlName="companyDto"  [(ngModel)]="computer.companyDto">
         <mat-option *ngFor="let company of companies" [value]="company" >{{company.name}}
         </mat-option>

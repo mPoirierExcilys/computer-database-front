@@ -1,6 +1,5 @@
 {
     "HEADER": {
-    
         "ADD": "Ajouter Ordinateur",
         "SIGNIN": "Connexion",
         "SIGNUP" : "Inscription",
@@ -25,7 +24,19 @@
         "CONFIRMDELETE":"Êtes-vous sûr de vouloir supprimer ?",
         "YES" : "Oui",
         "NO" : "Non"
+    },
 
+    "COMPUTER": {
+      "ERRORNAMEEMPTY" : "Le nom est requis",
+      "ERRORDATEIN" : "Doit être après la date d'arrêt",
+      "ERRORDATEDISC" : "Doit être avant la date d'introduction",
+      "ERRORDATENULL" : "La date ne pas peut être vide",
+      "NAME" : "Nom",
+      "INTRODUCED" : "Date introduction",
+      "DISCONTINUED" : "Date d'arrêt",
+      "COMPANY" : "Entreprise",
+      "SUBMIT" : "Confirmer",
+      "CANCEL" : "Annuler"
     },
 
     "DETAILS": {

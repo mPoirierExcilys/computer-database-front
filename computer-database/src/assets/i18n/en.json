@@ -26,6 +26,19 @@
         "NO" : "No"
     },
 
+  "COMPUTER": {
+    "ERRORNAMEEMPTY" : "Name is required",
+    "ERRORDATEIN" : "Must be before discontinued date",
+    "ERRORDATEDISC" : "Must be after introduced date",
+    "ERRORDATENULL" : "Cannot set to null",
+    "NAME" : "Name",
+    "INTRODUCED" : "Introduced",
+    "DISCONTINUED" : "Discontinued",
+    "COMPANY" : "Company",
+    "SUBMIT" : "Submit",
+    "CANCEL" : "Cancel"
+  },
+
     "DETAILS": {
         "DETAIL": "Details computer",
         "BACK": "Back Home"
@@ -46,5 +59,4 @@
     "FORM": {
         "NAME": "Name"
     }
-}
 }

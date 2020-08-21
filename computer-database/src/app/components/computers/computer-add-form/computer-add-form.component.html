@@ -4,6 +4,7 @@
 
       <div class="form-group">
         <mat-label>{{ 'FORM.NAME' | translate }}: *    </mat-label> <input matInput class="form-control" name="name"
+
                                                     formControlName="name"
                                                     [ngClass]="{'is-invalid': editForm.get('name').hasError('required')}"
                                                     [(ngModel)]="computer.name" required>
@@ -11,11 +12,12 @@
       </div>
       <div class="form-group">
         <mat-label>{{ 'LIST.INTRODUCED' | translate }}: </mat-label> <input matInput type="date" class="form-control"
+
                                                    formControlName="introduced"
                                                    name="introduced"
                                                    [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateIntroduced}"
                                                    [(ngModel)]="computer.introduced">
-        <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{editForm.errors.dateIntroduced}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.dateIntroduced" class="invalid-input">{{ 'COMPUTER.ERRORDATEIN' | translate }}</div>
         <br />
       </div>
       <div class="form-group">
@@ -24,7 +26,7 @@
                formControlName="discontinued"
                [(ngModel)]="computer.discontinued"
                [ngClass]="{'is-invalid': editForm.errors && editForm.errors.dateDiscontinued}">
-        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{editForm.errors.dateDiscontinued}}</div>
+        <div *ngIf="editForm.errors && editForm.errors.dateDiscontinued" class="invalid-input">{{ 'USCOMPUTERER.ERRORDATEDISC' | translate }}</div>
         <br />
       </div>
 
