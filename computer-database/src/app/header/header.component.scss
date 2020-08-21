@@ -246,7 +246,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   margin-top: -9px;
 }
 
-
+/*
 @media screen and (max-width: 950px) {
   .sidebarIconToggle{
     display:block
@@ -255,6 +255,12 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 @media screen and (max-width: 1400px) {
   .button-hidde{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .button-hidde3{
     display: none;
   }
 }
@@ -275,5 +281,5 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     display: none;
   }
 }
-
+*/
 
