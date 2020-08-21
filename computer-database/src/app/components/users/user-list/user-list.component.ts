@@ -53,22 +53,4 @@ export class UserListComponent implements OnInit {
       }
     });
   }
-
-
-
-  // remove(id : number): void{
-  //   this.computerService.deleteComputer(id).subscribe(
-  //     () => {
-  //       this.getList();
-  //     },
-  //     (error: any) => {
-  //       console.log("Error with the observable in removeUser.");
-  //     }
-  //   );
-  // }
-
-  // deleteSelected(): void {
-  //   console.log("selected");
-  //   var checkBox = document.getElementById("selectall");
-  // }
 }
