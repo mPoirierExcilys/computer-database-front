@@ -86,6 +86,7 @@ export class ComputerListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'introduced', 'discontinued', 'companyDto'];
 
   allComplete: boolean = false;
+  isAdministrator: Boolean;
 
   @ViewChild("pageButtonFirst", {read: ElementRef}) pageButtonFirst: ElementRef;
   @ViewChild("pageButtonBegin", {read: ElementRef}) pageButtonBegin: ElementRef;
@@ -97,6 +98,7 @@ export class ComputerListComponent implements OnInit {
   @ViewChild("cbM", {read: ElementRef}) checkBoxAll: ElementRef;
   @ViewChild("cbA", {read: ElementRef}) colloneHeader: ElementRef;
   @ViewChild("cb", {read: ElementRef}) colloneFirst: ElementRef;
+  
 
   constructor(private routeParam: ActivatedRoute, computerService: ComputerService, public dialog: MatDialog, private userService : UserService) {
     this.route = routeParam;
@@ -107,6 +109,7 @@ export class ComputerListComponent implements OnInit {
     this.setPage();
     this.getList();
     console.log(this.userService.currentIsAdminValue);
+    this.setAdmin();
   }
 
   setPage(){
@@ -370,5 +373,9 @@ export class ComputerListComponent implements OnInit {
     }
   }
 
+  setAdmin(){
+    this.isAdministrator = this.userService.currentIsAdminValue;
+    }
+    
   @Output() removeToParent = new EventEmitter<number>();
 }

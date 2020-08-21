@@ -14,7 +14,7 @@
           <div class="pull-left">
             <input value="{{this.motSearch}}" (change)="modifSearch($event.target.value)" type="search" id="searchbox"
               name="search" class="form-control" placeholder="{{ 'LIST.SEARCH' | translate }}" />
-            <a class="btn btn-default" id="editComputer" (click)="toggleEditMode()">{{ 'LIST.EDIT' | translate }}</a>
+            <a *ngIf="isAdministrator === true" class="btn btn-default" id="editComputer" (click)="toggleEditMode()">{{ 'LIST.EDIT' | translate }}</a>
           </div>
         </div>
       </div>
@@ -32,8 +32,8 @@
               <mat-checkbox class="checkdelete" [checked]="allComplete" [indeterminate]="someComplete()"
                 (change)="setAll()" [(hidden)]="this.task.hidden">
               </mat-checkbox>
-              <p (click)="modifOrder('computer.name')" style="text-align: center;">{{ 'LIST.NAME' | translate }}</p>
               </div>
+              <p (click)="modifOrder('computer.name')" style="text-align: center;">{{ 'LIST.NAME' | translate }}</p>
             </th>
 
             <td mat-cell *matCellDef="let computer; let i = index">
