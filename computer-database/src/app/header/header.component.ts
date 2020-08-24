@@ -29,17 +29,12 @@ export class HeaderComponent implements OnInit {
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
     this.isAdministrator = this.userService.currentIsAdminValue;
-    console.log("administrator");
-    console.log(this.isAdministrator);
   }
 
   ngOnInit(): void {
     this.user = new User();
     this.setUser();
     this.getUserRoles();
-
-    console.log("isAdmin : ");
-    console.log(this.userService.currentIsAdminValue);
   }
 
   openDialog(): void{

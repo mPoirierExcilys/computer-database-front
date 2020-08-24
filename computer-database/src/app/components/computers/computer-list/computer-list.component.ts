@@ -108,7 +108,6 @@ export class ComputerListComponent implements OnInit {
   ngOnInit(): void {
     this.setPage();
     this.getList();
-    console.log(this.userService.currentIsAdminValue);
     this.setAdmin();
   }
 
@@ -200,6 +199,7 @@ export class ComputerListComponent implements OnInit {
       this.ascendingSelect = 'ASC';
       this.orderSelect = orderSelect;
       this.page.setOrder(orderSelect);
+      this.modifAscending(this.ascendingSelect);
     }
     this.getList();
   }

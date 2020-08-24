@@ -33,7 +33,11 @@
                 (change)="setAll()" [(hidden)]="this.task.hidden">
               </mat-checkbox>
               </div>
-              <p (click)="modifOrder('computer.name')" style="text-align: center;">{{ 'LIST.NAME' | translate }}</p>
+              <p (click)="modifOrder('computer.name')" style="text-align: center;">{{ 'LIST.NAME' | translate }}
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order !== 'computer.name'" src="../../../../assets/images/asc.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'computer.name' && page.ascending === 'ASC'" src="../../../../assets/images/ascUse.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'computer.name' && page.ascending === 'DESC'" src="../../../../assets/images/descUse.png" />
+              </p>
             </th>
 
             <td mat-cell *matCellDef="let computer; let i = index">
@@ -48,21 +52,33 @@
 
           <ng-container matColumnDef="introduced">
             <th mat-header-cell *matHeaderCellDef>
-              <p (click)="modifOrder('computer.introduced')">{{ 'LIST.INTRODUCED' | translate }}</p>
+              <p (click)="modifOrder('computer.introduced')">{{ 'LIST.INTRODUCED' | translate }} 
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order !== 'computer.introduced'" src="../../../../assets/images/asc.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'computer.introduced' && page.ascending === 'ASC'" src="../../../../assets/images/ascUse.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'computer.introduced' && page.ascending === 'DESC'" src="../../../../assets/images/descUse.png" />
+              </p>
             </th>
             <td mat-cell *matCellDef="let computer"> {{computer.introduced}} </td>
           </ng-container>
 
           <ng-container matColumnDef="discontinued">
             <th mat-header-cell *matHeaderCellDef>
-              <p (click)="modifOrder('computer.discontinued')">{{ 'LIST.DISCONTINUED' | translate }}</p>
+              <p (click)="modifOrder('computer.discontinued')">{{ 'LIST.DISCONTINUED' | translate }}
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order !== 'computer.discontinued'" src="../../../../assets/images/asc.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'computer.discontinued' && page.ascending === 'ASC'" src="../../../../assets/images/ascUse.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'computer.discontinued' && page.ascending === 'DESC'" src="../../../../assets/images/descUse.png" />
+              </p>
             </th>
             <td mat-cell *matCellDef="let computer"> {{computer.discontinued}} </td>
           </ng-container>
 
           <ng-container matColumnDef="companyDto">
             <th mat-header-cell *matHeaderCellDef>
-              <p (click)="modifOrder('cp.name')">{{ 'LIST.COMPANY' | translate }}</p>
+              <p (click)="modifOrder('cp.name')">{{ 'LIST.COMPANY' | translate }}
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order !== 'cp.name'" src="../../../../assets/images/asc.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'cp.name' && page.ascending === 'ASC'" src="../../../../assets/images/ascUse.png" />                
+                <img class="fit-picture" *ngIf="page && page.ascending && page.order && page.order === 'cp.name' && page.ascending === 'DESC'" src="../../../../assets/images/descUse.png" />
+              </p>
             </th>
             <td mat-cell *matCellDef="let computer"> {{computer.companyDto.name}} </td>
           </ng-container>
