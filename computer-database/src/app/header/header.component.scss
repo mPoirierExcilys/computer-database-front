@@ -35,20 +35,6 @@
   outline: none;
 }
 
-#fh5co-header h1 a:after {
-  text-decoration: none;
-  position: absolute;
-  bottom: 6px;
-  right: -8px;
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: #27E1CE;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  border-radius: 50%;
-}
 #fh5co-header h1, #fh5co-header nav {
   margin: 38px 0 0 0;
 }

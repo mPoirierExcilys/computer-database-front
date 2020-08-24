@@ -30,12 +30,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'users/edit/:id',
-    component: UserPasswordFormComponent,
-        canActivate: [AuthGuard],
-    pathMatch: 'full'
-  },
-  {
     path: 'companies',
     component: CompanyListComponent,
     canActivate: [AuthGuard],
@@ -44,12 +38,6 @@ const routes: Routes = [
   {
     path: 'computers',
     component: ComputerListComponent,
-    canActivate: [AuthGuard],
-    pathMatch: 'full'
-  },
-  {
-    path: 'computers/edit/:id',
-    component: ComputerModifyFormComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
