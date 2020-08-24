@@ -53,8 +53,12 @@ export class ComputerDetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.computerService.updateComputer(result).subscribe();
-        this.getComputer();
+        this.computerService.updateComputer(result).subscribe(
+          (result2) => {this.getComputer(); },
+          (error => {
+            this.getComputer();
+          })
+        );
       }
     });
   }

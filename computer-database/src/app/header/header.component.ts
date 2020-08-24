@@ -20,16 +20,16 @@ export class HeaderComponent implements OnInit {
   user: User;
   userRoles: Role[];
   isAdministrator: Boolean = false;
-  messageLogout = "Logout";
+  messageLogout = 'Logout';
 
   @Output() logoutEvent = new EventEmitter<string>();
 
   constructor(public dialog: MatDialog, private router: Router, public translate: TranslateService, private userService: UserService, private computerService: ComputerService) {
     translate.addLangs(['en', 'fr']);
-      const browserLang = translate.getBrowserLang();
-      translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
     this.isAdministrator = this.userService.currentIsAdminValue;
-    console.log("administrator");
+    console.log('administrator');
     console.log(this.isAdministrator);
   }
 
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     this.setUser();
     this.getUserRoles();
 
-    console.log("isAdmin : ");
+    console.log('isAdmin : ');
     console.log(this.userService.currentIsAdminValue);
   }
 
@@ -47,14 +47,16 @@ export class HeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this.computerService.createComputer(result).subscribe();
+        this.computerService.createComputer(result).subscribe(
+          comp => { this.router.navigate(['/computers/' + comp]); }
+        );
       }
     });
   }
 
   getUserRoles() {
-    if(this.userService.currentUserValue){
-      this.userService.getUser("" + this.userService.currentUserValue.id).subscribe((result: User) => {
+    if (this.userService.currentUserValue){
+      this.userService.getUser('' + this.userService.currentUserValue.id).subscribe((result: User) => {
         this.userRoles = result.roles;
         this.isAdmin(this.userRoles);
         }, (error) => { console.log(error);
@@ -68,14 +70,15 @@ export class HeaderComponent implements OnInit {
   }
 
   isAdmin(list: Role[]){
-    let self = this;
+    const self = this;
     list.forEach(function(element){
-      for(let name of element.name)
-        if(element.name === "ROLE_ADMIN"){
+      for (const name of element.name) {
+        if (element.name === 'ROLE_ADMIN'){
           self.isAdministrator = true;
           break;
         }
-    })
+      }
+    });
   }
 
   sendUserIsAdmin(){
